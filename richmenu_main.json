@@ -1,0 +1,86 @@
+{
+  "size": {
+    "width": 1200,
+    "height": 810
+  },
+  "selected": true,
+  "name": "そらち塗装セカンドオピニオン メインメニュー",
+  "chatBarText": "メニュー",
+  "areas": [
+    {
+      "bounds": {
+        "x": 0,
+        "y": 0,
+        "width": 400,
+        "height": 405
+      },
+      "action": {
+        "type": "postback",
+        "data": "action=richmenu_start&value=second_opinion",
+        "displayText": "見積書を送る"
+      }
+    },
+    {
+      "bounds": {
+        "x": 400,
+        "y": 0,
+        "width": 400,
+        "height": 405
+      },
+      "action": {
+        "type": "postback",
+        "data": "action=richmenu_start&value=new_estimate",
+        "displayText": "新規で見積もりを相談する"
+      }
+    },
+    {
+      "bounds": {
+        "x": 800,
+        "y": 0,
+        "width": 400,
+        "height": 405
+      },
+      "action": {
+        "type": "uri",
+        "uri": "https://sorachi-tosou-line-620839338085.asia-northeast1.run.app/guide"
+      }
+    },
+    {
+      "bounds": {
+        "x": 0,
+        "y": 405,
+        "width": 400,
+        "height": 329
+      },
+      "action": {
+        "type": "uri",
+        "uri": "https://sorachi-tosou-line-620839338085.asia-northeast1.run.app/faq"
+      }
+    },
+    {
+      "bounds": {
+        "x": 400,
+        "y": 405,
+        "width": 400,
+        "height": 329
+      },
+      "action": {
+        "type": "postback",
+        "data": "action=richmenu_contact",
+        "displayText": "お問い合わせ"
+      }
+    },
+    {
+      "bounds": {
+        "x": 800,
+        "y": 405,
+        "width": 400,
+        "height": 329
+      },
+      "action": {
+        "type": "uri",
+        "uri": "https://sorachi-tosou-line-620839338085.asia-northeast1.run.app/vendor/login"
+      }
+    }
+  ]
+}

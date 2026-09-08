@@ -1,0 +1,76 @@
+# =========================
+# Python
+# =========================
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+
+# =========================
+# Virtual environments
+# =========================
+venv/
+.venv/
+env/
+
+# =========================
+# Secrets / credentials
+# =========================
+.env
+.env.*
+*.env
+secrets/
+secret/
+credentials/
+credentials.json
+service-account*.json
+service_account*.json
+*service-account*.json
+*service_account*.json
+application_default_credentials.json
+
+# =========================
+# Backups
+# =========================
+backups/
+*.bak
+*.backup
+main.py.bak*
+main.py.before_*
+requirements.txt.bak*
+
+# =========================
+# Generated previews
+# =========================
+solar_v*.html
+
+# =========================
+# Logs / temporary
+# =========================
+*.log
+*.tmp
+*.temp
+*.swp
+*.swo
+
+# =========================
+# Archives
+# =========================
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+
+# =========================
+# Editors / OS
+# =========================
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# =========================
+# LINE generated artifacts
+# =========================
+richmenu_create_response.json
+richmenu_id.txt

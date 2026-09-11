@@ -56519,7 +56519,6 @@ img{
 
 .trace-shell{
   width:100%;
-  overflow:hidden;
   background:#fff;
 }
 
@@ -56597,7 +56596,6 @@ img{
   height:390px;
   margin:0 auto;
   position:relative;
-  overflow:hidden;
   background:#f6fbff;
 }
 
@@ -56768,7 +56766,7 @@ img{
 ========================================= */
 
 .trace-trust{
-  height:68px;
+  height:auto;
   position:relative;
   z-index:5;
   background:#fff;
@@ -56777,7 +56775,7 @@ img{
 .trace-trust-inner{
   width:calc(100% - 44px);
   max-width:1600px;
-  height:68px;
+  height:auto;
   margin:0 auto;
   display:grid;
   grid-template-columns:repeat(3,1fr);
@@ -56786,7 +56784,6 @@ img{
   box-shadow:0 5px 17px rgba(20,50,80,.07);
   transform:translateY(-8px);
   background:#fff;
-  overflow:hidden;
 }
 
 .trace-trust-item{
@@ -56795,6 +56792,10 @@ img{
   gap:11px;
   padding:8px 18px;
   border-right:1px solid #E7EBEF;
+}
+
+.trace-trust-item > div:last-child{
+  min-width:0;
 }
 
 .trace-trust-item:last-child{
@@ -56879,14 +56880,15 @@ img{
 }
 
 .trace-concern{
-  height:180px;
+  height:auto;
+  min-height:180px;
   border:1px solid #E1E7EC;
   border-radius:8px;
-  overflow:hidden;
   background:#fff;
 }
 
 .trace-concern-img{
+  border-radius:7px 7px 0 0;
   display:block;
   width:100%;
   height:108px;
@@ -57522,14 +57524,14 @@ img{
 .trace-action-main{
   font-size:17px;
   line-height:1.25;
-  white-space:nowrap;
+  white-space:normal;
 }
 
 .trace-action-sub{
   margin-top:4px;
   font-size:11px;
   line-height:1.25;
-  white-space:nowrap;
+  white-space:normal;
 }
 
 .trace-action-arrow{
@@ -57540,11 +57542,11 @@ img{
 /* --- TRUST STRIP --- */
 
 .trace-trust{
-  height:82px;
+  height:auto;
 }
 
 .trace-trust-inner{
-  height:82px;
+  height:auto;
 }
 
 .trace-trust-item{
@@ -57622,14 +57624,14 @@ img{
 .trace-action-main{
   font-size:18px;
   line-height:1.2;
-  white-space:nowrap;
+  white-space:normal;
 }
 
 .trace-action-sub{
   margin-top:5px;
   font-size:12px;
   line-height:1.25;
-  white-space:nowrap;
+  white-space:normal;
 }
 
 .trace-action-arrow{
@@ -57760,12 +57762,12 @@ img{
 ========================= */
 
 .trace-hero{
-  height:445px;
+  height:auto;
   min-height:445px;
 }
 
 .trace-hero-inner{
-  height:100%;
+  height:auto;
 }
 
 .trace-hero-copy{
@@ -57801,9 +57803,10 @@ img{
 
 .trace-action-main{
   display:block;
+  text-wrap:balance;
   font-size:18px;
   line-height:1.22;
-  white-space:nowrap;
+  white-space:normal;
 }
 
 .trace-action-sub{
@@ -57811,7 +57814,7 @@ img{
   margin-top:4px;
   font-size:12px;
   line-height:1.25;
-  white-space:nowrap;
+  white-space:normal;
 }
 
 .trace-action-arrow{
@@ -57825,7 +57828,7 @@ img{
 ========================= */
 
 .trace-trust{
-  height:102px;
+  height:auto;
   min-height:102px;
   margin-top:0;
   padding:0;
@@ -57835,7 +57838,7 @@ img{
 .trace-trust-inner{
   width:calc(100% - 44px);
   max-width:1600px;
-  height:92px;
+  height:auto;
   min-height:92px;
   margin:0 auto;
   transform:none;
@@ -57860,14 +57863,14 @@ img{
   font-size:20px;
   line-height:1.25;
   font-weight:900;
-  white-space:nowrap;
+  white-space:normal;
 }
 
 .trace-trust-text{
   margin-top:6px;
   font-size:16px;
   line-height:1.4;
-  white-space:nowrap;
+  white-space:normal;
 }
 
 
@@ -57979,7 +57982,8 @@ img{
   color:#0D3968;
 
   margin-bottom:12px;
-  white-space:nowrap;
+  white-space:normal;
+  text-wrap:balance;
 }
 
 .trace-eyebrow:before{
@@ -59331,16 +59335,6 @@ img{
   color:#65798B;
 }
 
-/* PCではタイトルを途中で分断しない */
-@media (min-width:1251px){
-
-  .trace-reason-title{
-    white-space:nowrap;
-  }
-
-}
-
-
 /* 中間幅 */
 @media (max-width:1250px) and (min-width:821px){
 
@@ -59364,8 +59358,7 @@ img{
   .trace-reason-title{
     font-size:17px;
 
-    /* 文字単位で「共 / 有」のように割らない */
-    word-break:keep-all;
+    word-break:normal;
     overflow-wrap:normal;
   }
 
@@ -59394,7 +59387,7 @@ img{
 
   .trace-reason-title{
     white-space:normal;
-    word-break:keep-all;
+    word-break:normal;
     overflow-wrap:normal;
   }
 }
@@ -59595,7 +59588,7 @@ img{
 
 .trace-footer{
   min-height:150px;
-  padding:22px 0 64px;
+  padding:22px 0 calc(64px + env(safe-area-inset-bottom));
   background:#fff;
 }
 
@@ -59706,7 +59699,7 @@ img{
 
   .trace-footer{
     padding-top:20px;
-    padding-bottom:72px;
+    padding-bottom:calc(72px + env(safe-area-inset-bottom));
   }
 
   .trace-footer-inner{
@@ -60666,7 +60659,30 @@ img{
    RESPONSIVE
 ========================================= */
 
-@media(max-width:820px){
+@media(max-width:1250px){
+
+  .trace-logo{
+    width:300px;
+  }
+
+  .trace-concern-grid,
+  .trace-check-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+
+  .trace-hero-copy p,
+  .trace-purpose-copy h2{
+    text-wrap:pretty;
+  }
+
+  .trace-hero-copy p br,
+  .trace-purpose-copy h2 br{
+    display:none;
+  }
+
+}
+
+@media(max-width:1024px){
 
   .trace-inner{
     width:calc(100% - 24px);
@@ -60706,14 +60722,13 @@ img{
   }
 
   .trace-hero-inner{
-    position:absolute;
-    inset:0;
+    position:relative;
     padding:0 22px;
   }
 
   .trace-hero-copy{
     width:100%;
-    padding-top:250px;
+    padding-top:0;
     padding-bottom:28px;
   }
 
@@ -60813,6 +60828,50 @@ img{
   .trace-concern-grid,
   .trace-check-grid{
     grid-template-columns:1fr;
+  }
+
+}
+
+
+/* Heroが画面を通過してから固定CTAを表示する。
+   スクロール連動CSS非対応時は末尾の通常配置を保つ。 */
+@media(max-width:1024px){
+
+  .trace-sticky{
+    position:static;
+  }
+
+  @supports (animation-timeline: --solar-hero) and (timeline-scope: --solar-hero){
+
+    .trace-shell{
+      timeline-scope:--solar-hero;
+    }
+
+    .trace-hero{
+      view-timeline-name:--solar-hero;
+      view-timeline-axis:block;
+    }
+
+    .trace-sticky{
+      position:fixed;
+      animation:solar-sticky-reveal 1s steps(1,end) both;
+      animation-timeline:--solar-hero;
+      animation-range:exit;
+    }
+
+    @keyframes solar-sticky-reveal{
+      from{
+        opacity:0;
+        visibility:hidden;
+        pointer-events:none;
+      }
+      to{
+        opacity:1;
+        visibility:visible;
+        pointer-events:auto;
+      }
+    }
+
   }
 
 }

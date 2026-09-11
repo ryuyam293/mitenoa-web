@@ -56547,18 +56547,9 @@ img{
 }
 
 .trace-logo{
-  width:190px;
-  height:45px;
-  object-fit:contain;
-  object-position:left center;
 }
 
-.trace-tagline{
-  font-size:13px;
-  font-weight:700;
-  white-space:nowrap;
-  margin-left: 14px;
-}
+
 
 .trace-nav{
   margin-left:auto;
@@ -56734,30 +56725,7 @@ img{
   font-size:20px;
 }
 
-.trace-hand{
-  position:absolute;
-  right:6.2%;
-  top:54px;
-  width:200px;
-  text-align:center;
-  color:#173B63;
 
-  font-family:
-    "Klee One",
-    "Yu Mincho",
-    "Hiragino Mincho ProN",
-    serif;
-
-  font-size:18px;
-  font-weight:600;
-  line-height:1.72;
-  letter-spacing:.065em;
-
-  transform:rotate(-5deg);
-
-  text-shadow:
-    0 1px 0 rgba(255,255,255,.35);
-}
 
 
 /* =========================================
@@ -56941,9 +56909,6 @@ img{
 }
 
 .trace-check{
-  min-height:95px;
-  padding:12px;
-  background:#fff;
   border:1px solid #DDE9F1;
   border-radius:7px;
 }
@@ -56955,16 +56920,7 @@ img{
 }
 
 .trace-check-icon{
-  width:32px;
-  height:32px;
-  flex:0 0 32px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  border-radius:50%;
-  background:#F4F7FA;
   color:#103B6A;
-  font-size:15px;
   font-weight:900;
 }
 
@@ -56975,10 +56931,6 @@ img{
 }
 
 .trace-check-text{
-  margin-top:7px;
-  color:#65798B;
-  font-size:10px;
-  line-height:1.5;
 }
 
 
@@ -57001,9 +56953,7 @@ img{
 }
 
 .trace-flow-card{
-  height:172px;
   position:relative;
-  overflow:hidden;
   border:1px solid #E0E6EB;
   border-radius:7px;
   background:#fff;
@@ -57027,13 +56977,7 @@ img{
 }
 
 .trace-flow-art{
-  height:94px;
-  background:#F0F3F5;
-  display:flex;
-  align-items:center;
-  justify-content:center;
   color:#315D82;
-  font-size:13px;
   font-weight:800;
 }
 
@@ -57347,9 +57291,7 @@ img{
    ※ FV大見出し .trace-h1 は変更しない
 ========================================= */
 
-.trace-tagline{
-  font-size:14px;
-}
+
 
 .trace-nav a{
   font-size:14px;
@@ -57377,9 +57319,7 @@ img{
   font-size:11px;
 }
 
-.trace-hand{
-  font-size:17px;
-}
+
 
 .trace-trust-title{
   font-size:16px;
@@ -57418,8 +57358,6 @@ img{
 }
 
 .trace-check-text{
-  font-size:12px;
-  line-height:1.55;
 }
 
 .trace-step{
@@ -57427,7 +57365,6 @@ img{
 }
 
 .trace-flow-art{
-  font-size:14px;
 }
 
 .trace-flow-title{
@@ -57493,10 +57430,6 @@ img{
 /* --- HEADER LOGO --- */
 
 .trace-logo{
-  width:255px;
-  height:52px;
-  object-fit:contain;
-  object-position:left center;
 }
 
 
@@ -57587,10 +57520,6 @@ img{
 }
 
 .trace-logo{
-  width:340px;
-  height:72px;
-  object-fit:contain;
-  object-position:left center;
 }
 
 
@@ -57683,32 +57612,7 @@ img{
 
 /* ---------- Tablet ---------- */
 
-@media (max-width: 1200px){
-  .trace-logo{
-    width:300px;
-    height:64px;
-  }
 
-  .trace-actions{
-    width:min(520px,100%);
-  }
-
-  .trace-action-main{
-    font-size:17px;
-  }
-
-  .trace-action-sub{
-    font-size:11px;
-  }
-
-  .trace-trust-title{
-    font-size:17px;
-  }
-
-  .trace-trust-text{
-    font-size:13px;
-  }
-}
 
 
 
@@ -57730,16 +57634,9 @@ img{
 }
 
 .trace-logo{
-  width:350px;
-  height:68px;
-  object-fit:contain;
-  object-position:left center;
 }
 
-.trace-tagline{
-  font-size:14px;
-  margin-left:8px;
-}
+
 
 .trace-nav{
   gap:32px;
@@ -57881,7 +57778,6 @@ img{
 @media (min-width: 1100px){
 
   .trace-logo{
-    width:350px;
   }
 
   .trace-action-main{
@@ -57910,7 +57806,6 @@ img{
 @media (max-width: 1250px) and (min-width: 821px){
 
   .trace-logo{
-    width:300px;
   }
 
   .trace-actions{
@@ -58047,8 +57942,6 @@ img{
 }
 
 .trace-check{
-  min-height:108px;
-  padding:14px 15px;
 }
 
 .trace-check-top{
@@ -58056,9 +57949,6 @@ img{
 }
 
 .trace-check-icon{
-  width:38px;
-  height:38px;
-  flex:0 0 38px;
   font-size:17px;
 }
 
@@ -58069,9 +57959,6 @@ img{
 }
 
 .trace-check-text{
-  margin-top:9px;
-  font-size:14px;
-  line-height:1.55;
 }
 
 /* 中間幅 */
@@ -58082,7 +57969,6 @@ img{
   }
 
   .trace-check-text{
-    font-size:13px;
   }
 
 }
@@ -58093,13 +57979,6 @@ img{
 ========================================= */
 
 .trace-check-icon{
-  width:44px;
-  height:44px;
-  flex:0 0 44px;
-  padding:0;
-  overflow:hidden;
-  border-radius:12px;
-  background:transparent;
 }
 
 .trace-check-icon img{
@@ -58118,34 +57997,18 @@ img{
 
 .trace-check{
   position:relative;
-  min-height:122px;
 
-  padding:
-    18px
-    18px
-    16px
-    88px;
 
-  display:block;
 }
 
 /* 左側アイコン領域 */
 .trace-check-icon{
-  position:absolute;
 
-  left:18px;
-  top:18px;
 
-  width:58px;
-  height:58px;
   flex:none;
 
-  padding:0;
 
-  overflow:hidden;
 
-  border-radius:14px;
-  background:transparent;
 }
 
 /* 生成したカラーアイコン */
@@ -58176,12 +58039,8 @@ img{
 
 /* 説明文をタイトルの左端に揃える */
 .trace-check-text{
-  margin-top:10px;
 
-  font-size:14px;
-  line-height:1.55;
 
-  color:#65798B;
 }
 
 /* カード間 */
@@ -58197,21 +58056,11 @@ img{
 @media (max-width:1250px) and (min-width:821px){
 
   .trace-check{
-    min-height:118px;
 
-    padding:
-      16px
-      15px
-      15px
-      80px;
   }
 
   .trace-check-icon{
-    left:15px;
-    top:16px;
 
-    width:54px;
-    height:54px;
   }
 
   .trace-check-name{
@@ -58219,7 +58068,6 @@ img{
   }
 
   .trace-check-text{
-    font-size:13px;
   }
 
 }
@@ -58232,21 +58080,11 @@ img{
 @media (max-width:820px){
 
   .trace-check{
-    min-height:112px;
 
-    padding:
-      16px
-      14px
-      15px
-      78px;
   }
 
   .trace-check-icon{
-    left:14px;
-    top:16px;
 
-    width:52px;
-    height:52px;
   }
 
 }
@@ -58257,26 +58095,12 @@ img{
 ========================================= */
 
 .trace-check{
-  min-height:122px;
-  padding:
-    18px
-    18px
-    16px
-    118px;
 }
 
 /* アイコン表示領域を拡大 */
 .trace-check-icon{
-  left:20px;
-  top:50%;
-  transform:translateY(-50%);
 
-  width:82px;
-  height:82px;
 
-  overflow:visible;
-  border-radius:18px;
-  background:transparent;
 }
 
 /* PNG内部の余白分まで拡大 */
@@ -58298,9 +58122,6 @@ img{
 }
 
 .trace-check-text{
-  margin-top:9px;
-  font-size:14px;
-  line-height:1.55;
 }
 
 
@@ -58312,9 +58133,6 @@ img{
   }
 
   .trace-check-icon{
-    left:18px;
-    width:76px;
-    height:76px;
   }
 
 }
@@ -58328,9 +58146,6 @@ img{
   }
 
   .trace-check-icon{
-    left:14px;
-    width:68px;
-    height:68px;
   }
 
 }
@@ -58341,7 +58156,6 @@ img{
 ========================================= */
 
 .trace-check{
-  display:flex;
   flex-direction:column;
   justify-content:center;
 }
@@ -58359,12 +58173,8 @@ img{
 
 /* 説明文の開始位置を統一 */
 .trace-check-text{
-  margin-top:8px;
-  min-height:44px;
-  display:flex;
   flex-direction:column;
   justify-content:flex-start;
-  line-height:1.55;
 }
 
 /* PC幅 */
@@ -58385,7 +58195,6 @@ img{
 @media (max-width:1250px) and (min-width:821px){
 
   .trace-check-text{
-    min-height:42px;
   }
 
 }
@@ -58394,7 +58203,6 @@ img{
 @media (max-width:820px){
 
   .trace-check-text{
-    min-height:0;
   }
 
 }
@@ -58405,30 +58213,17 @@ img{
 ========================================= */
 
 .trace-check{
-  min-height:122px;
-  padding:16px 18px;
 
-  display:grid;
-  grid-template-columns:90px minmax(0,1fr);
-  align-items:center;
-  column-gap:16px;
 
-  background:#fff;
 }
 
 .trace-check-icon{
-  position:static;
-  transform:none;
 
-  width:82px;
-  height:82px;
 
   display:flex;
   align-items:center;
   justify-content:center;
 
-  overflow:visible;
-  background:transparent;
 }
 
 .trace-check-icon img{
@@ -58443,14 +58238,7 @@ img{
   transform-origin:center;
 }
 
-.trace-check-content{
-  min-width:0;
 
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:flex-start;
-}
 
 .trace-check-name{
   margin:0;
@@ -58465,14 +58253,9 @@ img{
 .trace-check-text{
   margin-top:8px;
 
-  min-height:0;
 
-  display:block;
 
-  font-size:14px;
-  line-height:1.5;
 
-  color:#65798B;
 }
 
 
@@ -58480,14 +58263,9 @@ img{
 @media (max-width:1250px) and (min-width:821px){
 
   .trace-check{
-    grid-template-columns:82px minmax(0,1fr);
-    column-gap:14px;
-    padding:15px 16px;
   }
 
   .trace-check-icon{
-    width:74px;
-    height:74px;
   }
 
   .trace-check-name{
@@ -58495,7 +58273,6 @@ img{
   }
 
   .trace-check-text{
-    font-size:13px;
   }
 
 }
@@ -58505,14 +58282,9 @@ img{
 @media (max-width:820px){
 
   .trace-check{
-    grid-template-columns:76px minmax(0,1fr);
-    column-gap:12px;
-    padding:14px;
   }
 
   .trace-check-icon{
-    width:68px;
-    height:68px;
   }
 
 }
@@ -58528,10 +58300,8 @@ img{
   padding:16px 18px;
 
   display:grid;
-  grid-template-columns:92px minmax(0,1fr);
   grid-template-rows:auto auto;
 
-  column-gap:16px;
   row-gap:6px;
 
   align-content:center;
@@ -58558,8 +58328,6 @@ img{
   top:auto;
   transform:none;
 
-  width:82px;
-  height:82px;
 
   align-self:center;
   justify-self:center;
@@ -58625,14 +58393,10 @@ img{
 @media (max-width:1250px) and (min-width:821px){
 
   .trace-check{
-    grid-template-columns:84px minmax(0,1fr);
-    column-gap:14px;
     padding:15px 16px;
   }
 
   .trace-check-icon{
-    width:76px;
-    height:76px;
   }
 
   .trace-check-name{
@@ -58649,14 +58413,10 @@ img{
 @media (max-width:820px){
 
   .trace-check{
-    grid-template-columns:76px minmax(0,1fr);
-    column-gap:12px;
     padding:14px;
   }
 
   .trace-check-icon{
-    width:68px;
-    height:68px;
   }
 }
 
@@ -58698,19 +58458,11 @@ img{
 ========================================= */
 
 .trace-flow-card{
-  height:220px;
 }
 
 .trace-flow-art{
-  height:126px;
-  padding:6px 10px 0;
 
-  display:flex;
-  align-items:center;
-  justify-content:center;
 
-  overflow:hidden;
-  background:#fff;
 
   font-size:0;
 }
@@ -58748,11 +58500,9 @@ img{
 @media (max-width:1250px) and (min-width:821px){
 
   .trace-flow-card{
-    height:210px;
   }
 
   .trace-flow-art{
-    height:120px;
   }
 
 }
@@ -58762,12 +58512,9 @@ img{
 @media (max-width:820px){
 
   .trace-flow-card{
-    height:auto;
-    min-height:210px;
   }
 
   .trace-flow-art{
-    height:125px;
   }
 
 }
@@ -58782,12 +58529,6 @@ img{
 }
 
 .trace-flow-art{
-  min-height:150px;
-  height:150px;
-  padding:14px 18px 10px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
   overflow:visible;
   background:#fff;
 }
@@ -58804,8 +58545,6 @@ img{
 
 @media (max-width:1250px) and (min-width:821px){
   .trace-flow-art{
-    min-height:145px;
-    height:145px;
   }
 
   .trace-flow-art img{
@@ -58816,8 +58555,6 @@ img{
 
 @media (max-width:820px){
   .trace-flow-art{
-    min-height:140px;
-    height:140px;
   }
 
   .trace-flow-art img{
@@ -58846,8 +58583,6 @@ img{
 }
 
 .trace-flow-card{
-  height:auto;
-  min-height:230px;
 }
 
 @media (max-width:1250px) and (min-width:821px){
@@ -58856,7 +58591,6 @@ img{
   }
 
   .trace-flow-card{
-    min-height:225px;
   }
 }
 
@@ -58868,8 +58602,6 @@ img{
   }
 
   .trace-flow-card{
-    height:auto;
-    min-height:220px;
   }
 }
 
@@ -58880,57 +58612,28 @@ img{
 ========================================= */
 
 .trace-flow-card{
-  min-height: 246px;
 }
 
-.trace-flow-visual{
-  min-height: 174px;
-  padding: 14px 20px 8px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  overflow:visible;
-  background:transparent;
-}
 
-.trace-flow-visual img{
-  display:block;
-  width:auto;
-  height:auto;
-  max-width: 220px;
-  max-height: 132px;
-  object-fit: contain;
-}
+
+
 
 @media (max-width:1250px) and (min-width:821px){
   .trace-flow-card{
-    min-height: 240px;
   }
 
-  .trace-flow-visual{
-    min-height: 168px;
-  }
 
-  .trace-flow-visual img{
-    max-width: 205px;
-    max-height: 124px;
-  }
+
+
 }
 
 @media (max-width:820px){
   .trace-flow-card{
-    min-height: auto;
   }
 
-  .trace-flow-visual{
-    min-height: 156px;
-    padding: 12px 16px 6px;
-  }
 
-  .trace-flow-visual img{
-    max-width: 190px;
-    max-height: 116px;
-  }
+
+
 }
 
 
@@ -58949,13 +58652,9 @@ img{
 }
 
 .trace-flow-card{
-  min-height:210px;
-  height:auto;
 }
 
 .trace-flow-art{
-  min-height:132px;
-  height:132px;
 
   padding:
     8px
@@ -59000,12 +58699,9 @@ img{
   }
 
   .trace-flow-card{
-    min-height:205px;
   }
 
   .trace-flow-art{
-    min-height:126px;
-    height:126px;
   }
 
   .trace-flow-art img{
@@ -59021,12 +58717,9 @@ img{
   }
 
   .trace-flow-card{
-    min-height:200px;
   }
 
   .trace-flow-art{
-    min-height:122px;
-    height:122px;
   }
 
   .trace-flow-body{
@@ -59060,12 +58753,10 @@ img{
 }
 
 .trace-flow-card{
-  min-height:198px;
 }
 
 @media (max-width:1250px) and (min-width:821px){
   .trace-flow-card{
-    min-height:194px;
   }
 }
 
@@ -59075,7 +58766,6 @@ img{
   }
 
   .trace-flow-card{
-    min-height:190px;
   }
 }
 
@@ -60688,8 +60378,7 @@ img{
     width:calc(100% - 24px);
   }
 
-  .trace-tagline,
-  .trace-nav a:not(.trace-header-cta){
+  .trace-nav a:not(.trace-header-cta) {
     display:none;
   }
 
@@ -60740,9 +60429,7 @@ img{
     width:100%;
   }
 
-  .trace-hand{
-    display:none;
-  }
+
 
   .trace-trust,
   .trace-concerns,

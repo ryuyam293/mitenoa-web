@@ -29,6 +29,7 @@ from werkzeug.security import (
     generate_password_hash,
     check_password_hash,
 )
+from werkzeug.exceptions import Forbidden
 
 from google.cloud import storage
 from openai import OpenAI
@@ -54237,18 +54238,27 @@ body{
 .wrap{
     max-width:760px;
     margin:0 auto;
-    padding:28px 16px 60px;
+    padding:24px 16px 60px;
 }
 .brand{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
     font-weight:800;
     font-size:20px;
     color:#0b1d3a;
-    margin-bottom:24px;
+    margin-bottom:18px;
+}
+.brand a{
+    color:#4c7f6b;
+    font-size:13px;
+    font-weight:700;
+    text-decoration:none;
 }
 .card{
     background:#fff;
     border-radius:18px;
-    padding:28px 22px;
+    padding:28px 22px 30px;
     box-shadow:
         0 4px 20px rgba(0,0,0,.06);
 }
@@ -54256,6 +54266,23 @@ h1{
     margin:0 0 10px;
     font-size:28px;
     line-height:1.4;
+}
+.intro-badges{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin:0 0 14px;
+}
+.intro-badge{
+    display:inline-flex;
+    align-items:center;
+    min-height:28px;
+    padding:4px 10px;
+    border-radius:999px;
+    background:#eef6f2;
+    color:#2f6653;
+    font-size:12px;
+    font-weight:800;
 }
 .lead{
     color:#596273;
@@ -54280,6 +54307,11 @@ label{
     font-size:12px;
     margin-left:5px;
 }
+.field-label{
+    display:flex;
+    align-items:baseline;
+    gap:4px;
+}
 input,
 textarea{
     width:100%;
@@ -54297,6 +54329,22 @@ input:focus,
 textarea:focus{
     outline:none;
     border-color:#0b1d3a;
+    box-shadow:0 0 0 3px rgba(76,127,107,.18);
+}
+input[aria-invalid="true"],
+textarea[aria-invalid="true"]{
+    border-color:#b42318;
+}
+input[type="file"]{
+    padding:10px;
+    font-size:14px;
+}
+.field-error{
+    margin-top:6px;
+    color:#9f1239;
+    font-size:13px;
+    line-height:1.55;
+    font-weight:700;
 }
 .help{
     color:#6c7480;
@@ -54309,6 +54357,7 @@ textarea:focus{
     padding:16px;
     border-radius:12px;
     line-height:1.7;
+    border:1px solid #e2e6ea;
 }
 .consent label{
     display:flex;
@@ -54318,8 +54367,11 @@ textarea:focus{
     margin:0;
 }
 .consent input{
-    width:auto;
+    width:20px;
+    height:20px;
+    flex:0 0 20px;
     margin-top:5px;
+    accent-color:#4c7f6b;
 }
 button{
     width:100%;
@@ -54332,6 +54384,18 @@ button{
     font-weight:700;
     cursor:pointer;
     margin-top:24px;
+    box-shadow:0 5px 14px rgba(11,29,58,.16);
+}
+button:focus-visible{
+    outline:3px solid rgba(255,122,0,.55);
+    outline-offset:3px;
+}
+.submit-help{
+    margin:10px 0 0;
+    text-align:center;
+    color:#596273;
+    font-size:13px;
+    line-height:1.6;
 }
 .error{
     background:#fff1f2;
@@ -54342,11 +54406,48 @@ button{
     margin-bottom:20px;
     line-height:1.6;
 }
+.error-title{
+    display:block;
+    margin-bottom:3px;
+    font-weight:800;
+}
 .notice{
     margin-top:20px;
     color:#646b76;
     font-size:13px;
     line-height:1.7;
+}
+@media (max-width:520px){
+    .wrap{
+        padding:16px 12px 40px;
+    }
+    .brand{
+        margin-bottom:14px;
+    }
+    .brand a{
+        font-size:12px;
+    }
+    .card{
+        padding:22px 16px 24px;
+        border-radius:14px;
+    }
+    h1{
+        font-size:24px;
+    }
+    .lead{
+        margin-bottom:22px;
+        font-size:14px;
+    }
+    .field{
+        margin-bottom:20px;
+    }
+    .consent{
+        padding:14px;
+        font-size:14px;
+    }
+    button{
+        margin-top:20px;
+    }
 }
 </style>
 </head>
@@ -54356,6 +54457,7 @@ button{
 
 <div class="brand">
 MITENOA
+<a href="/solar">Solar LPへ戻る</a>
 </div>
 
 <div class="card">
@@ -54365,6 +54467,12 @@ MITENOA
 契約前に無料チェック
 </h1>
 
+<div class="intro-badges" aria-label="診断のポイント">
+<span class="intro-badge">契約前チェック</span>
+<span class="intro-badge">無料</span>
+<span class="intro-badge">約3分で申込み</span>
+</div>
+
 <p class="lead">
 価格だけでなく、設備容量・保証・経済性・
 契約条件・地域特性などを第三者の立場から確認します。
@@ -54372,14 +54480,16 @@ MITENOA
 </p>
 
 {% if error %}
-<div class="error">
+<div class="error" role="alert" aria-live="polite">
+<span class="error-title">入力内容をご確認ください</span>
 {{ error }}
 </div>
 {% endif %}
 
 <form
 method="post"
-enctype="multipart/form-data">
+enctype="multipart/form-data"
+aria-label="太陽光・蓄電池の無料見積診断フォーム">
 
 <input
 type="hidden"
@@ -54387,148 +54497,192 @@ name="csrf_token"
 value="{{ csrf_token }}">
 
 <div class="field">
-<label>
+<label class="field-label" for="estimate_file">
 見積書
 <span class="optional">任意</span>
 </label>
 
 <input
+id="estimate_file"
 type="file"
 name="estimate_file"
-accept=".pdf,.jpg,.jpeg,.png">
+accept=".pdf,.jpg,.jpeg,.png"
+aria-describedby="estimate-file-help{% if field_errors.get('estimate_file') %} estimate-file-error{% endif %}"
+aria-invalid="{{ 'true' if field_errors.get('estimate_file') else 'false' }}">
 
-<div class="help">
+<div class="help" id="estimate-file-help">
 PDF・JPG・PNG／20MB以内。
-まだ見積書がない場合は未添付でも相談できます。
+まだ見積書がない場合は未添付でも相談できます。エラー時はファイルを再選択してください。
 </div>
+{% if field_errors.get('estimate_file') %}<div class="field-error" id="estimate-file-error">{{ field_errors.get('estimate_file') }}</div>{% endif %}
 </div>
 
 
 <div class="field">
-<label>
+<label class="field-label" for="postal_code">
 郵便番号
 <span class="optional">任意</span>
 </label>
 
 <input
+id="postal_code"
 type="text"
 name="postal_code"
 value="{{ form.postal_code }}"
-placeholder="例：074-0001">
+placeholder="例：074-0001"
+autocomplete="postal-code"
+inputmode="numeric">
 </div>
 
 
 <div class="field">
-<label>
+<label class="field-label" for="municipality">
 市区町村
 <span class="required">必須</span>
 </label>
 
 <input
+id="municipality"
 type="text"
 name="municipality"
 value="{{ form.municipality }}"
 required
-placeholder="例：北海道深川市">
+placeholder="例：北海道深川市"
+autocomplete="address-level2"
+aria-describedby="{% if field_errors.get('municipality') %}municipality-error{% endif %}"
+aria-invalid="{{ 'true' if field_errors.get('municipality') else 'false' }}">
+{% if field_errors.get('municipality') %}<div class="field-error" id="municipality-error">{{ field_errors.get('municipality') }}</div>{% endif %}
 </div>
 
 
 <div class="field">
-<label>
+<label class="field-label" for="estimate_amount">
 現在の見積金額
 <span class="optional">任意</span>
 </label>
 
 <input
+id="estimate_amount"
 type="text"
 name="estimate_amount"
 value="{{ form.estimate_amount }}"
 inputmode="numeric"
-placeholder="例：3300000">
+placeholder="例：3300000"
+aria-describedby="{% if field_errors.get('estimate_amount') %}estimate-amount-error{% endif %}"
+aria-invalid="{{ 'true' if field_errors.get('estimate_amount') else 'false' }}">
+{% if field_errors.get('estimate_amount') %}<div class="field-error" id="estimate-amount-error">{{ field_errors.get('estimate_amount') }}</div>{% endif %}
 </div>
 
 
 <div class="field">
-<label>
+<label class="field-label" for="consultation">
 相談したいこと
 <span class="required">必須</span>
 </label>
 
 <textarea
+id="consultation"
 name="consultation"
 required
-placeholder="例：金額が適正か、蓄電池13kWhが本当に必要か確認したい">{{ form.consultation }}</textarea>
+placeholder="例：金額が適正か、蓄電池13kWhが本当に必要か確認したい"
+aria-describedby="{% if field_errors.get('consultation') %}consultation-error{% endif %}"
+aria-invalid="{{ 'true' if field_errors.get('consultation') else 'false' }}">{{ form.consultation }}</textarea>
+{% if field_errors.get('consultation') %}<div class="field-error" id="consultation-error">{{ field_errors.get('consultation') }}</div>{% endif %}
 </div>
 
 
 <div class="field">
-<label>
+<label class="field-label" for="name">
 お名前
 <span class="required">必須</span>
 </label>
 
 <input
+id="name"
 type="text"
 name="name"
 value="{{ form.name }}"
-required>
+required
+autocomplete="name"
+aria-describedby="{% if field_errors.get('name') %}name-error{% endif %}"
+aria-invalid="{{ 'true' if field_errors.get('name') else 'false' }}">
+{% if field_errors.get('name') %}<div class="field-error" id="name-error">{{ field_errors.get('name') }}</div>{% endif %}
 </div>
 
 
 <div class="field">
-<label>
+<label class="field-label" for="phone">
 電話番号
 <span class="optional">どちらか必須</span>
 </label>
 
 <input
+id="phone"
 type="tel"
 name="phone"
-value="{{ form.phone }}">
+value="{{ form.phone }}"
+autocomplete="tel"
+inputmode="tel"
+aria-describedby="contact-help{% if field_errors.get('phone') %} phone-error{% endif %}"
+aria-invalid="{{ 'true' if field_errors.get('phone') else 'false' }}">
+{% if field_errors.get('phone') %}<div class="field-error" id="phone-error">{{ field_errors.get('phone') }}</div>{% endif %}
 </div>
 
 
 <div class="field">
-<label>
+<label class="field-label" for="email">
 メールアドレス
 <span class="optional">どちらか必須</span>
 </label>
 
 <input
+id="email"
 type="email"
 name="email"
-value="{{ form.email }}">
+value="{{ form.email }}"
+autocomplete="email"
+inputmode="email"
+aria-describedby="contact-help{% if field_errors.get('email') %} email-error{% endif %}"
+aria-invalid="{{ 'true' if field_errors.get('email') else 'false' }}">
 
-<div class="help">
+<div class="help" id="contact-help">
 電話番号またはメールアドレスの
 どちらか一方は入力してください。
 </div>
+{% if field_errors.get('email') %}<div class="field-error" id="email-error">{{ field_errors.get('email') }}</div>{% endif %}
 </div>
 
 
 <div class="consent">
-<label>
+<label for="privacy_consent">
 
 <input
+id="privacy_consent"
 type="checkbox"
 name="privacy_consent"
 value="1"
 {% if form.privacy_consent %}checked{% endif %}
-required>
+required
+aria-describedby="privacy-consent-help{% if field_errors.get('privacy_consent') %} privacy-consent-error{% endif %}">
 
-<span>
+<span id="privacy-consent-help">
 入力した情報を、見積診断・相談対応・
 サービス提供のためにMITENOAが取り扱うことに同意します。
 この同意だけで施工会社へ個人情報を提供することはありません。
 </span>
 
 </label>
+{% if field_errors.get('privacy_consent') %}<div class="field-error" id="privacy-consent-error">{{ field_errors.get('privacy_consent') }}</div>{% endif %}
 </div>
 
 
 <button type="submit">
 無料診断を申し込む
 </button>
+
+<p class="submit-help">
+入力内容を確認してから受付します。送信後に内容を確認のうえご連絡します。
+</p>
 
 <p class="notice">
 本サービスは、施工結果・発電量・補助金受給・
@@ -61589,6 +61743,7 @@ def solar_diagnosis():
     }
 
     error = ""
+    field_errors = {}
 
     if request.method == "POST":
         try:
@@ -61674,6 +61829,22 @@ def solar_diagnosis():
                 raise ValueError(
                     "電話番号またはメールアドレスを"
                     "入力してください。"
+                )
+
+            if form["email"] and not re.fullmatch(
+                r"[^@\s]+@[^@\s]+\.[^@\s]+",
+                form["email"],
+            ):
+                raise ValueError(
+                    "メールアドレスを正しく入力してください。"
+                )
+
+            if form["phone"] and not re.fullmatch(
+                r"[0-9０-９+()（）\-\s]{8,20}",
+                form["phone"],
+            ):
+                raise ValueError(
+                    "電話番号を正しく入力してください。"
                 )
 
             if not form["privacy_consent"]:
@@ -61796,6 +61967,31 @@ def solar_diagnosis():
 
         except ValueError as e:
             error = str(e)
+            error_field_map = {
+                "市区町村": ["municipality"],
+                "相談内容": ["consultation"],
+                "お名前": ["name"],
+                "電話番号またはメールアドレス": ["phone", "email"],
+                "メールアドレス": ["email"],
+                "電話番号": ["phone"],
+                "個人情報の取扱い": ["privacy_consent"],
+                "現在の見積金額": ["estimate_amount"],
+                "金額は": ["estimate_amount"],
+                "見積書": ["estimate_file"],
+                "アップロードされた見積書": ["estimate_file"],
+            }
+            for prefix, fields in error_field_map.items():
+                if error.startswith(prefix):
+                    field_errors.update(
+                        {field: error for field in fields}
+                    )
+                    break
+
+        except Forbidden:
+            error = (
+                "セキュリティ確認に失敗しました。"
+                "ページを再読み込みして再度お試しください。"
+            )
 
         except Exception as e:
             print(
@@ -61813,6 +62009,7 @@ def solar_diagnosis():
         SOLAR_DIAGNOSIS_HTML,
         form=form,
         error=error,
+        field_errors=field_errors,
         csrf_token=get_csrf_token(),
     )
 

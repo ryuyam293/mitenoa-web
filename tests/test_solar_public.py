@@ -81,6 +81,95 @@ class SolarPublicTests(unittest.TestCase):
             self.assertTrue(session.get("csrf_token"))
             self.assertEqual(inputs["csrf_token"]["value"], session["csrf_token"])
 
+    def test_diagnosis_ux_dom_contract(self):
+        page = Page(self.client.get("/solar/diagnosis").get_data(as_text=True))
+        inputs = {a.get("name"): a for a in page.attributes("input")}
+        controls = {
+            **inputs,
+            **{a.get("name"): a for a in page.attributes("textarea")},
+        }
+        labels = page.attributes("label")
+        label_for = {a.get("for") for a in labels if a.get("for")}
+
+        self.assertIn("estimate_file", inputs)
+        self.assertIn("privacy_consent", inputs)
+        for name in ("municipality", "consultation", "name", "privacy_consent"):
+            self.assertIn("required", controls[name])
+        for name in ("estimate_file", "postal_code", "municipality", "estimate_amount", "consultation", "name", "phone", "email", "privacy_consent"):
+            self.assertIn(name, label_for)
+
+        self.assertEqual(inputs["phone"].get("type"), "tel")
+        self.assertEqual(inputs["phone"].get("autocomplete"), "tel")
+        self.assertEqual(inputs["phone"].get("inputmode"), "tel")
+        self.assertEqual(inputs["email"].get("type"), "email")
+        self.assertEqual(inputs["email"].get("autocomplete"), "email")
+        self.assertEqual(inputs["email"].get("inputmode"), "email")
+        self.assertEqual(inputs["estimate_file"].get("accept"), ".pdf,.jpg,.jpeg,.png")
+        html = self.client.get("/solar/diagnosis").get_data(as_text=True)
+        self.assertIn("role=\"alert\"", self.main.SOLAR_DIAGNOSIS_HTML)
+        self.assertIn("estimate-file-help", html)
+        self.assertIn("privacy-consent-help", html)
+        self.assertIn("約3分で申込み", html)
+
+    def test_diagnosis_validation_preserves_values_and_marks_field(self):
+        self.client.get("/solar/diagnosis")
+        with self.client.session_transaction() as session:
+            csrf_token = session["csrf_token"]
+        response = self.client.post(
+            "/solar/diagnosis",
+            data={
+                "csrf_token": csrf_token,
+                "municipality": "",
+                "consultation": "金額を確認したい",
+                "name": "テスト利用者",
+                "email": "test@example.test",
+                "privacy_consent": "1",
+            },
+        )
+        self.assertEqual(response.status_code, 200)
+        html = response.get_data(as_text=True)
+        self.assertIn("市区町村を入力してください。", html)
+        self.assertIn('id="municipality-error"', html)
+        self.assertIn('aria-invalid="true"', html)
+        self.assertIn('value="テスト利用者"', html)
+        self.assertIn('value="test@example.test"', html)
+        self.assertNotIn("SOLAR DIAGNOSIS ERROR", html)
+
+    def test_diagnosis_rejects_invalid_contact_before_external_write(self):
+        self.client.get("/solar/diagnosis")
+        with self.client.session_transaction() as session:
+            csrf_token = session["csrf_token"]
+
+        for field, value, message, error_id in (
+            ("email", "not-an-email", "メールアドレスを正しく入力してください。", "email-error"),
+            ("phone", "abc", "電話番号を正しく入力してください。", "phone-error"),
+        ):
+            with self.subTest(field=field):
+                data = {
+                    "csrf_token": csrf_token,
+                    "municipality": "深川市",
+                    "consultation": "内容を確認したい",
+                    "name": "テスト利用者",
+                    "privacy_consent": "1",
+                    field: value,
+                }
+                response = self.client.post("/solar/diagnosis", data=data)
+                self.assertEqual(response.status_code, 200)
+                html = response.get_data(as_text=True)
+                self.assertIn(message, html)
+                self.assertIn(f'id="{error_id}"', html)
+
+    def test_diagnosis_rejects_invalid_csrf_before_external_write(self):
+        response = self.client.post(
+            "/solar/diagnosis",
+            data={"csrf_token": "invalid-token"},
+        )
+        self.assertEqual(response.status_code, 200)
+        self.assertIn(
+            "セキュリティ確認に失敗しました。",
+            response.get_data(as_text=True),
+        )
+
     def test_line_ctas_when_configured(self):
         url = "https://line.example.test/solar-consultation"
         with patch.object(self.main, "SOLAR_LINE_ADD_URL", url):

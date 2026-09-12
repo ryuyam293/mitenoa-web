@@ -61744,6 +61744,7 @@ def solar_diagnosis():
 
     error = ""
     field_errors = {}
+    csrf_error = False
 
     if request.method == "POST":
         try:
@@ -61988,6 +61989,7 @@ def solar_diagnosis():
                     break
 
         except Forbidden:
+            csrf_error = True
             error = (
                 "セキュリティ確認に失敗しました。"
                 "ページを再読み込みして再度お試しください。"
@@ -62005,13 +62007,18 @@ def solar_diagnosis():
                 "時間をおいて再度お試しください。"
             )
 
-    return render_template_string(
+    response = render_template_string(
         SOLAR_DIAGNOSIS_HTML,
         form=form,
         error=error,
         field_errors=field_errors,
         csrf_token=get_csrf_token(),
     )
+
+    if csrf_error:
+        return response, 403
+
+    return response
 
 
 # =========================================================

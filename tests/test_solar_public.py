@@ -164,7 +164,7 @@ class SolarPublicTests(unittest.TestCase):
             "/solar/diagnosis",
             data={"csrf_token": "invalid-token"},
         )
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, 403)
         self.assertIn(
             "セキュリティ確認に失敗しました。",
             response.get_data(as_text=True),

@@ -11122,17 +11122,97 @@ def get_vendor_login_by_username(
 
 
 def vendor_logged_in():
-    return (
+    if not (
         session.get(
             "vendor_logged_in"
         )
         is True
-        and bool(
-            session.get(
-                "vendor_id"
+        and session.get(
+            "vendor_id"
+        )
+    ):
+        return False
+
+    if has_request_context():
+        cached = getattr(
+            g,
+            "_vendor_auth_valid",
+            None,
+        )
+
+        if cached is not None:
+            return cached
+
+    vendor_id = str(
+        session.get(
+            "vendor_id",
+            "",
+        )
+        or ""
+    ).strip()
+
+    try:
+        account = get_vendor_login_account(
+            vendor_id
+        )
+        vendor = get_vendor_by_id(
+            vendor_id,
+            get_vendor_master(),
+        )
+
+        valid = bool(
+            account
+            and account.get("enabled")
+            and vendor
+            and str(
+                vendor.get("status", "")
+                or ""
+            ).strip()
+            not in {
+                "停止",
+                "無効",
+                "無効化",
+            }
+            and session.get(
+                "vendor_account_updated_at",
+                "",
+            )
+            == str(
+                account.get("updated_at", "")
+                or ""
+            )
+            and session.get(
+                "vendor_password_changed_at",
+                "",
+            )
+            == str(
+                account.get(
+                    "password_changed_at",
+                    "",
+                )
+                or ""
             )
         )
-    )
+
+    except Exception:
+        valid = False
+
+    if not valid:
+        session.pop("vendor_logged_in", None)
+        session.pop("vendor_id", None)
+        session.pop(
+            "vendor_account_updated_at",
+            None,
+        )
+        session.pop(
+            "vendor_password_changed_at",
+            None,
+        )
+
+    if has_request_context():
+        g._vendor_auth_valid = valid
+
+    return valid
 
 
 def current_vendor_id():
@@ -17360,6 +17440,9 @@ def create_document_token(
     valid_seconds=
         DOCUMENT_VALID_SECONDS,
 ):
+    if not ADMIN_API_KEY:
+        return None
+
     expires = (
         int(now_jst().timestamp())
         + valid_seconds
@@ -17384,11 +17467,16 @@ def build_document_url(
     if not object_name:
         return ""
 
-    expires, signature = (
+    token = (
         create_document_token(
             object_name
         )
     )
+
+    if not token:
+        return ""
+
+    expires, signature = token
 
     encoded_path = quote(
         object_name,
@@ -17408,6 +17496,9 @@ def build_document_url(
     methods=["GET"],
 )
 def serve_document():
+    if not ADMIN_API_KEY:
+        return "Document service unavailable", 503
+
     object_name = request.args.get(
         "path",
         "",
@@ -17750,15 +17841,21 @@ def build_comparison_flex(
             )
         )
 
-        if company["document"]:
+        document_url = (
+            build_document_url(
+                company[
+                    "document"
+                ]
+            )
+            if company["document"]
+            else ""
+        )
+
+        if document_url:
             body.append(
                 make_uri_button(
                     "見積書を見る",
-                    build_document_url(
-                        company[
-                            "document"
-                        ]
-                    ),
+                    document_url,
                     "primary",
                 )
             )
@@ -17863,6 +17960,15 @@ def build_refresh_documents_flex(
         if not company["document"]:
             continue
 
+        document_url = build_document_url(
+            company[
+                "document"
+            ]
+        )
+
+        if not document_url:
+            continue
+
         found = True
 
         body.append({
@@ -17884,11 +17990,7 @@ def build_refresh_documents_flex(
             make_uri_button(
                 f"{company['code']}社の"
                 "見積書を見る",
-                build_document_url(
-                    company[
-                        "document"
-                    ]
-                ),
+                document_url,
                 "primary",
             )
         )
@@ -36647,6 +36749,26 @@ def vendor_login():
                 ]
 
                 session[
+                    "vendor_account_updated_at"
+                ] = str(
+                    account.get(
+                        "updated_at",
+                        "",
+                    )
+                    or ""
+                )
+
+                session[
+                    "vendor_password_changed_at"
+                ] = str(
+                    account.get(
+                        "password_changed_at",
+                        "",
+                    )
+                    or ""
+                )
+
+                session[
                     "csrf_token"
                 ] = secrets.token_urlsafe(
                     32
@@ -38021,9 +38143,6 @@ def admin_logout():
 def partner_consent(
     vendor_id,
 ):
-
-    ensure_vendor_admin_sheets()
-
     vendors = (
         get_vendor_master()
     )
@@ -38038,6 +38157,20 @@ def partner_consent(
 
     if not vendor:
         abort(404)
+
+    vendor_status = str(
+        vendor.get("status", "")
+        or ""
+    ).strip()
+
+    if vendor_status in {
+        "停止",
+        "無効",
+        "無効化",
+    }:
+        abort(403)
+
+    ensure_vendor_admin_sheets()
 
 
     token = (
@@ -50946,8 +51079,18 @@ def get_solar_vendor_view_publication(
     case_id=None,
     slot=None,
     token=None,
+    ensure=True,
 ):
-    ensure_solar_vendor_view_sheet()
+    token_was_supplied = token is not None
+
+    if (
+        token_was_supplied
+        and not str(token or "").strip()
+    ):
+        return None
+
+    if ensure:
+        ensure_solar_vendor_view_sheet()
 
     case_id = str(
         case_id or ""
@@ -52364,9 +52507,18 @@ grade-unknown
     methods=["GET"],
 )
 def solar_vendor_public_view(token):
+    g._solar_public_read_only = True
+
+    if not str(token or "").strip():
+        return (
+            "この閲覧URLは無効です。",
+            404,
+        )
+
     publication = (
         get_solar_vendor_view_publication(
-            token=token
+            token=token,
+            ensure=False,
         )
     )
 
@@ -52525,38 +52677,6 @@ def solar_vendor_public_view(token):
             410,
         )
 
-    timestamp = now_text()
-
-    access_count = (
-        publication.get(
-            "access_count",
-            0
-        )
-        + 1
-    )
-
-    update_sheet_range(
-        (
-            f"{SOLAR_VENDOR_VIEW_SHEET_NAME}!"
-            f"K{publication['row_number']}:"
-            f"L{publication['row_number']}"
-        ),
-        [[
-            timestamp,
-            access_count,
-        ]],
-    )
-
-    clear_sheet_request_cache()
-
-    publication[
-        "last_accessed_at"
-    ] = timestamp
-
-    publication[
-        "access_count"
-    ] = access_count
-
     estimate_items = (
         build_solar_vendor_estimate_items(
             share
@@ -52642,6 +52762,16 @@ def _wrap_solar_ensure_with_ttl(
     }
 
     def wrapped(*args, **kwargs):
+        if (
+            has_request_context()
+            and getattr(
+                g,
+                "_solar_public_read_only",
+                False,
+            )
+        ):
+            return None
+
         now = (
             _solar_ensure_time.monotonic()
         )

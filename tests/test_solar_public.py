@@ -370,6 +370,346 @@ class SolarPublicTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             self.main.validate_solar_estimate_file(upload)
 
+    def test_document_signing_fails_closed_without_key(self):
+        with patch.object(self.main, "ADMIN_API_KEY", ""), patch.object(
+            self.main.storage, "Client"
+        ) as storage_client:
+            self.assertIsNone(
+                self.main.create_document_token("private/file.pdf")
+            )
+            self.assertEqual(
+                self.main.build_document_url("private/file.pdf"),
+                "",
+            )
+            response = self.client.get(
+                "/document",
+                query_string={
+                    "path": "private/file.pdf",
+                    "expires": "9999999999",
+                    "sig": "empty-key-signature",
+                },
+            )
+
+        self.assertEqual(response.status_code, 503)
+        storage_client.assert_not_called()
+
+    def test_document_signing_preserves_valid_key_and_rejects_bad_or_expired_links(self):
+        class Blob:
+            content_type = "application/pdf"
+
+            def exists(self):
+                return True
+
+            def reload(self):
+                return None
+
+            def download_as_bytes(self):
+                return b"%PDF-test"
+
+        bucket = type("Bucket", (), {
+            "blob": lambda self, _: Blob(),
+        })()
+        storage_client = type("StorageClient", (), {
+            "bucket": lambda self, _: bucket,
+        })()
+
+        with patch.object(self.main, "ADMIN_API_KEY", "test-document-key"), patch.object(
+            self.main.storage,
+            "Client",
+            return_value=storage_client,
+        ):
+            expires, signature = self.main.create_document_token(
+                "private/file.pdf",
+                valid_seconds=600,
+            )
+            response = self.client.get(
+                "/document",
+                query_string={
+                    "path": "private/file.pdf",
+                    "expires": expires,
+                    "sig": signature,
+                },
+            )
+            tampered = self.client.get(
+                "/document",
+                query_string={
+                    "path": "private/other.pdf",
+                    "expires": expires,
+                    "sig": signature,
+                },
+            )
+            expired = self.client.get(
+                "/document",
+                query_string={
+                    "path": "private/file.pdf",
+                    "expires": "1",
+                    "sig": "expired-signature",
+                },
+            )
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.data, b"%PDF-test")
+        self.assertEqual(tampered.status_code, 403)
+        self.assertEqual(expired.status_code, 403)
+
+    def test_document_links_are_omitted_when_signing_is_unavailable(self):
+        company = {
+            "code": "A",
+            "name": "会社A",
+            "min": "1000000",
+            "max": "1200000",
+            "document": "private/file.pdf",
+        }
+        with patch.object(self.main, "ADMIN_API_KEY", ""), patch.object(
+            self.main, "get_companies_from_row", return_value=[company]
+        ):
+            flex = self.main.build_comparison_flex("case-1", [])
+            refresh = self.main.build_refresh_documents_flex("case-1", [])
+
+        uri_actions = [
+            item
+            for item in flex["contents"]["body"]["contents"]
+            if item.get("type") == "button"
+            and item.get("action", {}).get("type") == "uri"
+        ]
+        self.assertEqual(uri_actions, [])
+        self.assertIsNone(refresh)
+
+    def test_solar_vendor_blank_token_is_private_404_without_sheet_access(self):
+        with patch.object(self.main, "get_sheet_values") as get_values, patch.object(
+            self.main, "update_sheet_range"
+        ) as update_range:
+            for token in ("", "   "):
+                with self.subTest(token=repr(token)):
+                    response = self.client.get(
+                        "/solar/vendor/" + ("%20" if token else "")
+                    )
+                    self.assertEqual(response.status_code, 404)
+                    if token:
+                        self.assertEqual(
+                            response.get_data(as_text=True),
+                            "この閲覧URLは無効です。",
+                        )
+
+        get_values.assert_not_called()
+        update_range.assert_not_called()
+
+    def test_solar_vendor_valid_get_and_head_are_read_only(self):
+        row = [
+            "case-1", "A", "vendor-1", "会社A", "valid-token",
+            "2026-01-01 00:00:00", "2099-01-01 00:00:00", "公開中",
+            "2026-01-01 00:00:00", "", "old-access", "7",
+            "contact-time", "v1",
+        ]
+        with patch.object(self.main, "get_sheet_values", return_value=[row]) as get_values, patch.object(
+            self.main, "get_solar_compare_request",
+            return_value={"request_status": "希望あり", "consent_status": "同意済み"},
+        ), patch.object(
+            self.main, "get_solar_vendor_assignments",
+            return_value={"A": {"vendor_id": "vendor-1", "contact_status": "打診済み"}},
+        ), patch.object(
+            self.main, "get_solar_contact_event_for_publication",
+            return_value={
+                "estimate_document_shared": "いいえ",
+                "consent_version": "v1",
+                "shared_snapshot": {"name": "共有対象"},
+            },
+        ), patch.object(
+            self.main, "validate_solar_contact_current_consent",
+            return_value=True,
+        ), patch.object(
+            self.main, "build_solar_vendor_estimate_items",
+            return_value=[],
+        ), patch.object(
+            self.main, "build_solar_vendor_diagnosis_items",
+            return_value=[],
+        ), patch.object(
+            self.main, "update_sheet_range"
+        ) as update_range, patch.object(
+            self.main, "append_sheet_row"
+        ) as append_row:
+            response = self.client.get("/solar/vendor/valid-token")
+            head = self.client.head("/solar/vendor/valid-token")
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(head.status_code, 200)
+        self.assertEqual(get_values.call_count, 2)
+        update_range.assert_not_called()
+        append_row.assert_not_called()
+
+    def test_solar_vendor_invalid_token_does_not_write(self):
+        row = [
+            "case-1", "A", "vendor-1", "会社A", "valid-token",
+            "2026-01-01 00:00:00", "2099-01-01 00:00:00", "公開中",
+            "2026-01-01 00:00:00", "", "old-access", "7",
+            "contact-time", "v1",
+        ]
+        with patch.object(self.main, "get_sheet_values", return_value=[row]) as get_values, patch.object(
+            self.main, "update_sheet_range"
+        ) as update_range, patch.object(
+            self.main, "append_sheet_row"
+        ) as append_row:
+            response = self.client.get("/solar/vendor/invalid-token")
+
+        self.assertEqual(response.status_code, 404)
+        get_values.assert_called_once()
+        update_range.assert_not_called()
+        append_row.assert_not_called()
+
+    def test_solar_public_read_only_flag_skips_sheet_ensure_writes(self):
+        with self.main.app.test_request_context("/solar/vendor/valid-token"):
+            self.main.g._solar_public_read_only = True
+            with patch.object(self.main, "get_sheets_service") as sheets_service:
+                self.main.ensure_solar_compare_sheet()
+                self.main.ensure_solar_vendor_contact_sheet()
+                self.main.ensure_solar_vendor_view_sheet()
+
+        sheets_service.assert_not_called()
+
+    def test_vendor_login_stores_auth_generation_and_stale_session_is_rejected(self):
+        account = {
+            "vendor_id": "vendor-1",
+            "login_id": "login-1",
+            "password_hash": self.main.generate_password_hash("password"),
+            "enabled": True,
+            "row_number": 2,
+            "updated_at": "updated-1",
+            "password_changed_at": "password-1",
+        }
+        vendor = {"vendor_id": "vendor-1", "status": "提携中"}
+        with patch.object(
+            self.main, "get_vendor_login_by_username", return_value=account
+        ), patch.object(
+            self.main, "get_vendor_master", return_value=[vendor]
+        ), patch.object(
+            self.main, "get_vendor_by_id", return_value=vendor
+        ), patch.object(self.main, "update_sheet_range"):
+            self.client.get("/vendor/login")
+            with self.client.session_transaction() as session:
+                csrf_token = session["csrf_token"]
+            response = self.client.post(
+                "/vendor/login",
+                data={
+                    "csrf_token": csrf_token,
+                    "login_id": "login-1",
+                    "password": "password",
+                },
+            )
+
+        self.assertEqual(response.status_code, 302)
+        with self.client.session_transaction() as session:
+            self.assertEqual(session["vendor_account_updated_at"], "updated-1")
+            self.assertEqual(session["vendor_password_changed_at"], "password-1")
+
+        stale_account = dict(account, password_changed_at="password-2")
+        with patch.object(self.main, "get_vendor_login_account", return_value=stale_account), patch.object(
+            self.main, "get_vendor_master", return_value=[vendor]
+        ), patch.object(
+            self.main, "get_vendor_by_id", return_value=vendor
+        ):
+            response = self.client.get("/vendor/dashboard")
+
+        self.assertEqual(response.status_code, 302)
+        with self.client.session_transaction() as session:
+            self.assertNotIn("vendor_logged_in", session)
+
+    def test_disabled_vendor_session_is_rejected_without_affecting_admin_session(self):
+        with self.client.session_transaction() as session:
+            session.update({
+                "admin_logged_in": True,
+                "vendor_logged_in": True,
+                "vendor_id": "vendor-1",
+                "vendor_account_updated_at": "updated-1",
+                "vendor_password_changed_at": "password-1",
+            })
+        disabled = {
+            "vendor_id": "vendor-1",
+            "enabled": False,
+            "updated_at": "updated-1",
+            "password_changed_at": "password-1",
+        }
+        with patch.object(self.main, "get_vendor_login_account", return_value=disabled), patch.object(
+            self.main, "get_vendor_master", return_value=[{"vendor_id": "vendor-1", "status": "提携中"}]
+        ), patch.object(
+            self.main, "get_vendor_by_id", return_value={"vendor_id": "vendor-1", "status": "提携中"}
+        ):
+            response = self.client.get("/vendor/dashboard")
+
+        self.assertEqual(response.status_code, 302)
+        with self.client.session_transaction() as session:
+            self.assertTrue(session.get("admin_logged_in"))
+            self.assertNotIn("vendor_logged_in", session)
+
+    def test_stopped_partner_cannot_overwrite_consent_state(self):
+        stopped = {
+            "vendor_id": "vendor-1",
+            "status": "停止",
+            "terms_version": "1.0",
+            "meeting_date": "2026-01-01",
+            "online_consent_at": "",
+        }
+        with patch.object(self.main, "ensure_vendor_admin_sheets") as ensure_admin, patch.object(
+            self.main, "get_vendor_master", return_value=[stopped]
+        ), patch.object(
+            self.main, "get_vendor_by_id", return_value=stopped
+        ), patch.object(self.main, "update_sheet_range") as update_range, patch.object(
+            self.main, "record_vendor_consent_history"
+        ) as record_history:
+            response = self.client.post(
+                "/partner/consent/vendor-1",
+                data={
+                    "token": "synthetic-token",
+                    "confirm_terms": "1",
+                    "confirm_meeting": "1",
+                    "confirm_fee": "1",
+                    "confirm_privacy": "1",
+                    "confirm_question": "1",
+                    "confirm_agree": "1",
+                    "consent_name": "同意者",
+                },
+            )
+
+        self.assertEqual(response.status_code, 403)
+        ensure_admin.assert_not_called()
+        update_range.assert_not_called()
+        record_history.assert_not_called()
+
+    def test_enabled_partner_consent_flow_still_updates_state(self):
+        enabled = {
+            "vendor_id": "vendor-1",
+            "status": "提携中",
+            "terms_version": "1.0",
+            "meeting_date": "2026-01-01",
+            "online_consent_at": "",
+            "row_number": 2,
+        }
+        with patch.object(self.main, "ensure_vendor_admin_sheets"), patch.object(
+            self.main, "get_vendor_master", return_value=[enabled]
+        ), patch.object(
+            self.main, "get_vendor_by_id", return_value=enabled
+        ), patch.object(
+            self.main, "verify_partner_consent_token", return_value=True
+        ), patch.object(self.main, "update_sheet_range") as update_range, patch.object(
+            self.main, "record_vendor_consent_history"
+        ) as record_history:
+            response = self.client.post(
+                "/partner/consent/vendor-1",
+                data={
+                    "token": "synthetic-token",
+                    "confirm_terms": "1",
+                    "confirm_meeting": "1",
+                    "confirm_fee": "1",
+                    "confirm_privacy": "1",
+                    "confirm_question": "1",
+                    "confirm_agree": "1",
+                    "consent_name": "同意者",
+                },
+            )
+
+        self.assertEqual(response.status_code, 200)
+        self.assertTrue(update_range.called)
+        record_history.assert_called_once()
+
     def test_unknown_or_revoked_result_is_private_404(self):
         for record in (None, {"publish_status": "公開停止", "case_id": "test-only-case"}):
             with self.subTest(record=record), patch.object(

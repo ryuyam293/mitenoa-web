@@ -1,6 +1,7 @@
 """Offline regressions: .venv/bin/python -m unittest discover -s tests -v."""
 
 import importlib.util
+import io
 import os
 from contextlib import ExitStack
 from html.parser import HTMLParser
@@ -8,6 +9,7 @@ from pathlib import Path
 import re
 import unittest
 from unittest.mock import patch
+from werkzeug.datastructures import FileStorage
 
 
 class Page(HTMLParser):
@@ -170,6 +172,96 @@ class SolarPublicTests(unittest.TestCase):
             response.get_data(as_text=True),
         )
 
+    def test_compare_rejects_invalid_csrf_with_403_before_external_write(self):
+        with patch.object(
+            self.main,
+            "get_solar_result_publication",
+            return_value={
+                "publish_status": "公開中",
+                "case_id": "test-only-case",
+            },
+        ), patch.object(
+            self.main,
+            "validate_solar_result_publishable",
+            return_value=({}, {}),
+        ), patch.object(
+            self.main,
+            "build_solar_compare_share_snapshot",
+            return_value={
+                "name": "テスト利用者",
+                "phone": "000-0000-0000",
+                "email": "test@example.test",
+                "municipality": "深川市",
+            },
+        ), patch.object(
+            self.main,
+            "get_solar_compare_request",
+            return_value={},
+        ), patch.object(
+            self.main,
+            "save_solar_compare_consent",
+        ) as save_consent, patch.object(
+            self.main,
+            "withdraw_solar_compare_consent",
+        ) as withdraw_consent:
+            response = self.client.post(
+                "/solar/result/test-only-token/compare",
+                data={
+                    "csrf_token": "invalid-token",
+                    "action": "consent",
+                    "share_consent": "yes",
+                },
+            )
+
+        self.assertEqual(response.status_code, 403)
+        self.assertIn(
+            "セキュリティ確認に失敗しました。",
+            response.get_data(as_text=True),
+        )
+        save_consent.assert_not_called()
+        withdraw_consent.assert_not_called()
+
+    def test_compare_hides_unexpected_error_details(self):
+        with patch.object(
+            self.main,
+            "get_solar_result_publication",
+            return_value={
+                "publish_status": "公開中",
+                "case_id": "test-only-case",
+            },
+        ), patch.object(
+            self.main,
+            "validate_solar_result_publishable",
+            return_value=({}, {}),
+        ), patch.object(
+            self.main,
+            "build_solar_compare_share_snapshot",
+            return_value={},
+        ), patch.object(
+            self.main,
+            "get_solar_compare_request",
+            return_value={},
+        ), patch.object(
+            self.main,
+            "save_solar_compare_consent",
+            side_effect=RuntimeError("internal secret details"),
+        ):
+            with self.client.session_transaction() as session:
+                session["csrf_token"] = "valid-token"
+            response = self.client.post(
+                "/solar/result/test-only-token/compare",
+                data={
+                    "csrf_token": "valid-token",
+                    "action": "consent",
+                    "share_consent": "yes",
+                },
+            )
+
+        self.assertEqual(response.status_code, 200)
+        html = response.get_data(as_text=True)
+        self.assertIn("処理中にエラーが発生しました。", html)
+        self.assertNotIn("internal secret details", html)
+
     def test_line_ctas_when_configured(self):
         url = "https://line.example.test/solar-consultation"
         with patch.object(self.main, "SOLAR_LINE_ADD_URL", url):
@@ -237,6 +329,46 @@ class SolarPublicTests(unittest.TestCase):
         publication.assert_called_once_with(token="test-only-token")
         validate.assert_called_once_with("test-only-case")
         self.assert_private_headers(response)
+
+    def test_public_result_does_not_expose_detail_pii_or_raw_html(self):
+        with patch.object(self.main, "get_solar_result_publication", return_value={
+            "publish_status": "公開中", "case_id": "test-only-case",
+        }), patch.object(
+            self.main,
+            "validate_solar_result_publishable",
+            return_value=(
+                {},
+                {"missing_information": ["<script>alert(1)</script>"]},
+            ),
+        ), patch.object(
+            self.main,
+            "get_solar_detail_record",
+            return_value={
+                "municipality": "深川市",
+                "name": "顧客氏名",
+                "phone": "090-0000-0000",
+                "email": "customer@example.test",
+                "storage_path": "gs://internal-bucket/private.pdf",
+            },
+        ), patch.object(self.main, "get_solar_compare_request", return_value={}):
+            response = self.client.get("/solar/result/test-only-token")
+
+        html = response.get_data(as_text=True)
+        self.assertEqual(response.status_code, 200)
+        self.assertNotIn("顧客氏名", html)
+        self.assertNotIn("090-0000-0000", html)
+        self.assertNotIn("customer@example.test", html)
+        self.assertNotIn("gs://internal-bucket/private.pdf", html)
+        self.assertNotIn("<script>", html)
+
+    def test_solar_upload_rejects_disallowed_extension(self):
+        upload = FileStorage(
+            stream=io.BytesIO(b"<svg></svg>"),
+            filename="estimate.svg",
+            content_type="image/svg+xml",
+        )
+        with self.assertRaises(ValueError):
+            self.main.validate_solar_estimate_file(upload)
 
     def test_unknown_or_revoked_result_is_private_404(self):
         for record in (None, {"publish_status": "公開停止", "case_id": "test-only-case"}):

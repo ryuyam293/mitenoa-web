@@ -55615,8 +55615,7 @@ def solar_result(
     except Exception as e:
         print(
             "SOLAR RESULT DETAIL READ WARNING:",
-            case_id,
-            repr(e),
+            type(e).__name__,
             flush=True,
         )
         detail = {}
@@ -56512,6 +56511,7 @@ def solar_compare_consent(
         )
 
     error = ""
+    csrf_error = False
 
     try:
         share_snapshot = (
@@ -56523,8 +56523,7 @@ def solar_compare_consent(
     except Exception as e:
         print(
             "SOLAR COMPARE SNAPSHOT ERROR:",
-            case_id,
-            repr(e),
+            type(e).__name__,
             flush=True,
         )
 
@@ -56579,12 +56578,30 @@ def solar_compare_consent(
                     "不正な操作です。"
                 )
 
-        except Exception as e:
+        except Forbidden:
+            error = (
+                "セキュリティ確認に失敗しました。"
+                "ページを再読み込みして再度お試しください。"
+            )
+            csrf_error = True
+
+        except ValueError as e:
             error = str(
                 e
             )
 
-    return render_template_string(
+        except Exception as e:
+            print(
+                "SOLAR COMPARE ERROR:",
+                type(e).__name__,
+                flush=True,
+            )
+            error = (
+                "処理中にエラーが発生しました。"
+                "時間をおいて再度お試しください。"
+            )
+
+    response = render_template_string(
         SOLAR_COMPARE_CONSENT_HTML,
         public_token=token,
         csrf_token=get_csrf_token(),
@@ -56592,6 +56609,11 @@ def solar_compare_consent(
         compare_request=compare_request,
         error=error,
     )
+
+    if csrf_error:
+        return response, 403
+
+    return response
 
 
 

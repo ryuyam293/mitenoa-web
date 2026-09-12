@@ -61117,6 +61117,106 @@ img{
 
 }
 
+/* =========================================
+   MOBILE TYPOGRAPHY / BALANCE
+   640px以下のみ、行長と重心を調整
+========================================= */
+
+@media (max-width:640px){
+
+  .trace-inner{
+    width:calc(100% - 32px);
+  }
+
+  .trace-heading{
+    padding-inline:8px;
+  }
+
+  .trace-title{
+    max-width:18em;
+    margin-inline:auto;
+    font-size:26px;
+    line-height:1.35;
+  }
+
+  .trace-lead,
+  .trace-why-lead,
+  .trace-regret-lead,
+  .trace-purpose-copy p{
+    max-width:34em;
+    margin-left:auto;
+    margin-right:auto;
+    line-height:1.7;
+    text-wrap:pretty;
+  }
+
+  .trace-why-title,
+  .trace-regret-title,
+  .trace-purpose-copy h2,
+  .trace-final-title{
+    text-wrap:balance;
+  }
+
+  .trace-purpose-copy h2{
+    max-width:19em;
+    margin-left:auto;
+    margin-right:auto;
+    line-height:1.4;
+  }
+
+  .trace-trust-item{
+    gap:14px;
+    padding-inline:18px;
+  }
+
+  .trace-trust-title{
+    line-height:1.4;
+  }
+
+  .trace-trust-text{
+    line-height:1.55;
+  }
+
+  .trace-concern-body,
+  .trace-flow-body{
+    padding-inline:14px;
+  }
+
+  .trace-concern-title,
+  .trace-benefit-card h3,
+  .trace-flow-title,
+  .trace-reason-title{
+    line-height:1.45;
+    text-wrap:balance;
+  }
+
+  .trace-concern-text,
+  .trace-benefit-card p,
+  .trace-flow-text,
+  .trace-reason-text,
+  .trace-faq p{
+    line-height:1.65;
+    text-wrap:pretty;
+  }
+
+  .trace-reason{
+    gap:14px;
+    padding-inline:18px;
+  }
+
+  .trace-faq summary{
+    padding-left:14px;
+    line-height:1.5;
+  }
+
+  .trace-final-title{
+    max-width:19em;
+    margin-inline:auto;
+    line-height:1.4;
+  }
+
+}
+
 </style>
 </head>
 

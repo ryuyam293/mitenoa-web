@@ -9,7 +9,7 @@ import re
 import time
 import logging
 
-from urllib.parse import quote, parse_qs
+from urllib.parse import quote, parse_qs, urlparse
 from datetime import datetime, timezone, timedelta
 
 from flask import (
@@ -303,6 +303,206 @@ def now_jst():
 
 def now_text():
     return now_jst().strftime("%Y-%m-%d %H:%M:%S")
+
+
+# =========================================================
+# Solar local conversion event hook
+#
+# This is intentionally an in-process, no-op hook.  It validates
+# a future adapter payload but never persists or sends the payload.
+# =========================================================
+
+SOLAR_EVENT_SCHEMAS = {
+    "solar_lp_view": {
+        "page_type",
+        "referrer_category",
+    },
+    "solar_diagnosis_cta_click": {
+        "placement",
+    },
+    "solar_line_cta_click": {
+        "placement",
+    },
+    "solar_diagnosis_view": {
+        "page_type",
+        "referrer_category",
+    },
+    "solar_diagnosis_submit_attempt": set(),
+    "solar_diagnosis_validation_error": {
+        "error_category",
+    },
+    "solar_diagnosis_success": {
+        "page_type",
+    },
+    "solar_result_view": {
+        "page_type",
+    },
+    "solar_compare_consent_view": {
+        "page_type",
+    },
+    "solar_compare_consent_submit": {
+        "action",
+    },
+    "solar_vendor_view": {
+        "page_type",
+    },
+}
+
+SOLAR_EVENT_VALUE_ALLOWLISTS = {
+    "page_type": {
+        "solar_lp",
+        "diagnosis",
+        "result",
+        "compare",
+        "vendor",
+    },
+    "placement": {
+        "header",
+        "hero",
+        "final",
+        "sticky",
+    },
+    "action": {
+        "consent",
+        "withdraw",
+    },
+    "error_category": {
+        "required",
+        "email_format",
+        "phone_format",
+        "csrf",
+        "file_extension",
+        "file_size",
+        "file_empty",
+        "other",
+    },
+    "referrer_category": {
+        "direct",
+        "internal",
+        "search",
+        "social",
+        "other",
+    },
+}
+
+SOLAR_EVENT_MAX_VALUE_LENGTH = 32
+
+
+def track_solar_event(
+    event_name,
+    **properties,
+):
+    """
+    Validate a privacy-safe event shape for a future local adapter.
+
+    The returned payload is transient and is deliberately not logged,
+    persisted, or sent to an external service.
+    """
+    allowed_properties = SOLAR_EVENT_SCHEMAS.get(
+        event_name
+    )
+
+    if allowed_properties is None:
+        return None
+
+    if any(
+        key not in allowed_properties
+        for key in properties
+    ):
+        return None
+
+    payload = {
+        "event_name": event_name,
+        "timestamp": now_text(),
+    }
+
+    for key, value in properties.items():
+        if (
+            not isinstance(value, str)
+            or len(value) > SOLAR_EVENT_MAX_VALUE_LENGTH
+            or value not in SOLAR_EVENT_VALUE_ALLOWLISTS.get(
+                key,
+                set(),
+            )
+        ):
+            return None
+
+        payload[key] = value
+
+    return payload
+
+
+def solar_referrer_category():
+    """Classify the referrer without retaining its URL or host."""
+    referrer = request.referrer
+
+    if not referrer:
+        return "direct"
+
+    try:
+        parsed = urlparse(referrer)
+        host = (parsed.hostname or "").lower()
+
+        if host == (request.host.split(":", 1)[0]).lower():
+            return "internal"
+
+        if host in {
+            "www.google.com",
+            "google.com",
+            "www.bing.com",
+            "bing.com",
+            "search.yahoo.co.jp",
+            "search.yahoo.com",
+        }:
+            return "search"
+
+        if host in {
+            "www.facebook.com",
+            "facebook.com",
+            "www.instagram.com",
+            "instagram.com",
+            "twitter.com",
+            "x.com",
+            "line.me",
+        }:
+            return "social"
+
+    except ValueError:
+        return "other"
+
+    return "other"
+
+
+def solar_validation_error_category(error):
+    """Map validation text to a coarse, non-PII event category."""
+    if error.startswith("メールアドレス"):
+        return "email_format"
+
+    if error.startswith("電話番号"):
+        return "phone_format"
+
+    if "ファイルサイズ" in error:
+        return "file_size"
+
+    if "ファイルの内容が空" in error:
+        return "file_empty"
+
+    if "見積書はPDF" in error:
+        return "file_extension"
+
+    if any(
+        error.startswith(prefix)
+        for prefix in (
+            "市区町村",
+            "相談内容",
+            "お名前",
+            "電話番号またはメールアドレス",
+            "個人情報の取扱い",
+        )
+    ):
+        return "required"
+
+    return "other"
 
 
 def format_yen(value):
@@ -52677,6 +52877,11 @@ def solar_vendor_public_view(token):
             410,
         )
 
+    track_solar_event(
+        "solar_vendor_view",
+        page_type="vendor",
+    )
+
     estimate_items = (
         build_solar_vendor_estimate_items(
             share
@@ -55731,6 +55936,11 @@ def solar_result(
             404,
         )
 
+    track_solar_event(
+        "solar_result_view",
+        page_type="result",
+    )
+
     # 市区町村は顧客向けページの補助表示。
     # Sheets一時エラー等で取得できなくても、
     # 確認済み診断本体が取得できている場合は
@@ -56669,6 +56879,12 @@ def solar_compare_consent(
         )
     )
 
+    if request.method == "GET":
+        track_solar_event(
+            "solar_compare_consent_view",
+            page_type="compare",
+        )
+
     if request.method == "POST":
         try:
             validate_csrf()
@@ -56707,6 +56923,11 @@ def solar_compare_consent(
                 raise ValueError(
                     "不正な操作です。"
                 )
+
+            track_solar_event(
+                "solar_compare_consent_submit",
+                action=action,
+            )
 
         except Forbidden:
             error = (
@@ -60893,6 +61114,8 @@ img{
 <a
   class="trace-header-cta"
   href="/solar/diagnosis"
+  data-solar-event="solar_diagnosis_cta_click"
+  data-solar-placement="header"
 >
 無料で診断を申し込む
 </a>
@@ -60938,6 +61161,8 @@ img{
 <a
   class="trace-action orange"
   href="/solar/diagnosis"
+  data-solar-event="solar_diagnosis_cta_click"
+  data-solar-placement="hero"
 >
 <span class="trace-action-icon"><img src="https://storage.googleapis.com/mitenoa-public-assets-project-adeebf5f-75d4-46a5-bb5/solar/lp/cta/cta-mitsumori-icon.png" alt=""></span>
 
@@ -60961,6 +61186,8 @@ img{
   href="{{ line_url }}"
   target="_blank"
   rel="noopener noreferrer"
+  data-solar-event="solar_line_cta_click"
+  data-solar-placement="hero"
 >
 <span class="trace-action-icon">LINE</span>
 
@@ -61774,6 +62001,8 @@ MITENOAが選ばれる理由
 <a
   class="trace-final-btn orange"
   href="/solar/diagnosis"
+  data-solar-event="solar_diagnosis_cta_click"
+  data-solar-placement="final"
 >
 無料で診断を申し込む
 </a>
@@ -61785,6 +62014,8 @@ MITENOAが選ばれる理由
   href="{{ line_url }}"
   target="_blank"
   rel="noopener noreferrer"
+  data-solar-event="solar_line_cta_click"
+  data-solar-placement="final"
 >
 LINEで相談する
 </a>
@@ -61832,6 +62063,8 @@ LINEで相談する
 <a
   class="trace-sticky-btn orange"
   href="/solar/diagnosis"
+  data-solar-event="solar_diagnosis_cta_click"
+  data-solar-placement="sticky"
 >
 無料診断
 </a>
@@ -61843,6 +62076,8 @@ LINEで相談する
   href="{{ line_url }}"
   target="_blank"
   rel="noopener noreferrer"
+  data-solar-event="solar_line_cta_click"
+  data-solar-placement="sticky"
 >
 LINE相談
 </a>
@@ -61866,6 +62101,12 @@ LINE相談
     methods=["GET"],
 )
 def solar_public_top():
+
+    track_solar_event(
+        "solar_lp_view",
+        page_type="solar_lp",
+        referrer_category=solar_referrer_category(),
+    )
 
     return render_template_string(
         SOLAR_LP_HTML,
@@ -61898,9 +62139,20 @@ def solar_diagnosis():
     field_errors = {}
     csrf_error = False
 
+    if request.method == "GET":
+        track_solar_event(
+            "solar_diagnosis_view",
+            page_type="diagnosis",
+            referrer_category=solar_referrer_category(),
+        )
+
     if request.method == "POST":
         try:
             validate_csrf()
+
+            track_solar_event(
+                "solar_diagnosis_submit_attempt"
+            )
 
             form = {
                 "postal_code":
@@ -62113,6 +62365,11 @@ def solar_diagnosis():
                 # 自動削除は行わない。
                 raise
 
+            track_solar_event(
+                "solar_diagnosis_success",
+                page_type="diagnosis",
+            )
+
             return render_template_string(
                 SOLAR_DIAGNOSIS_COMPLETE_HTML,
                 case_id=case_id,
@@ -62120,6 +62377,12 @@ def solar_diagnosis():
 
         except ValueError as e:
             error = str(e)
+            track_solar_event(
+                "solar_diagnosis_validation_error",
+                error_category=solar_validation_error_category(
+                    error
+                ),
+            )
             error_field_map = {
                 "市区町村": ["municipality"],
                 "相談内容": ["consultation"],
@@ -62142,12 +62405,20 @@ def solar_diagnosis():
 
         except Forbidden:
             csrf_error = True
+            track_solar_event(
+                "solar_diagnosis_validation_error",
+                error_category="csrf",
+            )
             error = (
                 "セキュリティ確認に失敗しました。"
                 "ページを再読み込みして再度お試しください。"
             )
 
         except Exception as e:
+            track_solar_event(
+                "solar_diagnosis_validation_error",
+                error_category="other",
+            )
             print(
                 "SOLAR DIAGNOSIS ERROR:",
                 type(e).__name__,

@@ -62,10 +62,65 @@ class SolarPublicTests(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
         return response.get_data(as_text=True)
 
+    def test_solar_event_hook_is_allowlisted_and_pii_free(self):
+        event = self.main.track_solar_event(
+            "solar_diagnosis_cta_click",
+            placement="hero",
+        )
+        self.assertEqual(
+            event["event_name"],
+            "solar_diagnosis_cta_click",
+        )
+        self.assertEqual(event["placement"], "hero")
+        self.assertNotIn("name", event)
+
+        self.assertIsNone(
+            self.main.track_solar_event(
+                "unknown_event",
+                placement="hero",
+            )
+        )
+        self.assertIsNone(
+            self.main.track_solar_event(
+                "solar_diagnosis_cta_click",
+                email="customer@example.test",
+            )
+        )
+        self.assertIsNone(
+            self.main.track_solar_event(
+                "solar_diagnosis_cta_click",
+                placement="hero",
+                raw_token="secret-token",
+            )
+        )
+        self.assertIsNone(
+            self.main.track_solar_event(
+                "solar_diagnosis_cta_click",
+                placement="x" * 33,
+            )
+        )
+
+    def test_solar_lp_and_diagnosis_view_events_are_local_only(self):
+        with patch.object(self.main, "track_solar_event") as track:
+            self.client.get("/solar")
+            self.client.get("/solar/diagnosis")
+
+        names = [call.args[0] for call in track.call_args_list]
+        self.assertIn("solar_lp_view", names)
+        self.assertIn("solar_diagnosis_view", names)
+
     def test_solar_returns_200_and_diagnosis_ctas(self):
         links = Page(self.solar_page()).attributes("a")
         diagnosis = [a for a in links if a.get("href") == "/solar/diagnosis"]
         self.assertEqual(len(diagnosis), 4)  # header, hero, final, sticky
+        self.assertEqual(
+            [a.get("data-solar-placement") for a in diagnosis],
+            ["header", "hero", "final", "sticky"],
+        )
+        self.assertTrue(all(
+            a.get("data-solar-event") == "solar_diagnosis_cta_click"
+            for a in diagnosis
+        ))
 
     def test_diagnosis_displays_application_form_and_csrf(self):
         response = self.client.get("/solar/diagnosis")
@@ -162,15 +217,58 @@ class SolarPublicTests(unittest.TestCase):
                 self.assertIn(f'id="{error_id}"', html)
 
     def test_diagnosis_rejects_invalid_csrf_before_external_write(self):
-        response = self.client.post(
-            "/solar/diagnosis",
-            data={"csrf_token": "invalid-token"},
-        )
+        with patch.object(self.main, "track_solar_event") as track:
+            response = self.client.post(
+                "/solar/diagnosis",
+                data={"csrf_token": "invalid-token"},
+            )
         self.assertEqual(response.status_code, 403)
         self.assertIn(
             "セキュリティ確認に失敗しました。",
             response.get_data(as_text=True),
         )
+        names = [call.args[0] for call in track.call_args_list]
+        self.assertIn("solar_diagnosis_validation_error", names)
+        self.assertNotIn("solar_diagnosis_success", names)
+
+    def test_diagnosis_success_emits_conversion_event_without_identifiers(self):
+        self.client.get("/solar/diagnosis")
+        with self.client.session_transaction() as session:
+            csrf_token = session["csrf_token"]
+
+        with patch.object(self.main, "track_solar_event") as track, patch.object(
+            self.main, "create_case", return_value="case-not-in-event"
+        ), patch.object(self.main, "update_case_column"), patch.object(
+            self.main, "save_solar_customer_info"
+        ), patch.object(
+            self.main, "validate_solar_estimate_file", return_value=False
+        ), patch.object(
+            self.main,
+            "save_solar_estimate_file",
+            return_value={"filename": "", "storage_path": ""},
+        ), patch.object(self.main, "save_solar_case_detail"), patch.object(
+            self.main, "clear_sheet_request_cache"
+        ):
+            response = self.client.post(
+                "/solar/diagnosis",
+                data={
+                    "csrf_token": csrf_token,
+                    "municipality": "深川市",
+                    "consultation": "内容を確認したい",
+                    "name": "顧客氏名",
+                    "email": "customer@example.test",
+                    "privacy_consent": "1",
+                },
+            )
+
+        self.assertEqual(response.status_code, 200)
+        success_calls = [
+            call for call in track.call_args_list
+            if call.args[0] == "solar_diagnosis_success"
+        ]
+        self.assertEqual(len(success_calls), 1)
+        self.assertNotIn("case-not-in-event", str(success_calls[0]))
+        self.assertNotIn("customer@example.test", str(success_calls[0]))
 
     def test_compare_rejects_invalid_csrf_with_403_before_external_write(self):
         with patch.object(
@@ -268,9 +366,14 @@ class SolarPublicTests(unittest.TestCase):
             page = Page(self.solar_page())
         links = [a for a in page.attributes("a") if a.get("href") == url]
         self.assertEqual(len(links), 3)  # hero, final, sticky
+        self.assertEqual(
+            [a.get("data-solar-placement") for a in links],
+            ["hero", "final", "sticky"],
+        )
         for link in links:
             self.assertEqual(link.get("target"), "_blank")
             self.assertTrue({"noopener", "noreferrer"} <= set(link.get("rel", "").split()))
+            self.assertEqual(link.get("data-solar-event"), "solar_line_cta_click")
 
     def test_line_ctas_hidden_when_environment_unset(self):
         self.assertEqual(self.main.SOLAR_LINE_ADD_URL, "")
@@ -323,12 +426,18 @@ class SolarPublicTests(unittest.TestCase):
             self.main, "validate_solar_result_publishable", return_value=({}, {})
         ) as validate, patch.object(
             self.main, "get_solar_detail_record", return_value={}
-        ), patch.object(self.main, "get_solar_compare_request", return_value={}):
+        ), patch.object(
+            self.main, "get_solar_compare_request", return_value={}
+        ), patch.object(self.main, "track_solar_event") as track:
             response = self.client.get("/solar/result/test-only-token")
         self.assertEqual(response.status_code, 200)
         publication.assert_called_once_with(token="test-only-token")
         validate.assert_called_once_with("test-only-case")
         self.assert_private_headers(response)
+        self.assertIn(
+            "solar_result_view",
+            [call.args[0] for call in track.call_args_list],
+        )
 
     def test_public_result_does_not_expose_detail_pii_or_raw_html(self):
         with patch.object(self.main, "get_solar_result_publication", return_value={
@@ -527,7 +636,9 @@ class SolarPublicTests(unittest.TestCase):
             self.main, "update_sheet_range"
         ) as update_range, patch.object(
             self.main, "append_sheet_row"
-        ) as append_row:
+        ) as append_row, patch.object(
+            self.main, "track_solar_event"
+        ) as track:
             response = self.client.get("/solar/vendor/valid-token")
             head = self.client.head("/solar/vendor/valid-token")
 
@@ -536,6 +647,12 @@ class SolarPublicTests(unittest.TestCase):
         self.assertEqual(get_values.call_count, 2)
         update_range.assert_not_called()
         append_row.assert_not_called()
+        self.assertEqual(
+            [call.args[0] for call in track.call_args_list].count(
+                "solar_vendor_view"
+            ),
+            2,
+        )
 
     def test_solar_vendor_invalid_token_does_not_write(self):
         row = [
@@ -548,13 +665,16 @@ class SolarPublicTests(unittest.TestCase):
             self.main, "update_sheet_range"
         ) as update_range, patch.object(
             self.main, "append_sheet_row"
-        ) as append_row:
+        ) as append_row, patch.object(
+            self.main, "track_solar_event"
+        ) as track:
             response = self.client.get("/solar/vendor/invalid-token")
 
         self.assertEqual(response.status_code, 404)
         get_values.assert_called_once()
         update_range.assert_not_called()
         append_row.assert_not_called()
+        track.assert_not_called()
 
     def test_solar_public_read_only_flag_skips_sheet_ensure_writes(self):
         with self.main.app.test_request_context("/solar/vendor/valid-token"):
@@ -714,12 +834,17 @@ class SolarPublicTests(unittest.TestCase):
         for record in (None, {"publish_status": "公開停止", "case_id": "test-only-case"}):
             with self.subTest(record=record), patch.object(
                 self.main, "get_solar_result_publication", return_value=record
-            ) as publication, patch.object(self.main, "validate_solar_result_publishable") as validate:
+            ) as publication, patch.object(
+                self.main, "validate_solar_result_publishable"
+            ) as validate, patch.object(
+                self.main, "track_solar_event"
+            ) as track:
                 response = self.client.get("/solar/result/test-only-token")
                 self.assertEqual(response.status_code, 404)
                 self.assert_private_headers(response)
                 publication.assert_called_once_with(token="test-only-token")
                 validate.assert_not_called()
+                track.assert_not_called()
 
 
 if __name__ == "__main__":

@@ -184,3 +184,78 @@ Avoid unsupported expressions such as:
 - 数十万円損する
 - 騙される
 - guaranteed savings
+
+## Autonomous Development Workflow
+
+- 原則として、1フェーズ単位で自律的に
+  調査 → 実装 → テスト → 原因分析 → 修正 → 再テスト
+  まで進める。
+- 通常のローカル開発作業では、途中確認を求めない。
+- 複数の妥当な実装方法がある場合は、以下の優先順位で自分で判断する。
+  1. 最小変更
+  2. 既存挙動維持
+  3. 低リスク
+  4. 保守性
+- 承認済みのフェーズ内では、可逆なローカル操作を自律実行してよい。
+
+### Local operations that do not require confirmation
+
+- repository内のファイル読取・編集
+- /tmp 配下の一時ファイル作成・編集
+- Python実行
+- unittest / pytest
+- py_compile
+- Playwright / headless browserによるローカル検証
+- screenshot比較
+- git status
+- git diff
+- git diff --check
+- git add
+- 明示的にcommitまで許可されたフェーズでのgit commit
+- ローカルサーバー起動
+- 静的解析
+- ローカルの依存関係確認
+
+これらについては「実行してよいですか？」と途中確認しない。
+
+### Human approval required
+
+以下は必ず人間の明示承認を得てから実行する。
+
+- git push
+- deploy
+- production環境への変更
+- productionデータ変更
+- 外部公開
+- 本番設定変更
+- アカウント作成
+- 権限変更
+- 費用発生
+- 外部サービスへの書込み
+- 法的・安全上重要な判断
+- 大規模な仕様変更
+- destructive operation
+
+### Execution behavior
+
+- 途中経過を逐次質問しない。
+- 問題が起きた場合は、まず自分で原因を分析して解決を試みる。
+- 安全な範囲で複数回の修正・再検証を自律的に行う。
+- 完了時に、
+  - 変更内容
+  - テスト結果
+  - 残存リスク
+  - git status
+  をまとめて報告する。
+- commit / push / deploy の境界は必ず守る。
+
+## Model Usage Policy
+
+- 通常の開発作業は GPT-5.6 Luna を優先する。
+- GPT-6 Astra は以下の場合だけ使用を推奨する。
+  - 複雑なアーキテクチャ変更
+  - 原因不明の重大バグ
+  - 広範囲なリファクタ
+  - 高度なセキュリティ判断
+  - 難しい複数設計案の比較
+- Astraが不要な作業ではLunaを使い、利用枠を節約する。

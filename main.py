@@ -56546,8 +56546,6 @@ img{
   gap:22px;
 }
 
-.trace-logo{
-}
 
 
 
@@ -56930,8 +56928,6 @@ img{
   font-weight:900;
 }
 
-.trace-check-text{
-}
 
 
 /* =========================================
@@ -57357,15 +57353,11 @@ img{
   font-size:15px;
 }
 
-.trace-check-text{
-}
 
 .trace-step{
   font-size:12px;
 }
 
-.trace-flow-art{
-}
 
 .trace-flow-title{
   font-size:16px;
@@ -57429,8 +57421,6 @@ img{
 
 /* --- HEADER LOGO --- */
 
-.trace-logo{
-}
 
 
 /* --- HERO CTA --- */
@@ -57519,8 +57509,6 @@ img{
   min-height:86px;
 }
 
-.trace-logo{
-}
 
 
 /* ---------- HERO ---------- */
@@ -57633,8 +57621,6 @@ img{
   height:86px;
 }
 
-.trace-logo{
-}
 
 
 
@@ -57777,8 +57763,6 @@ img{
 
 @media (min-width: 1100px){
 
-  .trace-logo{
-  }
 
   .trace-action-main{
     font-size:18px;
@@ -57805,8 +57789,6 @@ img{
 
 @media (max-width: 1250px) and (min-width: 821px){
 
-  .trace-logo{
-  }
 
   .trace-actions{
     width:480px;
@@ -57941,8 +57923,6 @@ img{
   gap:10px;
 }
 
-.trace-check{
-}
 
 .trace-check-top{
   gap:11px;
@@ -57958,8 +57938,6 @@ img{
   font-weight:900;
 }
 
-.trace-check-text{
-}
 
 /* 中間幅 */
 @media (max-width:1250px) and (min-width:821px){
@@ -57968,8 +57946,6 @@ img{
     font-size:17px;
   }
 
-  .trace-check-text{
-  }
 
 }
 
@@ -57978,8 +57954,6 @@ img{
    V4.23 CHECKPOINT COLOR ICONS
 ========================================= */
 
-.trace-check-icon{
-}
 
 .trace-check-icon img{
   display:block;
@@ -58038,10 +58012,6 @@ img{
 }
 
 /* 説明文をタイトルの左端に揃える */
-.trace-check-text{
-
-
-}
 
 /* カード間 */
 .trace-check-grid{
@@ -58055,20 +58025,12 @@ img{
 
 @media (max-width:1250px) and (min-width:821px){
 
-  .trace-check{
 
-  }
-
-  .trace-check-icon{
-
-  }
 
   .trace-check-name{
     font-size:17px;
   }
 
-  .trace-check-text{
-  }
 
 }
 
@@ -58079,13 +58041,7 @@ img{
 
 @media (max-width:820px){
 
-  .trace-check{
 
-  }
-
-  .trace-check-icon{
-
-  }
 
 }
 
@@ -58094,14 +58050,8 @@ img{
    V4.25 CHECKPOINT ICON LARGE
 ========================================= */
 
-.trace-check{
-}
 
 /* アイコン表示領域を拡大 */
-.trace-check-icon{
-
-
-}
 
 /* PNG内部の余白分まで拡大 */
 .trace-check-icon img{
@@ -58121,8 +58071,6 @@ img{
   line-height:1.35;
 }
 
-.trace-check-text{
-}
 
 
 /* 中間幅 */
@@ -58132,8 +58080,6 @@ img{
     padding-left:108px;
   }
 
-  .trace-check-icon{
-  }
 
 }
 
@@ -58145,8 +58091,6 @@ img{
     padding-left:96px;
   }
 
-  .trace-check-icon{
-  }
 
 }
 
@@ -58194,16 +58138,12 @@ img{
 /* 中間幅 */
 @media (max-width:1250px) and (min-width:821px){
 
-  .trace-check-text{
-  }
 
 }
 
 /* スマホ */
 @media (max-width:820px){
 
-  .trace-check-text{
-  }
 
 }
 
@@ -58212,10 +58152,6 @@ img{
    V4.27 CHECKPOINT STRUCTURE FINAL
 ========================================= */
 
-.trace-check{
-
-
-}
 
 .trace-check-icon{
 
@@ -58262,18 +58198,12 @@ img{
 /* Tablet */
 @media (max-width:1250px) and (min-width:821px){
 
-  .trace-check{
-  }
 
-  .trace-check-icon{
-  }
 
   .trace-check-name{
     font-size:17px;
   }
 
-  .trace-check-text{
-  }
 
 }
 
@@ -58281,11 +58211,7 @@ img{
 /* Mobile */
 @media (max-width:820px){
 
-  .trace-check{
-  }
 
-  .trace-check-icon{
-  }
 
 }
 
@@ -58396,8 +58322,6 @@ img{
     padding:15px 16px;
   }
 
-  .trace-check-icon{
-  }
 
   .trace-check-name{
     font-size:17px;
@@ -58416,8 +58340,6 @@ img{
     padding:14px;
   }
 
-  .trace-check-icon{
-  }
 }
 
 
@@ -58457,8 +58379,6 @@ img{
    V4.30 FLOW IMAGE CARDS
 ========================================= */
 
-.trace-flow-card{
-}
 
 .trace-flow-art{
 
@@ -58499,11 +58419,7 @@ img{
 /* Tablet */
 @media (max-width:1250px) and (min-width:821px){
 
-  .trace-flow-card{
-  }
 
-  .trace-flow-art{
-  }
 
 }
 
@@ -58511,11 +58427,7 @@ img{
 /* Mobile */
 @media (max-width:820px){
 
-  .trace-flow-card{
-  }
 
-  .trace-flow-art{
-  }
 
 }
 
@@ -58544,8 +58456,6 @@ img{
 }
 
 @media (max-width:1250px) and (min-width:821px){
-  .trace-flow-art{
-  }
 
   .trace-flow-art img{
     max-width:180px;
@@ -58554,8 +58464,6 @@ img{
 }
 
 @media (max-width:820px){
-  .trace-flow-art{
-  }
 
   .trace-flow-art img{
     max-width:175px;
@@ -58582,16 +58490,12 @@ img{
   align-items:stretch;
 }
 
-.trace-flow-card{
-}
 
 @media (max-width:1250px) and (min-width:821px){
   .trace-flow{
     padding-bottom:34px;
   }
 
-  .trace-flow-card{
-  }
 }
 
 @media (max-width:820px){
@@ -58601,8 +58505,6 @@ img{
     padding-bottom:30px;
   }
 
-  .trace-flow-card{
-  }
 }
 
 
@@ -58611,16 +58513,12 @@ img{
    診断の流れアイコンを大きく表示
 ========================================= */
 
-.trace-flow-card{
-}
 
 
 
 
 
 @media (max-width:1250px) and (min-width:821px){
-  .trace-flow-card{
-  }
 
 
 
@@ -58628,8 +58526,6 @@ img{
 }
 
 @media (max-width:820px){
-  .trace-flow-card{
-  }
 
 
 
@@ -58651,8 +58547,6 @@ img{
   margin-top:16px;
 }
 
-.trace-flow-card{
-}
 
 .trace-flow-art{
 
@@ -58698,11 +58592,7 @@ img{
     padding-bottom:26px;
   }
 
-  .trace-flow-card{
-  }
 
-  .trace-flow-art{
-  }
 
   .trace-flow-art img{
     max-width:205px;
@@ -58716,11 +58606,7 @@ img{
     padding-bottom:24px;
   }
 
-  .trace-flow-card{
-  }
 
-  .trace-flow-art{
-  }
 
   .trace-flow-body{
     padding-top:3px;
@@ -58752,12 +58638,8 @@ img{
   line-height:1.4;
 }
 
-.trace-flow-card{
-}
 
 @media (max-width:1250px) and (min-width:821px){
-  .trace-flow-card{
-  }
 }
 
 @media (max-width:820px){
@@ -58765,8 +58647,6 @@ img{
     white-space:normal;
   }
 
-  .trace-flow-card{
-  }
 }
 
 
@@ -60431,25 +60311,17 @@ img{
 
 
 
-  .trace-trust,
-  .trace-concerns,
-  .trace-checks,
-  .trace-flow,
-  .trace-reasons,
-  .trace-faq,
-  .trace-final{
+  .trace-trust{
     height:auto;
   }
 
-  .trace-trust-inner,
-  .trace-concern-grid,
-  .trace-check-grid,
   .trace-reason-grid,
   .trace-faq-grid{
     grid-template-columns:1fr;
   }
 
   .trace-trust-inner{
+    grid-template-columns:1fr;
     height:auto;
   }
 
@@ -60463,6 +60335,7 @@ img{
   .trace-flow,
   .trace-reasons,
   .trace-faq{
+    height:auto;
     padding:40px 0;
   }
 
@@ -60487,6 +60360,7 @@ img{
   }
 
   .trace-final{
+    height:auto;
     min-height:185px;
   }
 

@@ -61078,6 +61078,45 @@ img{
   }
 }
 
+/* =========================================
+   FINAL CTA BOTTOM CLEARANCE
+   ボタン下端と固定CTAの重なりを防ぐ
+========================================= */
+
+.trace-final{
+  height:auto;
+  min-height:190px;
+  padding-bottom:12px;
+  overflow:visible;
+}
+
+.trace-final-inner{
+  height:auto;
+  min-height:0;
+  padding-bottom:2px;
+}
+
+.trace-final-buttons{
+  overflow:visible;
+}
+
+@media (max-width:1024px){
+
+  .trace-final{
+    min-height:250px;
+    padding-bottom:16px;
+  }
+
+}
+
+@media (max-width:500px){
+
+  .trace-final{
+    padding-bottom:20px;
+  }
+
+}
+
 </style>
 </head>
 

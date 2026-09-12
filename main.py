@@ -60437,6 +60437,121 @@ img{
 
 }
 
+/* =========================================
+   PHASE 5 FINAL PRESENTATION POLISH
+   既存のレスポンシブ境界・sticky/timeline挙動は維持
+========================================= */
+
+/* 見出しと本文のまとまりを揃え、幅ごとの短い行を抑える */
+.trace-title,
+.trace-why-title,
+.trace-regret-title,
+.trace-final-title,
+.trace-purpose-copy h2{
+  text-wrap:balance;
+}
+
+.trace-lead,
+.trace-why-lead,
+.trace-regret-lead{
+  text-wrap:pretty;
+}
+
+/* セクション内カードの角丸・境界線を同じトーンへ */
+.trace-concern,
+.trace-check,
+.trace-flow-card,
+.trace-benefit-card,
+.trace-regret-item,
+.trace-why-item,
+.trace-faq details{
+  border-radius:10px;
+}
+
+.trace-concern,
+.trace-flow-card,
+.trace-benefit-card,
+.trace-regret-item,
+.trace-why-item,
+.trace-faq details{
+  overflow:hidden;
+}
+
+/* 画像カードの本文を同じリズムで揃える */
+.trace-concern-body,
+.trace-flow-body{
+  min-width:0;
+}
+
+.trace-concern-title,
+.trace-flow-title,
+.trace-benefit-card h3,
+.trace-reason-title,
+.trace-why-item-title,
+.trace-regret-item-title{
+  text-wrap:balance;
+}
+
+.trace-concern-text,
+.trace-flow-text,
+.trace-benefit-card p,
+.trace-reason-text,
+.trace-why-item-text,
+.trace-regret-item-text{
+  text-wrap:pretty;
+}
+
+/* CTAは主導線を保ちつつ、狭い幅でも文字を詰めすぎない */
+.trace-action,
+.trace-final-btn,
+.trace-sticky-btn{
+  box-shadow:0 5px 14px rgba(16,48,78,.10);
+}
+
+.trace-action > span:nth-child(2),
+.trace-final-btn,
+.trace-sticky-btn{
+  min-width:0;
+}
+
+.trace-action-main,
+.trace-action-sub,
+.trace-final-btn,
+.trace-sticky-btn{
+  text-wrap:balance;
+}
+
+.trace-final-buttons{
+  margin-top:16px;
+}
+
+@media (min-width:1251px){
+  .trace-lead{
+    max-width:72ch;
+    margin-left:auto;
+    margin-right:auto;
+  }
+}
+
+@media (max-width:820px){
+  /* 固定brによる短い単独行を避ける（コピー自体は変更しない） */
+  .trace-why-lead br,
+  .trace-benefit-card h3 br{
+    display:none;
+  }
+
+  .trace-why-lead,
+  .trace-benefit-card h3{
+    text-wrap:pretty;
+  }
+
+  .trace-action,
+  .trace-final-btn,
+  .trace-sticky-btn{
+    box-shadow:0 4px 12px rgba(16,48,78,.09);
+  }
+}
+
 </style>
 </head>
 

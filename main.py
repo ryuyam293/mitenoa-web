@@ -60446,8 +60446,7 @@ img{
 .trace-title,
 .trace-why-title,
 .trace-regret-title,
-.trace-final-title,
-.trace-purpose-copy h2{
+.trace-final-title{
   text-wrap:balance;
 }
 

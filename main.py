@@ -60923,9 +60923,11 @@ img{
 @media(max-width:640px){
 
   .trace-hero-photo{
-    height:340px;
-    object-fit:cover;
-    object-position:80% 45%;
+    width:100%;
+    max-width:100%;
+    height:auto;
+    object-fit:initial;
+    object-position:center;
   }
 
 }
@@ -61348,11 +61350,17 @@ img{
 
 <section class="trace-hero">
 
+<picture>
+<source
+  media="(max-width:640px)"
+  srcset="{{ solar_mobile_image_url }}"
+>
 <img
   src="{{ hero_image_url }}"
   alt=""
   class="trace-hero-photo"
 >
+</picture>
 
 <div class="trace-hero-overlay"></div>
 
@@ -62339,6 +62347,8 @@ def solar_public_top():
             SOLAR_LINE_ADD_URL,
         hero_image_url=
             SOLAR_HERO_IMAGE_URL,
+        solar_mobile_image_url=
+            "/static/assets/solar/mobile_top.png",
         mitenoa_logo_url=
             MITENOA_LOGO_URL,
     )

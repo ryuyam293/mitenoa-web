@@ -61260,6 +61260,33 @@ img{
 
 }
 
+/* =========================================
+   SOLAR COPY / FINAL CTA MOBILE POLISH
+========================================= */
+
+@media (max-width:640px){
+
+  .trace-why-conclusion-lead,
+  .trace-why-conclusion-tail,
+  .trace-benefit-lead-second{
+    display:block;
+  }
+
+  .trace-why-conclusion-tail{
+    white-space:nowrap;
+  }
+
+}
+
+/* 背景内コピーよりCTA本文を優先する最終CTA専用調整 */
+.trace-final-photo{
+  object-position:100% 50%;
+}
+
+.trace-final:after{
+  background:rgba(235,248,255,.94);
+}
+
 </style>
 </head>
 
@@ -61495,9 +61522,8 @@ LINEで気軽に相談する
 </div>
 
 <div class="trace-why-conclusion">
-だから、契約する前に一度
-<strong>「第三者の目」</strong>
-で確認する。
+<span class="trace-why-conclusion-lead">だから、契約する前に一度</span>
+<span class="trace-why-conclusion-tail"><strong>「第三者の目」</strong>で確認する。</span>
 </div>
 
 </div>
@@ -61740,8 +61766,8 @@ LINEで気軽に相談する
 </h2>
 
 <p class="trace-lead">
-MITENOAが提供するのは「正解」ではなく、
-納得して決めるための判断材料です。
+<span class="trace-benefit-lead-first">MITENOAが提供するのは「正解」ではなく、</span>
+<span class="trace-benefit-lead-second">納得して決めるための判断材料です。</span>
 </p>
 </div>
 
@@ -62027,7 +62053,7 @@ MITENOAは、太陽光・蓄電池を<br>
 <div class="trace-purpose-side">
 
 <div class="trace-purpose-side-title">
-では、MITENOAは何で運営しているの？
+MITENOAが運営できる理由
 </div>
 
 <p>
@@ -62135,6 +62161,13 @@ MITENOAが選ばれる理由
 <details>
 <summary>まだ契約前でなくても相談できますか？</summary>
 <p>はい。契約前の確認・比較を中心にご相談いただけます。</p>
+</details>
+
+<details>
+<summary>これから見積を取る段階でも相談できますか？</summary>
+<p>はい。まだ他社でお見積りを取る前の段階でもご相談いただけます。
+MITENOAがお客様に代わって、ご地域の施工会社へ見積りを依頼することも可能です。
+これから比較を始めたい方も、お気軽にご相談ください。</p>
 </details>
 
 <details>

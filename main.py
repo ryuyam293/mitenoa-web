@@ -63330,7 +63330,7 @@ a{color:inherit}
 .tosou-lp-card{padding:32px;border:1px solid var(--tosou-line);border-radius:22px;background:#fff;box-shadow:0 12px 28px rgba(11,29,58,.08)}
 .tosou-lp-hero-side{display:grid;gap:18px}
 .tosou-lp-hero-visual{overflow:hidden;border-radius:22px;background:#EAF3EF;box-shadow:0 12px 28px rgba(11,29,58,.08)}
-.tosou-lp-hero-visual img{display:block;width:100%;aspect-ratio:4 / 3;object-fit:cover}
+.tosou-lp-hero-visual img{display:block;width:100%;height:auto;aspect-ratio:auto;object-fit:contain}
 .tosou-lp-card-label{color:var(--tosou-green);font-size:13px;font-weight:900;letter-spacing:.1em}
 .tosou-lp-card h2{margin:14px 0 0;font-size:27px;line-height:1.45;text-wrap:balance}
 .tosou-lp-card p{margin:14px 0 0;color:#526766;line-height:1.9}

@@ -60923,8 +60923,9 @@ img{
 @media(max-width:640px){
 
   .trace-hero-photo{
-    height:280px;
-    object-position:center 45%;
+    height:340px;
+    object-fit:cover;
+    object-position:80% 45%;
   }
 
 }

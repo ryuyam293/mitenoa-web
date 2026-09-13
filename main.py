@@ -61139,6 +61139,27 @@ img{
     line-height:1.35;
   }
 
+  /* 見出しは語中分割を避け、意味のまとまりで折り返す */
+  .trace-eyebrow,
+  .trace-h1,
+  .trace-title,
+  .trace-why-title,
+  .trace-regret-title,
+  .trace-purpose-copy h2,
+  .trace-benefit-card h3,
+  .trace-flow-title,
+  .trace-reason-title,
+  .trace-concern-title,
+  .trace-check-name,
+  .trace-faq summary,
+  .trace-final-title,
+  .trace-trust-title{
+    word-break:keep-all;
+    overflow-wrap:normal;
+    line-break:strict;
+    text-wrap:balance;
+  }
+
   .trace-lead,
   .trace-why-lead,
   .trace-regret-lead,
@@ -61147,6 +61168,8 @@ img{
     margin-left:auto;
     margin-right:auto;
     line-height:1.7;
+    line-break:strict;
+    overflow-wrap:normal;
     text-wrap:pretty;
   }
 

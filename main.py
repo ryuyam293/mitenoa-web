@@ -63314,7 +63314,7 @@ a{color:inherit}
 .tosou-lp-nav a{text-decoration:none}
 .tosou-lp-header-cta{padding:12px 18px;border-radius:999px;background:var(--tosou-orange);color:#fff;white-space:nowrap}
 .tosou-lp-hero{padding:76px 0 64px;background:linear-gradient(135deg,#F7FBFA 0%,#fff 70%)}
-.tosou-lp-hero-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(360px,.9fr);align-items:center;gap:64px}
+.tosou-lp-hero-grid{display:grid;grid-template-columns:minmax(0,.82fr) minmax(500px,1.18fr);align-items:center;gap:58px}
 .tosou-lp-kicker{display:inline-flex;align-items:center;gap:10px;color:var(--tosou-orange);font-size:13px;font-weight:900;letter-spacing:.14em}
 .tosou-lp-kicker:before{content:"";width:32px;height:3px;border-radius:99px;background:var(--tosou-orange)}
 .tosou-lp-hero h1{margin:22px 0 0;color:var(--tosou-navy);font-size:clamp(42px,5vw,68px);line-height:1.18;letter-spacing:.02em;text-wrap:balance}
@@ -63328,9 +63328,10 @@ a{color:inherit}
 .tosou-lp-btn-icon{margin-right:8px;font-size:18px;line-height:1}
 .tosou-lp-svg-icon{width:20px;height:20px;display:block;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 .tosou-lp-card{padding:32px;border:1px solid var(--tosou-line);border-radius:22px;background:#fff;box-shadow:0 12px 28px rgba(11,29,58,.08)}
-.tosou-lp-hero-side{display:grid;gap:18px}
+.tosou-lp-hero-side{display:block;padding-bottom:34px}
 .tosou-lp-hero-visual{overflow:hidden;border-radius:22px;background:#EAF3EF;box-shadow:0 12px 28px rgba(11,29,58,.08)}
 .tosou-lp-hero-visual img{display:block;width:100%;height:auto;aspect-ratio:auto;object-fit:contain}
+.tosou-lp-hero-side .tosou-lp-card{position:relative;width:min(88%,520px);margin:-42px 20px 0 auto;z-index:1}
 .tosou-lp-card-label{color:var(--tosou-green);font-size:13px;font-weight:900;letter-spacing:.1em}
 .tosou-lp-card h2{margin:14px 0 0;font-size:27px;line-height:1.45;text-wrap:balance}
 .tosou-lp-card p{margin:14px 0 0;color:#526766;line-height:1.9}
@@ -63373,12 +63374,15 @@ a{color:inherit}
 .tosou-lp-area{display:flex;align-items:center;gap:18px;padding:28px 32px;border-radius:18px;background:#EAF3EF;border:1px solid #D5E6DF;color:var(--tosou-blue);line-height:1.9}
 .tosou-lp-area-icon{flex:none;width:44px;height:44px;display:grid;place-items:center;border-radius:14px;background:#fff;color:var(--tosou-green)}
 .tosou-lp-faq{max-width:860px;margin:0 auto}
-.tosou-lp-faq details{margin-top:12px;border:1px solid var(--tosou-line);border-radius:14px;background:#fff;overflow:hidden}
+.tosou-lp-faq details{margin-top:12px;border:1px solid var(--tosou-line);border-radius:14px;background:#fff;overflow:hidden;transition:border-color .2s,box-shadow .2s}
+.tosou-lp-faq details[open]{border-color:#BFD8CC;box-shadow:0 8px 20px rgba(11,29,58,.06)}
 .tosou-lp-faq summary{cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px 22px;font-weight:900;list-style:none}
+.tosou-lp-faq summary:before{content:"Q";flex:none;width:26px;height:26px;display:grid;place-items:center;border-radius:50%;background:#EAF3EF;color:var(--tosou-green);font-size:12px;font-weight:900}
 .tosou-lp-faq summary::-webkit-details-marker{display:none}
 .tosou-lp-faq summary:after{content:"＋";flex:none;color:var(--tosou-green);font-size:20px}
 .tosou-lp-faq details[open] summary:after{content:"−"}
-.tosou-lp-faq-answer{padding:0 22px 20px;color:#5D706F;line-height:1.9}
+.tosou-lp-faq-answer{display:flex;gap:12px;padding:0 22px 20px;color:#5D706F;line-height:1.9}
+.tosou-lp-faq-answer:before{content:"A";flex:none;width:26px;height:26px;display:grid;place-items:center;border-radius:50%;background:#FFF3E8;color:var(--tosou-orange);font-size:12px;font-weight:900}
 .tosou-lp-more{text-align:center;margin-top:28px}
 .tosou-lp-more a{color:var(--tosou-green);font-weight:900}
 .tosou-lp-final{padding:76px 0;background:linear-gradient(135deg,#F5FAF8,#FFF8F1)}
@@ -63415,6 +63419,8 @@ a{color:inherit}
   .tosou-lp-header-cta{padding:10px 12px;font-size:11px}
   .tosou-lp-hero{padding:42px 0 38px}
   .tosou-lp-hero-grid{gap:28px}
+  .tosou-lp-hero-side{display:grid;gap:18px;padding-bottom:0}
+  .tosou-lp-hero-side .tosou-lp-card{width:auto;margin:0}
   .tosou-lp-hero h1{font-size:42px}
   .tosou-lp-hero-lead{font-size:16px;line-height:1.8}
   .tosou-lp-actions{grid-template-columns:1fr;gap:10px}

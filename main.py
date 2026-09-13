@@ -60906,7 +60906,7 @@ img{
   }
 
   .trace-logo{
-    width:135px;
+    width:150px;
   }
 
   .trace-h1{
@@ -60916,6 +60916,15 @@ img{
   .trace-concern-grid,
   .trace-check-grid{
     grid-template-columns:1fr;
+  }
+
+}
+
+@media(max-width:640px){
+
+  .trace-hero-photo{
+    height:280px;
+    object-position:center 45%;
   }
 
 }
@@ -61668,7 +61677,7 @@ LINEで気軽に相談する
 </div>
 
 <h2 class="trace-regret-title">
-契約後に気づいても、変えにくいことがあります。
+契約後に気づいても、変更が難しい場合も。
 </h2>
 
 <p class="trace-regret-lead">

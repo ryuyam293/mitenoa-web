@@ -390,7 +390,7 @@ class SolarPublicTests(unittest.TestCase):
         sections = {
             "trace-why": "その見積書、本当にそのまま契約して大丈夫ですか？",
             "trace-concerns": "こんなお悩みありませんか？",
-            "trace-regret": "契約後に気づいても、変えにくいことがあります。",
+            "trace-regret": "契約後に気づいても、変更が難しい場合も。",
             "trace-benefits": "見積書を確認すると、判断がこう変わります",
             "trace-checks": "8つのチェックポイント",
             "trace-flow": "診断の流れ",

@@ -63278,541 +63278,311 @@ def customer_privacy():
 
 TOSOU_PUBLIC_TOP_HTML = """
 <!doctype html>
-
 <html lang="ja">
-
 <head>
-
 <meta charset="utf-8">
-
-<meta
-    name="viewport"
-    content="width=device-width,initial-scale=1"
->
-
-<title>
-そらち塗装セカンドオピニオン｜
-屋根・外壁塗装の見積比較・相談
-</title>
-
-<meta
-    name="description"
-    content="屋根・外壁塗装の見積内容を確認し、必要に応じて地域の提携施工会社との比較をご案内します。"
->
-
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>そらち塗装のセカンドオピニオン｜MITENOA</title>
+<meta name="description" content="外壁・屋根塗装の見積内容を、契約前に第三者の目で整理します。">
 <style>
-
-*{
-    box-sizing:border-box;
+:root{
+  --tosou-navy:#0B1D3A;
+  --tosou-blue:#153B60;
+  --tosou-green:#4C7F6B;
+  --tosou-orange:#FF7A00;
+  --tosou-pale:#F4F8FA;
+  --tosou-line:#DDE7E5;
 }
-
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
 body{
-    margin:0;
-    font-family:
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        "Noto Sans JP",
-        "Hiragino Kaku Gothic ProN",
-        sans-serif;
-    background:#f5f8fc;
-    color:#16325c;
+  margin:0;
+  color:var(--tosou-navy);
+  background:#fff;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans JP","Hiragino Kaku Gothic ProN",sans-serif;
 }
-
-.wrap{
-    max-width:860px;
-    margin:0 auto;
-    padding:0 18px 110px;
+a{color:inherit}
+.tosou-lp-shell{padding-bottom:96px;overflow:hidden}
+.tosou-lp-container{width:min(1180px,calc(100% - 48px));margin:0 auto}
+.tosou-lp-header{border-bottom:1px solid #E8EFEE;background:#fff}
+.tosou-lp-header-inner{min-height:82px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.tosou-lp-brand{display:flex;align-items:center;gap:14px;text-decoration:none;min-width:0}
+.tosou-lp-brand img{display:block;width:260px;height:auto;max-width:100%}
+.tosou-lp-brand-fallback{font-size:25px;font-weight:900;letter-spacing:.06em}
+.tosou-lp-service{font-size:13px;font-weight:800;color:var(--tosou-green);white-space:nowrap}
+.tosou-lp-nav{display:flex;align-items:center;gap:20px;font-size:13px;font-weight:800}
+.tosou-lp-nav a{text-decoration:none}
+.tosou-lp-header-cta{padding:12px 18px;border-radius:999px;background:var(--tosou-orange);color:#fff;white-space:nowrap}
+.tosou-lp-hero{padding:76px 0 64px;background:linear-gradient(135deg,#F7FBFA 0%,#fff 70%)}
+.tosou-lp-hero-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(360px,.9fr);align-items:center;gap:64px}
+.tosou-lp-kicker{display:inline-flex;align-items:center;gap:10px;color:var(--tosou-orange);font-size:13px;font-weight:900;letter-spacing:.14em}
+.tosou-lp-kicker:before{content:"";width:32px;height:3px;border-radius:99px;background:var(--tosou-orange)}
+.tosou-lp-hero h1{margin:22px 0 0;color:var(--tosou-navy);font-size:clamp(38px,5vw,68px);line-height:1.18;letter-spacing:.02em;text-wrap:balance}
+.tosou-lp-hero h1 span{color:var(--tosou-orange)}
+.tosou-lp-hero-lead{margin:24px 0 0;color:var(--tosou-blue);font-size:18px;line-height:1.9;font-weight:700;text-wrap:pretty}
+.tosou-lp-hero-note{margin:18px 0 0;color:#5D706F;font-size:14px;line-height:1.8}
+.tosou-lp-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:30px}
+.tosou-lp-btn{min-height:56px;display:flex;align-items:center;justify-content:center;border-radius:14px;padding:12px 16px;text-decoration:none;font-weight:900;box-shadow:0 6px 16px rgba(11,29,58,.12)}
+.tosou-lp-btn-line{background:var(--tosou-green);color:#fff}
+.tosou-lp-btn-phone{background:var(--tosou-orange);color:#fff}
+.tosou-lp-card{padding:32px;border:1px solid var(--tosou-line);border-radius:22px;background:#fff;box-shadow:0 12px 28px rgba(11,29,58,.08)}
+.tosou-lp-card-label{color:var(--tosou-green);font-size:13px;font-weight:900;letter-spacing:.1em}
+.tosou-lp-card h2{margin:14px 0 0;font-size:27px;line-height:1.45;text-wrap:balance}
+.tosou-lp-card p{margin:14px 0 0;color:#526766;line-height:1.9}
+.tosou-lp-card-note{margin-top:22px;padding-top:18px;border-top:1px solid #E5EEEC;color:var(--tosou-blue);font-size:13px;line-height:1.8;font-weight:700}
+.tosou-lp-trust{border-top:1px solid var(--tosou-line);border-bottom:1px solid var(--tosou-line);background:#fff}
+.tosou-lp-trust-grid{display:grid;grid-template-columns:repeat(3,1fr)}
+.tosou-lp-trust-item{padding:24px 20px;text-align:center;border-right:1px solid var(--tosou-line)}
+.tosou-lp-trust-item:last-child{border-right:0}
+.tosou-lp-trust-title{font-weight:900;font-size:17px}
+.tosou-lp-trust-text{margin-top:7px;color:#637674;font-size:13px;line-height:1.6}
+.tosou-lp-section{padding:86px 0}
+.tosou-lp-section-pale{background:var(--tosou-pale)}
+.tosou-lp-heading{text-align:center;max-width:760px;margin:0 auto 42px}
+.tosou-lp-heading h2{margin:12px 0 0;font-size:clamp(28px,4vw,44px);line-height:1.35;text-wrap:balance}
+.tosou-lp-heading p{margin:16px 0 0;color:#5D706F;line-height:1.9;text-wrap:pretty}
+.tosou-lp-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.tosou-lp-grid-4{grid-template-columns:repeat(4,minmax(0,1fr))}
+.tosou-lp-item{padding:26px 22px;border:1px solid var(--tosou-line);border-radius:16px;background:#fff;box-shadow:0 6px 18px rgba(11,29,58,.05)}
+.tosou-lp-item-no{color:var(--tosou-orange);font-size:13px;font-weight:900;letter-spacing:.12em}
+.tosou-lp-item h3{margin:12px 0 0;font-size:19px;line-height:1.5;text-wrap:balance}
+.tosou-lp-item p{margin:10px 0 0;color:#5D706F;line-height:1.8;font-size:14px}
+.tosou-lp-worry{display:flex;gap:14px;align-items:flex-start}
+.tosou-lp-worry:before{content:"✓";flex:none;width:27px;height:27px;border-radius:50%;display:grid;place-items:center;background:#EAF3EF;color:var(--tosou-green);font-weight:900}
+.tosou-lp-reason-box{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:48px;align-items:center;padding:44px;border-radius:24px;background:var(--tosou-navy);color:#fff}
+.tosou-lp-reason-box h2{margin:0;font-size:clamp(28px,4vw,44px);line-height:1.4;text-wrap:balance}
+.tosou-lp-reason-box p{margin:0;color:#DCE8E5;line-height:2;font-size:16px}
+.tosou-lp-reason-box strong{color:#FFD2A8}
+.tosou-lp-flow{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px}
+.tosou-lp-flow-item{position:relative;padding:22px 16px;border:1px solid var(--tosou-line);border-radius:16px;background:#fff;text-align:center}
+.tosou-lp-flow-no{width:34px;height:34px;margin:0 auto 14px;display:grid;place-items:center;border-radius:50%;background:var(--tosou-green);color:#fff;font-weight:900}
+.tosou-lp-flow-item h3{margin:0;font-size:15px;line-height:1.55;text-wrap:balance}
+.tosou-lp-flow-item p{margin:9px 0 0;color:#637674;font-size:12px;line-height:1.7}
+.tosou-lp-purpose{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(280px,.9fr);gap:42px;align-items:center}
+.tosou-lp-purpose h2{margin:0;font-size:clamp(28px,4vw,42px);line-height:1.45;text-wrap:balance}
+.tosou-lp-purpose p{margin:20px 0 0;color:#526766;line-height:2}
+.tosou-lp-purpose-side{padding:26px;border-left:4px solid var(--tosou-orange);background:#FFF8F1;color:var(--tosou-blue);line-height:1.9;font-weight:800}
+.tosou-lp-area{padding:28px 32px;border-radius:18px;background:#EAF3EF;border:1px solid #D5E6DF;color:var(--tosou-blue);line-height:1.9}
+.tosou-lp-faq{max-width:860px;margin:0 auto}
+.tosou-lp-faq details{margin-top:12px;border:1px solid var(--tosou-line);border-radius:14px;background:#fff;overflow:hidden}
+.tosou-lp-faq summary{cursor:pointer;padding:20px 22px;font-weight:900;list-style:none}
+.tosou-lp-faq summary::-webkit-details-marker{display:none}
+.tosou-lp-faq summary:after{content:"＋";float:right;color:var(--tosou-green);font-size:20px}
+.tosou-lp-faq details[open] summary:after{content:"−"}
+.tosou-lp-faq-answer{padding:0 22px 20px;color:#5D706F;line-height:1.9}
+.tosou-lp-more{text-align:center;margin-top:28px}
+.tosou-lp-more a{color:var(--tosou-green);font-weight:900}
+.tosou-lp-final{padding:76px 0;background:linear-gradient(135deg,#F5FAF8,#FFF8F1)}
+.tosou-lp-final-inner{max-width:720px;text-align:center}
+.tosou-lp-final h2{margin:14px 0 0;font-size:clamp(30px,4vw,48px);line-height:1.4;text-wrap:balance}
+.tosou-lp-final p{margin:16px 0 0;color:#526766;line-height:1.9}
+.tosou-lp-final .tosou-lp-actions{max-width:580px;margin:28px auto 0}
+.tosou-lp-footer{padding:38px 0;background:var(--tosou-navy);color:#fff}
+.tosou-lp-footer-inner{display:flex;justify-content:space-between;gap:32px;align-items:flex-start}
+.tosou-lp-footer-logo{width:230px;max-width:100%;height:auto;filter:brightness(0) invert(1)}
+.tosou-lp-footer-fallback{font-size:24px;font-weight:900;letter-spacing:.08em}
+.tosou-lp-footer-service{margin-top:10px;color:#C7D8D4;font-size:13px}
+.tosou-lp-footer-links{display:flex;flex-wrap:wrap;gap:18px;font-size:13px;font-weight:800}
+.tosou-lp-footer-links a{text-decoration:none}
+.tosou-lp-notice{margin-top:24px;color:#AFC2BE;font-size:12px;line-height:1.8}
+.tosou-lp-sticky{position:fixed;left:0;right:0;bottom:0;z-index:999;padding:9px 12px calc(9px + env(safe-area-inset-bottom));background:rgba(255,255,255,.96);border-top:1px solid #DDE7E5;box-shadow:0 -4px 16px rgba(11,29,58,.08)}
+.tosou-lp-sticky-inner{width:min(620px,100%);margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.tosou-lp-sticky a{min-height:46px;display:grid;place-items:center;border-radius:12px;color:#fff;text-decoration:none;font-size:14px;font-weight:900}
+.tosou-lp-sticky-line{background:var(--tosou-green)}
+.tosou-lp-sticky-phone{background:var(--tosou-orange)}
+@media(max-width:900px){
+  .tosou-lp-hero-grid,.tosou-lp-purpose{grid-template-columns:1fr;gap:34px}
+  .tosou-lp-flow{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .tosou-lp-grid-4{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
-
-.hero{
-    padding:50px 0 34px;
+@media(max-width:640px){
+  .tosou-lp-shell{padding-bottom:86px}
+  .tosou-lp-container{width:calc(100% - 32px)}
+  .tosou-lp-header-inner{min-height:70px;gap:10px}
+  .tosou-lp-brand img{width:150px}
+  .tosou-lp-brand-fallback{font-size:20px}
+  .tosou-lp-service{font-size:10px}
+  .tosou-lp-nav a:not(.tosou-lp-header-cta){display:none}
+  .tosou-lp-header-cta{padding:10px 12px;font-size:11px}
+  .tosou-lp-hero{padding:42px 0 38px}
+  .tosou-lp-hero-grid{gap:28px}
+  .tosou-lp-hero h1{font-size:38px}
+  .tosou-lp-hero-lead{font-size:16px;line-height:1.8}
+  .tosou-lp-actions{grid-template-columns:1fr;gap:10px}
+  .tosou-lp-card{padding:24px 20px}
+  .tosou-lp-trust-grid{grid-template-columns:1fr}
+  .tosou-lp-trust-item{padding:18px;border-right:0;border-bottom:1px solid var(--tosou-line)}
+  .tosou-lp-trust-item:last-child{border-bottom:0}
+  .tosou-lp-section{padding:58px 0}
+  .tosou-lp-heading{margin-bottom:28px}
+  .tosou-lp-heading h2{font-size:29px}
+  .tosou-lp-grid,.tosou-lp-grid-4{grid-template-columns:1fr;gap:12px}
+  .tosou-lp-item{padding:22px 18px}
+  .tosou-lp-reason-box{grid-template-columns:1fr;gap:22px;padding:28px 22px}
+  .tosou-lp-flow{grid-template-columns:1fr;gap:10px}
+  .tosou-lp-flow-item{text-align:left;display:grid;grid-template-columns:40px 1fr;column-gap:12px;align-items:center}
+  .tosou-lp-flow-no{grid-row:span 2;margin:0}
+  .tosou-lp-flow-item p{margin:0}
+  .tosou-lp-purpose-side{padding:20px}
+  .tosou-lp-area{padding:22px 18px}
+  .tosou-lp-final{padding:58px 0}
+  .tosou-lp-final h2{font-size:31px}
+  .tosou-lp-footer-inner{display:block}
+  .tosou-lp-footer-links{margin-top:24px;gap:12px 18px}
 }
-
-.brand{
-    color:#1769d2;
-    font-size:15px;
-    font-weight:800;
-    margin-bottom:26px;
-}
-
-.badge{
-    display:inline-block;
-    background:#eaf3ff;
-    color:#1769d2;
-    padding:8px 14px;
-    border-radius:999px;
-    font-size:14px;
-    font-weight:700;
-    margin-bottom:16px;
-}
-
-h1{
-    margin:0;
-    color:#163f73;
-    font-size:
-        clamp(
-            32px,
-            7vw,
-            48px
-        );
-    line-height:1.35;
-}
-
-.lead{
-    margin-top:20px;
-    font-size:17px;
-    line-height:1.9;
-    color:#52677f;
-}
-
-.hero-card{
-    margin-top:28px;
-    padding:24px 20px;
-    background:#fff;
-    border-radius:20px;
-    border:1px solid #e0e9f3;
-    box-shadow:0 5px 22px rgba(20,60,120,.08);
-}
-
-.hero-card strong{
-    display:block;
-    font-size:22px;
-    color:#163f73;
-    margin-bottom:8px;
-}
-
-.hero-card p{
-    margin:0;
-    color:#52677f;
-    line-height:1.8;
-}
-
-.cta-row{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:10px;
-    margin-top:22px;
-}
-
-.btn{
-    min-height:54px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    border-radius:13px;
-    padding:10px 14px;
-    font-weight:800;
-    text-decoration:none;
-}
-
-.btn-line{
-    background:#06c755;
-    color:#fff;
-}
-
-.btn-phone{
-    background:#1769d2;
-    color:#fff;
-}
-
-.btn-disabled{
-    background:#dce4ed;
-    color:#758294;
-}
-
-section{
-    margin-top:22px;
-    background:#fff;
-    border-radius:20px;
-    padding:26px 20px;
-    border:1px solid #e2eaf3;
-}
-
-h2{
-    margin:0 0 18px;
-    color:#244f83;
-    font-size:23px;
-}
-
-.check{
-    list-style:none;
-    padding:0;
-    margin:0;
-    display:grid;
-    gap:12px;
-}
-
-.check li{
-    position:relative;
-    padding-left:30px;
-    line-height:1.7;
-}
-
-.check li:before{
-    content:"✓";
-    position:absolute;
-    left:0;
-    color:#1769d2;
-    font-weight:900;
-}
-
-.steps{
-    display:grid;
-    gap:14px;
-}
-
-.step{
-    display:flex;
-    gap:13px;
-}
-
-.num{
-    width:34px;
-    height:34px;
-    min-width:34px;
-    border-radius:50%;
-    background:#1769d2;
-    color:#fff;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-weight:800;
-}
-
-.step-title{
-    margin-top:5px;
-    font-weight:800;
-}
-
-.note{
-    background:#eef5ff;
-}
-
-.note p{
-    margin:0;
-    line-height:1.9;
-    color:#476078;
-}
-
-.footer{
-    margin-top:30px;
-    padding-top:22px;
-    border-top:1px solid #dce5ef;
-}
-
-.footer-links{
-    display:flex;
-    flex-wrap:wrap;
-    gap:16px;
-    font-size:14px;
-}
-
-.footer-links a{
-    color:#2563eb;
-    text-decoration:none;
-}
-
-.provisional{
-    margin-top:18px;
-    font-size:12px;
-    line-height:1.7;
-    color:#768495;
-}
-
-.sticky{
-    position:fixed;
-    left:0;
-    right:0;
-    bottom:0;
-    padding:
-        10px 12px
-        calc(
-            10px
-            + env(safe-area-inset-bottom)
-        );
-    background:rgba(255,255,255,.96);
-    border-top:1px solid #dbe5ef;
-    z-index:999;
-}
-
-.sticky-inner{
-    max-width:860px;
-    margin:0 auto;
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:8px;
-}
-
-@media(max-width:480px){
-
-    .hero{
-        padding-top:32px;
-    }
-
-    .cta-row{
-        grid-template-columns:1fr;
-    }
-
-}
-
 </style>
-
 </head>
-
 <body>
-
-<div class="wrap">
-
-<div class="hero">
-
-<div class="brand">
-そらち塗装セカンドオピニオン
-</div>
-
-<div class="badge">
-屋根・外壁塗装の見積比較・相談
-</div>
-
-<h1>
-その見積り、
-契約する前にもう一度。
-</h1>
-
-<p class="lead">
-屋根・外壁塗装の見積内容や条件を確認し、
-必要に応じて地域の提携施工会社との比較をご案内します。
-</p>
-
-<div class="hero-card">
-
-<strong>
-見積書がなくても相談できます
-</strong>
-
-<p>
-すでに見積りをお持ちの方はもちろん、
-これから塗装を検討する方の
-新規見積り相談にも対応します。
-</p>
-
-<div class="cta-row">
-
-{% if line_url %}
-<a
-    class="btn btn-line"
-    href="{{ line_url }}"
->
-LINEで無料相談
-</a>
+<div class="tosou-lp-shell">
+<header class="tosou-lp-header">
+<div class="tosou-lp-container tosou-lp-header-inner">
+<a class="tosou-lp-brand" href="/">
+{% if mitenoa_logo_url %}
+<img src="{{ mitenoa_logo_url }}" alt="MITENOA">
 {% else %}
-<div class="btn btn-disabled">
-LINE準備中
-</div>
+<span class="tosou-lp-brand-fallback">MITENOA</span>
 {% endif %}
-
-{% if phone_href %}
-<a
-    class="btn btn-phone"
-    href="{{ phone_href }}"
->
-電話で相談
+<span class="tosou-lp-service">そらち塗装のセカンドオピニオン</span>
 </a>
-{% else %}
-<div class="btn btn-disabled">
-電話番号準備中
+<nav class="tosou-lp-nav">
+<a href="/guide">サービスの流れ</a>
+<a href="/faq">よくある質問</a>
+{% if line_url %}<a class="tosou-lp-header-cta" href="{{ line_url }}">相談する</a>{% endif %}
+</nav>
 </div>
-{% endif %}
+</header>
 
+<main>
+<section class="tosou-lp-hero">
+<div class="tosou-lp-container tosou-lp-hero-grid">
+<div>
+<div class="tosou-lp-kicker">TOSOU SECOND OPINION</div>
+<h1>その見積もり、<br><span>契約する前に。</span></h1>
+<p class="tosou-lp-hero-lead">外壁・屋根塗装の見積内容を、<br>第三者の目で整理します。</p>
+<p class="tosou-lp-hero-note">金額だけでは分かりにくい、塗料・施工範囲・工事内容・保証条件まで確認。<br>納得して決めるための判断材料を整理します。</p>
+<div class="tosou-lp-actions">
+{% if line_url %}<a class="tosou-lp-btn tosou-lp-btn-line" href="{{ line_url }}">LINEで相談する</a>{% else %}<span class="tosou-lp-btn tosou-lp-btn-line">LINE準備中</span>{% endif %}
+{% if phone_href %}<a class="tosou-lp-btn tosou-lp-btn-phone" href="{{ phone_href }}">電話で相談する</a>{% else %}<span class="tosou-lp-btn tosou-lp-btn-phone">電話番号準備中</span>{% endif %}
 </div>
-
 </div>
-
+<div class="tosou-lp-card">
+<div class="tosou-lp-card-label">BEFORE CONTRACT</div>
+<h2>見積書がまだない方も相談できます</h2>
+<p>すでに見積りをお持ちの方はもちろん、これから塗装を検討する方の新規見積り相談にも対応します。</p>
+<div class="tosou-lp-card-note">契約を急がず、分からないところから一緒に整理します。</div>
 </div>
-
-
-<section>
-
-<h2>
-こんな方に
-</h2>
-
-<ul class="check">
-
-<li>
-見積金額が適正なのか分からない
-</li>
-
-<li>
-工事内容を見ても違いが分からない
-</li>
-
-<li>
-他社とも比較してから決めたい
-</li>
-
-<li>
-訪問営業ですぐ契約するよう勧められた
-</li>
-
-<li>
-まだ見積りを取っていない
-</li>
-
-</ul>
-
+</div>
 </section>
 
+<section class="tosou-lp-trust"><div class="tosou-lp-container tosou-lp-trust-grid">
+<div class="tosou-lp-trust-item"><div class="tosou-lp-trust-title">第三者目線で整理</div><div class="tosou-lp-trust-text">施工会社とは異なる立場から確認します</div></div>
+<div class="tosou-lp-trust-item"><div class="tosou-lp-trust-title">強引な営業なし</div><div class="tosou-lp-trust-text">契約するかどうかはお客様が決めます</div></div>
+<div class="tosou-lp-trust-item"><div class="tosou-lp-trust-title">最終判断はお客様</div><div class="tosou-lp-trust-text">納得できる選択のための材料を整理します</div></div>
+</div></section>
 
-<section>
-
-<h2>
-サービスの流れ
-</h2>
-
-<div class="steps">
-
-<div class="step">
-<div class="num">1</div>
-<div class="step-title">
-LINEから相談
+<section class="tosou-lp-section"><div class="tosou-lp-container">
+<div class="tosou-lp-heading"><div class="tosou-lp-kicker">TROUBLE</div><h2>こんなお悩みありませんか？</h2><p>塗装の見積りは、金額だけでは判断しにくいことがあります。</p></div>
+<div class="tosou-lp-grid tosou-lp-grid-4">
+<div class="tosou-lp-item tosou-lp-worry">この金額は相場から大きく外れていない？</div>
+<div class="tosou-lp-item tosou-lp-worry">本当に必要な工事まで入っている？</div>
+<div class="tosou-lp-item tosou-lp-worry">塗料の違いがよく分からない</div>
+<div class="tosou-lp-item tosou-lp-worry">他社と比べた方がいいのか迷っている</div>
+<div class="tosou-lp-item tosou-lp-worry">訪問営業で契約を急かされている</div>
+<div class="tosou-lp-item tosou-lp-worry">まだ見積を取っていないけれど相談したい</div>
 </div>
+</div></section>
+
+<section class="tosou-lp-section tosou-lp-section-pale"><div class="tosou-lp-container">
+<div class="tosou-lp-reason-box"><h2>契約後に気づいても、<br><strong>変更が難しい場合も。</strong></h2><p>外壁・屋根塗装は、見積書だけでは工事内容の違いが分かりにくいことがあります。<br><br>金額だけでなく、施工範囲・塗料・工程・保証条件まで確認してから契約を判断することが大切です。</p></div>
+</div></section>
+
+<section class="tosou-lp-section"><div class="tosou-lp-container">
+<div class="tosou-lp-heading"><div class="tosou-lp-kicker">THIRD-PARTY VIEW</div><h2>だから、契約する前に一度<br>「第三者の目」で確認する。</h2><p>MITENOAは、施工会社とは異なる立場から見積内容を整理します。<br>「高い・安い」だけではなく、その内容で納得して契約できるかを考えるための判断材料を分かりやすく整理します。</p></div>
+</div></section>
+
+<section class="tosou-lp-section tosou-lp-section-pale"><div class="tosou-lp-container">
+<div class="tosou-lp-heading"><div class="tosou-lp-kicker">BENEFIT</div><h2>見積書を確認すると、<br>判断がこう変わります</h2></div>
+<div class="tosou-lp-grid tosou-lp-grid-4">
+<div class="tosou-lp-item"><div class="tosou-lp-item-no">01</div><h3>金額の根拠を整理できる</h3><p>工事内容と金額の関係を確認できます。</p></div>
+<div class="tosou-lp-item"><div class="tosou-lp-item-no">02</div><h3>工事範囲を確認できる</h3><p>塗装する場所・しない場所を整理できます。</p></div>
+<div class="tosou-lp-item"><div class="tosou-lp-item-no">03</div><h3>塗料や仕様の違いを比較できる</h3><p>使う塗料や工程の違いを確認できます。</p></div>
+<div class="tosou-lp-item"><div class="tosou-lp-item-no">04</div><h3>契約前に確認すべき点が分かる</h3><p>分からない点を整理して判断できます。</p></div>
 </div>
+</div></section>
 
-<div class="step">
-<div class="num">2</div>
-<div class="step-title">
-見積内容・条件を確認
+<section class="tosou-lp-section"><div class="tosou-lp-container">
+<div class="tosou-lp-heading"><div class="tosou-lp-kicker">CHECK POINT</div><h2>塗装見積で確認したいポイント</h2></div>
+<div class="tosou-lp-grid tosou-lp-grid-4">
+<div class="tosou-lp-item"><div class="tosou-lp-item-no">01</div><h3>塗装する場所</h3><p>外壁・屋根など対象範囲を確認。</p></div>
+<div class="tosou-lp-item"><div class="tosou-lp-item-no">02</div><h3>塗装しない場所</h3><p>対象外の箇所も整理。</p></div>
+<div class="tosou-lp-item"><div class="tosou-lp-item-no">03</div><h3>使用する塗料</h3><p>塗料名や仕様を確認。</p></div>
+<div class="tosou-lp-item"><div class="tosou-lp-item-no">04</div><h3>塗装回数・工程</h3><p>下塗りなどの工程を確認。</p></div>
+<div class="tosou-lp-item"><div class="tosou-lp-item-no">05</div><h3>下地処理</h3><p>補修や処理の内容を確認。</p></div>
+<div class="tosou-lp-item"><div class="tosou-lp-item-no">06</div><h3>足場・付帯工事</h3><p>足場や付帯部分の扱いを確認。</p></div>
+<div class="tosou-lp-item"><div class="tosou-lp-item-no">07</div><h3>保証内容</h3><p>保証の範囲や条件を確認。</p></div>
+<div class="tosou-lp-item"><div class="tosou-lp-item-no">08</div><h3>追加費用の条件</h3><p>追加工事が生じる条件を確認。</p></div>
 </div>
+</div></section>
+
+<section class="tosou-lp-section tosou-lp-section-pale"><div class="tosou-lp-container">
+<div class="tosou-lp-heading"><div class="tosou-lp-kicker">FLOW</div><h2>ご相談の流れ</h2></div>
+<div class="tosou-lp-flow">
+<div class="tosou-lp-flow-item"><div class="tosou-lp-flow-no">1</div><h3>LINEまたは電話で相談</h3><p>現在の状況をお聞きします。</p></div>
+<div class="tosou-lp-flow-item"><div class="tosou-lp-flow-no">2</div><h3>状況・見積内容を確認</h3><p>見積りの有無にかかわらず整理します。</p></div>
+<div class="tosou-lp-flow-item"><div class="tosou-lp-flow-no">3</div><h3>第三者目線で整理</h3><p>内容や条件を確認します。</p></div>
+<div class="tosou-lp-flow-item"><div class="tosou-lp-flow-no">4</div><h3>必要に応じて比較案内</h3><p>対応可能な施工会社をご案内します。</p></div>
+<div class="tosou-lp-flow-item"><div class="tosou-lp-flow-no">5</div><h3>お客様自身で判断</h3><p>納得できた場合のみ進めます。</p></div>
 </div>
+</div></section>
 
-<div class="step">
-<div class="num">3</div>
-<div class="step-title">
-必要に応じて提携施工会社をご案内
+<section class="tosou-lp-section"><div class="tosou-lp-container tosou-lp-purpose">
+<div><div class="tosou-lp-kicker">MITENOA</div><h2>MITENOAは、<br>契約を決めるための営業会社ではありません。</h2><p>私たちが提供するのは、「この会社と契約してください」という答えではなく、納得して判断するための材料です。<br><br>施工会社をご案内する場合でも、最終的に契約するかどうかを決めるのはお客様です。</p></div>
+<div class="tosou-lp-purpose-side">比較や施工会社のご案内を希望される場合も、必要な同意を確認してから情報を取り扱います。原本や個人情報を勝手に共有することはありません。</div>
+</div></section>
+
+<section class="tosou-lp-section tosou-lp-section-pale"><div class="tosou-lp-container">
+<div class="tosou-lp-heading"><div class="tosou-lp-kicker">AREA</div><h2>対応エリア</h2></div>
+<div class="tosou-lp-area">北空知・中空知を中心に対応予定です。<br>対応状況により受付できない地域があります。</div>
+</div></section>
+
+<section class="tosou-lp-section"><div class="tosou-lp-container">
+<div class="tosou-lp-heading"><div class="tosou-lp-kicker">FAQ</div><h2>よくある質問</h2></div>
+<div class="tosou-lp-faq">
+<details><summary>本当に契約前でも相談できますか？</summary><div class="tosou-lp-faq-answer">はい。契約前の段階で、見積内容や分からない点を整理できます。</div></details>
+<details><summary>見積書がまだなくても相談できますか？</summary><div class="tosou-lp-faq-answer">はい。これから塗装を検討する方の新規見積り相談も受け付けています。</div></details>
+<details><summary>他社の見積と比較できますか？</summary><div class="tosou-lp-faq-answer">現在のお見積りと比較しながら、工事内容や条件を確認できます。対応状況に応じて提携施工会社をご案内します。</div></details>
+<details><summary>見積書の内容は勝手に施工会社へ共有されますか？</summary><div class="tosou-lp-faq-answer">いいえ。施工会社への相談や見積りを希望し、必要な同意をいただいた後に、必要な範囲で取り扱います。</div></details>
+<details><summary>LINEだけでも相談できますか？</summary><div class="tosou-lp-faq-answer">はい。LINEからご相談いただけます。電話でのご相談も可能です。</div></details>
+<div class="tosou-lp-more"><a href="/faq">詳しいFAQを見る →</a></div>
 </div>
+</div></section>
+
+<section class="tosou-lp-final"><div class="tosou-lp-container tosou-lp-final-inner">
+<div class="tosou-lp-kicker">BEFORE YOU DECIDE</div><h2>まずは今の見積内容を<br>整理しませんか？</h2><p>契約を決める前に、分からないところだけでも確認できます。</p>
+<div class="tosou-lp-actions">
+{% if line_url %}<a class="tosou-lp-btn tosou-lp-btn-line" href="{{ line_url }}">LINEで相談する</a>{% else %}<span class="tosou-lp-btn tosou-lp-btn-line">LINE準備中</span>{% endif %}
+{% if phone_href %}<a class="tosou-lp-btn tosou-lp-btn-phone" href="{{ phone_href }}">電話で相談する</a>{% else %}<span class="tosou-lp-btn tosou-lp-btn-phone">電話番号準備中</span>{% endif %}
 </div>
+</div></section>
+</main>
 
-<div class="step">
-<div class="num">4</div>
-<div class="step-title">
-内容・価格を比較
+<footer class="tosou-lp-footer"><div class="tosou-lp-container tosou-lp-footer-inner">
+<div>
+{% if mitenoa_logo_url %}<img class="tosou-lp-footer-logo" src="{{ mitenoa_logo_url }}" alt="MITENOA">{% else %}<div class="tosou-lp-footer-fallback">MITENOA</div>{% endif %}
+<div class="tosou-lp-footer-service">そらち塗装のセカンドオピニオン</div>
+<div class="tosou-lp-notice">正式公開前の準備ページです。<br>運営法人名・所在地・代表者・電話番号等は、法人設立後に掲載します。</div>
 </div>
+<nav class="tosou-lp-footer-links"><a href="/guide">サービスの流れ</a><a href="/faq">よくある質問</a><a href="/terms">利用規約</a><a href="/privacy">プライバシーポリシー</a></nav>
+</div></footer>
+
+<div class="tosou-lp-sticky"><div class="tosou-lp-sticky-inner">
+{% if line_url %}<a class="tosou-lp-sticky-line" href="{{ line_url }}">LINE</a>{% else %}<span class="tosou-lp-sticky-line">LINE準備中</span>{% endif %}
+{% if phone_href %}<a class="tosou-lp-sticky-phone" href="{{ phone_href }}">電話</a>{% else %}<span class="tosou-lp-sticky-phone">電話準備中</span>{% endif %}
+</div></div>
 </div>
-
-<div class="step">
-<div class="num">5</div>
-<div class="step-title">
-納得できた場合のみ契約
-</div>
-</div>
-
-</div>
-
-</section>
-
-
-<section class="note">
-
-<h2>
-契約を強制するサービスではありません
-</h2>
-
-<p>
-比較後に必ず提携施工会社と契約する必要はありません。
-見積内容・施工条件等を確認したうえで、
-ご自身で判断いただけます。
-</p>
-
-</section>
-
-
-<section>
-
-<h2>
-対応エリア
-</h2>
-
-<p style="line-height:1.9;color:#52677f;">
-北空知・中空知を中心に対応予定です。<br>
-対応状況により受付できない地域があります。
-</p>
-
-</section>
-
-
-<div class="footer">
-
-<div class="footer-links">
-
-<a href="/guide">
-サービスの流れ
-</a>
-
-<a href="/faq">
-よくある質問
-</a>
-
-<a href="/terms">
-利用規約
-</a>
-
-<a href="/privacy">
-プライバシーポリシー
-</a>
-
-</div>
-
-<div class="provisional">
-正式公開前の準備ページです。<br>
-運営法人名・所在地・代表者・電話番号等は、
-法人設立後に掲載します。
-</div>
-
-</div>
-
-</div>
-
-
-<div class="sticky">
-
-<div class="sticky-inner">
-
-{% if line_url %}
-<a
-    class="btn btn-line"
-    href="{{ line_url }}"
->
-LINE相談
-</a>
-{% else %}
-<div class="btn btn-disabled">
-LINE
-</div>
-{% endif %}
-
-{% if phone_href %}
-<a
-    class="btn btn-phone"
-    href="{{ phone_href }}"
->
-電話
-</a>
-{% else %}
-<div class="btn btn-disabled">
-電話
-</div>
-{% endif %}
-
-</div>
-
-</div>
-
 </body>
-
 </html>
 """
-
 
 @app.route("/")
 def public_top():
@@ -63833,6 +63603,7 @@ def public_top():
         TOSOU_PUBLIC_TOP_HTML,
         line_url=TOSOU_LINE_ADD_URL,
         phone_href=phone_href,
+        mitenoa_logo_url=MITENOA_LOGO_URL,
     )
 
 

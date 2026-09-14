@@ -63401,7 +63401,8 @@ a{color:inherit}
 .tosou-lp-footer-links{display:flex;flex-wrap:wrap;gap:18px;font-size:13px;font-weight:800}
 .tosou-lp-footer-links a{text-decoration:none}
 .tosou-lp-notice{margin-top:24px;color:#AFC2BE;font-size:12px;line-height:1.8}
-.tosou-lp-sticky{position:fixed;left:0;right:0;bottom:0;z-index:999;padding:9px 12px calc(9px + env(safe-area-inset-bottom));background:rgba(255,255,255,.96);border-top:1px solid #DDE7E5;box-shadow:0 -4px 16px rgba(11,29,58,.08)}
+.tosou-lp-sticky{position:fixed;left:0;right:0;bottom:0;z-index:999;padding:9px 12px calc(9px + env(safe-area-inset-bottom));background:rgba(255,255,255,.96);border-top:1px solid #DDE7E5;box-shadow:0 -4px 16px rgba(11,29,58,.08);transform:translateY(110%);transition:transform .24s ease}
+.tosou-lp-sticky.is-visible{transform:translateY(0)}
 .tosou-lp-sticky-inner{width:min(620px,100%);margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .tosou-lp-sticky a{min-height:46px;display:flex;align-items:center;justify-content:center;gap:7px;border-radius:12px;color:#fff;text-decoration:none;font-size:14px;font-weight:900}
 .tosou-lp-sticky-line{background:var(--tosou-green)}
@@ -63614,6 +63615,15 @@ a{color:inherit}
 {% if line_url %}<a class="tosou-lp-sticky-line" href="{{ line_url }}"><svg class="tosou-lp-svg-icon" aria-hidden="true"><use href="#tosou-icon-chat"></use></svg>LINE</a>{% else %}<span class="tosou-lp-sticky-line"><svg class="tosou-lp-svg-icon" aria-hidden="true"><use href="#tosou-icon-chat"></use></svg>LINE準備中</span>{% endif %}
 {% if phone_href %}<a class="tosou-lp-sticky-phone" href="{{ phone_href }}"><svg class="tosou-lp-svg-icon" aria-hidden="true"><use href="#tosou-icon-phone"></use></svg>電話</a>{% else %}<span class="tosou-lp-sticky-phone"><svg class="tosou-lp-svg-icon" aria-hidden="true"><use href="#tosou-icon-phone"></use></svg>電話準備中</span>{% endif %}
 </div></div>
+<script>
+(() => {
+  const sticky = document.querySelector('.tosou-lp-sticky');
+  if (!sticky) return;
+  const updateSticky = () => sticky.classList.toggle('is-visible', window.scrollY > 160);
+  updateSticky();
+  window.addEventListener('scroll', updateSticky, {passive:true});
+})();
+</script>
 </div>
 </body>
 </html>

@@ -63305,35 +63305,36 @@ a{color:inherit}
 .tosou-lp-shell{padding-bottom:96px;overflow:hidden}
 .tosou-lp-container{width:min(1180px,calc(100% - 48px));margin:0 auto}
 .tosou-lp-header{border-bottom:1px solid #E8EFEE;background:#fff}
-.tosou-lp-header-inner{min-height:82px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.tosou-lp-header-inner{min-height:84px;display:flex;align-items:center;justify-content:space-between;gap:28px}
 .tosou-lp-brand{display:flex;align-items:center;gap:14px;text-decoration:none;min-width:0}
-.tosou-lp-brand img{display:block;width:260px;height:auto;max-width:100%}
+.tosou-lp-brand img{display:block;width:220px;height:auto;max-width:100%}
 .tosou-lp-brand-fallback{font-size:25px;font-weight:900;letter-spacing:.06em}
-.tosou-lp-service{font-size:15px;font-weight:900;color:var(--tosou-green);white-space:nowrap;line-height:1.35}
-.tosou-lp-nav{display:flex;align-items:center;gap:20px;font-size:13px;font-weight:800}
+.tosou-lp-service{font-size:14px;font-weight:900;color:var(--tosou-green);white-space:nowrap;line-height:1.35}
+.tosou-lp-nav{display:flex;align-items:center;gap:24px;font-size:13px;font-weight:800}
 .tosou-lp-nav a{text-decoration:none}
-.tosou-lp-header-cta{padding:12px 18px;border-radius:999px;background:var(--tosou-orange);color:#fff;white-space:nowrap}
-.tosou-lp-hero{padding:76px 0 64px;background:linear-gradient(135deg,#F7FBFA 0%,#fff 70%)}
-.tosou-lp-hero-grid{display:grid;grid-template-columns:minmax(0,.82fr) minmax(500px,1.18fr);grid-template-rows:auto auto;grid-template-areas:"copy side" "actions side";align-items:start;gap:28px 58px}
-.tosou-lp-hero-copy{grid-area:copy}
-.tosou-lp-hero-actions{grid-area:actions;margin-top:0;align-self:start}
+.tosou-lp-header-cta{padding:12px 20px;border-radius:999px;background:var(--tosou-orange);color:#fff;white-space:nowrap}
+.tosou-lp-hero{padding:60px 0 0;background:linear-gradient(135deg,#F7FBFA 0%,#fff 70%)}
+.tosou-lp-hero-inner{width:min(1280px,calc(100% - 48px));margin:0 auto}
+.tosou-lp-hero-copy{max-width:820px;margin:0 auto;text-align:center}
 .tosou-lp-kicker{display:inline-flex;align-items:center;gap:10px;color:var(--tosou-orange);font-size:13px;font-weight:900;letter-spacing:.14em}
 .tosou-lp-kicker:before{content:"";width:32px;height:3px;border-radius:99px;background:var(--tosou-orange)}
-.tosou-lp-hero h1{margin:22px 0 0;color:var(--tosou-navy);font-size:clamp(42px,5vw,68px);line-height:1.18;letter-spacing:.02em;text-wrap:balance}
+.tosou-lp-hero h1{margin:20px 0 0;color:var(--tosou-navy);font-size:clamp(42px,5vw,68px);line-height:1.18;letter-spacing:.02em;text-wrap:balance}
 .tosou-lp-hero h1 span{color:var(--tosou-orange)}
-.tosou-lp-hero-lead{margin:24px 0 0;color:var(--tosou-blue);font-size:18px;line-height:1.9;font-weight:700;text-wrap:pretty}
-.tosou-lp-hero-note{margin:18px 0 0;color:#5D706F;font-size:14px;line-height:1.8}
-.tosou-lp-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:30px}
+.tosou-lp-hero-lead{margin:22px 0 0;color:var(--tosou-blue);font-size:18px;line-height:1.9;font-weight:700;text-wrap:pretty}
+.tosou-lp-hero-note{margin:14px 0 0;color:#5D706F;font-size:14px;line-height:1.8}
+.tosou-lp-actions{display:grid;grid-template-columns:repeat(2,minmax(0,280px));justify-content:center;gap:12px;margin-top:30px}
+.tosou-lp-hero-actions{margin-bottom:42px}
 .tosou-lp-btn{min-height:56px;display:flex;align-items:center;justify-content:center;border-radius:14px;padding:12px 16px;text-decoration:none;font-weight:900;box-shadow:0 6px 16px rgba(11,29,58,.12)}
 .tosou-lp-btn-line{background:var(--tosou-green);color:#fff}
 .tosou-lp-btn-phone{background:var(--tosou-orange);color:#fff}
 .tosou-lp-btn-icon{margin-right:8px;font-size:18px;line-height:1}
 .tosou-lp-svg-icon{width:20px;height:20px;display:block;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 .tosou-lp-card{padding:32px;border:1px solid var(--tosou-line);border-radius:22px;background:#fff;box-shadow:0 12px 28px rgba(11,29,58,.08)}
-.tosou-lp-hero-side{display:block;padding-bottom:34px}
-.tosou-lp-hero-visual{overflow:hidden;border-radius:22px;background:#EAF3EF;box-shadow:0 12px 28px rgba(11,29,58,.08)}
+.tosou-lp-hero-visual{overflow:hidden;border-radius:24px;background:#EAF3EF;box-shadow:0 16px 34px rgba(11,29,58,.12)}
 .tosou-lp-hero-visual img{display:block;width:100%;height:auto;aspect-ratio:auto;object-fit:contain}
-.tosou-lp-hero-side .tosou-lp-card{position:relative;width:min(88%,520px);margin:-42px 20px 0 auto;z-index:1}
+.tosou-lp-hero-info{width:min(760px,100%);margin:28px auto 56px;padding:18px 24px;border:1px solid #D5E6DF;border-radius:16px;background:#F7FBFA;display:flex;align-items:center;justify-content:center;gap:18px;text-align:left}
+.tosou-lp-hero-info .tosou-lp-card-label{flex:none}
+.tosou-lp-hero-info p{margin:0;color:#526766;font-size:14px;line-height:1.7}
 .tosou-lp-card-label{color:var(--tosou-green);font-size:13px;font-weight:900;letter-spacing:.1em}
 .tosou-lp-card h2{margin:14px 0 0;font-size:27px;line-height:1.45;text-wrap:balance}
 .tosou-lp-card p{margin:14px 0 0;color:#526766;line-height:1.9}
@@ -63406,27 +63407,29 @@ a{color:inherit}
 .tosou-lp-sticky-line{background:var(--tosou-green)}
 .tosou-lp-sticky-phone{background:var(--tosou-orange)}
 @media(max-width:900px){
-  .tosou-lp-hero-grid,.tosou-lp-purpose{grid-template-columns:1fr;gap:34px}
-  .tosou-lp-hero-grid{grid-template-areas:"copy" "side" "actions"}
+  .tosou-lp-purpose{grid-template-columns:1fr;gap:34px}
   .tosou-lp-flow{grid-template-columns:repeat(3,minmax(0,1fr))}
   .tosou-lp-grid-4{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
 @media(max-width:640px){
   .tosou-lp-shell{padding-bottom:86px}
   .tosou-lp-container{width:calc(100% - 32px)}
-  .tosou-lp-header-inner{min-height:70px;gap:10px}
-  .tosou-lp-brand img{width:150px}
+  .tosou-lp-header-inner{min-height:72px;gap:8px}
+  .tosou-lp-brand{gap:8px}
+  .tosou-lp-brand img{width:136px}
   .tosou-lp-brand-fallback{font-size:20px}
-  .tosou-lp-service{font-size:12px;white-space:normal;max-width:165px}
+  .tosou-lp-service{font-size:11px;white-space:normal;max-width:132px}
   .tosou-lp-nav a:not(.tosou-lp-header-cta){display:none}
   .tosou-lp-header-cta{padding:10px 12px;font-size:11px}
-  .tosou-lp-hero{padding:42px 0 38px}
-  .tosou-lp-hero-grid{gap:28px}
-  .tosou-lp-hero-side{display:grid;gap:18px;padding-bottom:0}
-  .tosou-lp-hero-side .tosou-lp-card{width:auto;margin:0}
-  .tosou-lp-hero h1{font-size:42px}
+  .tosou-lp-hero{padding:36px 0 0}
+  .tosou-lp-hero-inner{width:calc(100% - 32px)}
+  .tosou-lp-hero h1{font-size:40px;line-height:1.16}
   .tosou-lp-hero-lead{font-size:16px;line-height:1.8}
   .tosou-lp-actions{grid-template-columns:1fr;gap:10px}
+  .tosou-lp-hero-actions{margin-top:26px;margin-bottom:34px}
+  .tosou-lp-hero-visual{width:calc(100% + 32px);margin-left:-16px;border-radius:18px}
+  .tosou-lp-hero-info{margin:18px 0 34px;padding:16px 18px;display:block;text-align:center}
+  .tosou-lp-hero-info p{margin-top:7px;font-size:13px}
   .tosou-lp-card{padding:24px 20px}
   .tosou-lp-trust-grid{grid-template-columns:1fr}
   .tosou-lp-trust-item{padding:18px;border-right:0;border-bottom:1px solid var(--tosou-line)}
@@ -63487,25 +63490,21 @@ a{color:inherit}
 
 <main>
 <section class="tosou-lp-hero">
-<div class="tosou-lp-container tosou-lp-hero-grid">
+<div class="tosou-lp-hero-inner">
 <div class="tosou-lp-hero-copy">
 <div class="tosou-lp-kicker">TOSOU SECOND OPINION</div>
 <h1>その見積もり、<br><span>契約する前に。</span></h1>
 <p class="tosou-lp-hero-lead">外壁・屋根塗装の見積内容を、<br>第三者の目で整理します。</p>
 <p class="tosou-lp-hero-note">金額だけでは分かりにくい、塗料・施工範囲・工事内容・保証条件まで確認。<br>納得して決めるための判断材料を整理します。</p>
 </div>
-<div class="tosou-lp-hero-side">
-<div class="tosou-lp-hero-visual"><img src="/static/assets/tosou/tosou-hero.png" alt="外壁と屋根の塗装を検討する住宅" loading="eager"></div>
-<div class="tosou-lp-card">
-<div class="tosou-lp-card-label">BEFORE CONTRACT</div>
-<h2>見積書がまだない方も相談できます</h2>
-<p>すでに見積りをお持ちの方はもちろん、これから塗装を検討する方の新規見積り相談にも対応します。</p>
-<div class="tosou-lp-card-note">契約を急がず、分からないところから一緒に整理します。</div>
-</div>
-</div>
 <div class="tosou-lp-actions tosou-lp-hero-actions">
 {% if line_url %}<a class="tosou-lp-btn tosou-lp-btn-line" href="{{ line_url }}"><svg class="tosou-lp-svg-icon" aria-hidden="true"><use href="#tosou-icon-chat"></use></svg>LINEで相談する</a>{% else %}<span class="tosou-lp-btn tosou-lp-btn-line"><svg class="tosou-lp-svg-icon" aria-hidden="true"><use href="#tosou-icon-chat"></use></svg>LINE準備中</span>{% endif %}
 {% if phone_href %}<a class="tosou-lp-btn tosou-lp-btn-phone" href="{{ phone_href }}"><svg class="tosou-lp-svg-icon" aria-hidden="true"><use href="#tosou-icon-phone"></use></svg>電話で相談する</a>{% else %}<span class="tosou-lp-btn tosou-lp-btn-phone"><svg class="tosou-lp-svg-icon" aria-hidden="true"><use href="#tosou-icon-phone"></use></svg>電話番号準備中</span>{% endif %}
+</div>
+<div class="tosou-lp-hero-visual"><img src="/static/assets/tosou/tosou-hero.png" alt="外壁と屋根の塗装を検討する住宅" loading="eager"></div>
+<div class="tosou-lp-hero-info">
+<div class="tosou-lp-card-label">BEFORE CONTRACT</div>
+<p><strong>見積書がまだなくても相談できます。</strong> これから塗装を検討する方も、分からないところから整理できます。</p>
 </div>
 </div>
 </section>

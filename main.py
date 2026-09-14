@@ -63314,7 +63314,9 @@ a{color:inherit}
 .tosou-lp-nav a{text-decoration:none}
 .tosou-lp-header-cta{padding:12px 18px;border-radius:999px;background:var(--tosou-orange);color:#fff;white-space:nowrap}
 .tosou-lp-hero{padding:76px 0 64px;background:linear-gradient(135deg,#F7FBFA 0%,#fff 70%)}
-.tosou-lp-hero-grid{display:grid;grid-template-columns:minmax(0,.82fr) minmax(500px,1.18fr);align-items:center;gap:58px}
+.tosou-lp-hero-grid{display:grid;grid-template-columns:minmax(0,.82fr) minmax(500px,1.18fr);grid-template-rows:auto auto;grid-template-areas:"copy side" "actions side";align-items:start;gap:28px 58px}
+.tosou-lp-hero-copy{grid-area:copy}
+.tosou-lp-hero-actions{grid-area:actions;margin-top:0;align-self:start}
 .tosou-lp-kicker{display:inline-flex;align-items:center;gap:10px;color:var(--tosou-orange);font-size:13px;font-weight:900;letter-spacing:.14em}
 .tosou-lp-kicker:before{content:"";width:32px;height:3px;border-radius:99px;background:var(--tosou-orange)}
 .tosou-lp-hero h1{margin:22px 0 0;color:var(--tosou-navy);font-size:clamp(42px,5vw,68px);line-height:1.18;letter-spacing:.02em;text-wrap:balance}
@@ -63405,6 +63407,7 @@ a{color:inherit}
 .tosou-lp-sticky-phone{background:var(--tosou-orange)}
 @media(max-width:900px){
   .tosou-lp-hero-grid,.tosou-lp-purpose{grid-template-columns:1fr;gap:34px}
+  .tosou-lp-hero-grid{grid-template-areas:"copy" "side" "actions"}
   .tosou-lp-flow{grid-template-columns:repeat(3,minmax(0,1fr))}
   .tosou-lp-grid-4{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
@@ -63485,15 +63488,11 @@ a{color:inherit}
 <main>
 <section class="tosou-lp-hero">
 <div class="tosou-lp-container tosou-lp-hero-grid">
-<div>
+<div class="tosou-lp-hero-copy">
 <div class="tosou-lp-kicker">TOSOU SECOND OPINION</div>
 <h1>その見積もり、<br><span>契約する前に。</span></h1>
 <p class="tosou-lp-hero-lead">外壁・屋根塗装の見積内容を、<br>第三者の目で整理します。</p>
 <p class="tosou-lp-hero-note">金額だけでは分かりにくい、塗料・施工範囲・工事内容・保証条件まで確認。<br>納得して決めるための判断材料を整理します。</p>
-<div class="tosou-lp-actions">
-{% if line_url %}<a class="tosou-lp-btn tosou-lp-btn-line" href="{{ line_url }}"><svg class="tosou-lp-svg-icon" aria-hidden="true"><use href="#tosou-icon-chat"></use></svg>LINEで相談する</a>{% else %}<span class="tosou-lp-btn tosou-lp-btn-line"><svg class="tosou-lp-svg-icon" aria-hidden="true"><use href="#tosou-icon-chat"></use></svg>LINE準備中</span>{% endif %}
-{% if phone_href %}<a class="tosou-lp-btn tosou-lp-btn-phone" href="{{ phone_href }}"><svg class="tosou-lp-svg-icon" aria-hidden="true"><use href="#tosou-icon-phone"></use></svg>電話で相談する</a>{% else %}<span class="tosou-lp-btn tosou-lp-btn-phone"><svg class="tosou-lp-svg-icon" aria-hidden="true"><use href="#tosou-icon-phone"></use></svg>電話番号準備中</span>{% endif %}
-</div>
 </div>
 <div class="tosou-lp-hero-side">
 <div class="tosou-lp-hero-visual"><img src="/static/assets/tosou/tosou-hero.png" alt="外壁と屋根の塗装を検討する住宅" loading="eager"></div>
@@ -63503,6 +63502,10 @@ a{color:inherit}
 <p>すでに見積りをお持ちの方はもちろん、これから塗装を検討する方の新規見積り相談にも対応します。</p>
 <div class="tosou-lp-card-note">契約を急がず、分からないところから一緒に整理します。</div>
 </div>
+</div>
+<div class="tosou-lp-actions tosou-lp-hero-actions">
+{% if line_url %}<a class="tosou-lp-btn tosou-lp-btn-line" href="{{ line_url }}"><svg class="tosou-lp-svg-icon" aria-hidden="true"><use href="#tosou-icon-chat"></use></svg>LINEで相談する</a>{% else %}<span class="tosou-lp-btn tosou-lp-btn-line"><svg class="tosou-lp-svg-icon" aria-hidden="true"><use href="#tosou-icon-chat"></use></svg>LINE準備中</span>{% endif %}
+{% if phone_href %}<a class="tosou-lp-btn tosou-lp-btn-phone" href="{{ phone_href }}"><svg class="tosou-lp-svg-icon" aria-hidden="true"><use href="#tosou-icon-phone"></use></svg>電話で相談する</a>{% else %}<span class="tosou-lp-btn tosou-lp-btn-phone"><svg class="tosou-lp-svg-icon" aria-hidden="true"><use href="#tosou-icon-phone"></use></svg>電話番号準備中</span>{% endif %}
 </div>
 </div>
 </section>

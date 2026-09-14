@@ -63284,6 +63284,9 @@ TOSOU_PUBLIC_TOP_HTML = """
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>そらち塗装のセカンドオピニオン｜MITENOA</title>
 <meta name="description" content="外壁・屋根塗装の見積内容を、契約前に第三者の目で整理します。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 :root{
   --tosou-navy:#0B1D3A;
@@ -63299,7 +63302,7 @@ body{
   margin:0;
   color:var(--tosou-navy);
   background:#fff;
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans JP","Hiragino Kaku Gothic ProN",sans-serif;
+  font-family:"Noto Sans JP","Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;
 }
 a{color:inherit}
 .tosou-lp-shell{padding-bottom:96px;overflow:hidden}

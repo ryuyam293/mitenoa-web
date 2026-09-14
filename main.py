@@ -63451,7 +63451,227 @@ a{color:inherit}
   .tosou-lp-final{padding:58px 0}
   .tosou-lp-final h2{font-size:31px}
   .tosou-lp-footer-inner{display:block}
-  .tosou-lp-footer-links{margin-top:24px;gap:12px 18px}
+.tosou-lp-footer-links{margin-top:24px;gap:12px 18px}
+}
+
+/* =========================================
+   TOSOU / MITENOA SOLAR DESIGN SYSTEM
+   Solar LPと同じ密度・リズム・CTA設計
+========================================= */
+.tosou-lp-shell{
+  --tosou-solar-navy:#0D3968;
+  --tosou-solar-blue:#153B60;
+  --tosou-solar-orange:#FF6508;
+  --tosou-solar-green:#27A45D;
+  --tosou-solar-pale:#EAF7FF;
+  --tosou-solar-line:#E0E6EB;
+  --tosou-solar-muted:#697C8E;
+  padding-bottom:72px;
+  overflow:hidden;
+  color:var(--tosou-solar-navy);
+  font-family:"Noto Sans JP","Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;
+  -webkit-font-smoothing:antialiased;
+}
+.tosou-lp-shell a{color:inherit}
+.tosou-solar-inner{width:calc(100% - 72px);max-width:1680px;margin:0 auto}
+.tosou-lp-header{height:86px;border:0;background:#fff}
+.tosou-lp-header-inner{width:calc(100% - 72px);max-width:1680px;height:86px;min-height:0;gap:22px}
+.tosou-lp-brand{gap:22px}
+.tosou-lp-brand img{width:300px;max-width:100%;height:auto}
+.tosou-lp-service{font-size:14px;line-height:1.35;color:var(--tosou-solar-navy);font-weight:800}
+.tosou-lp-nav{margin-left:auto;gap:32px;font-size:14px}
+.tosou-lp-header-cta{min-height:46px;padding:0 24px;border-radius:999px;background:var(--tosou-solar-orange);font-size:14px;font-weight:900}
+
+.tosou-solar-hero{width:calc(100% - 72px);max-width:1680px;height:445px;margin:0 auto;position:relative;background:#F6FBFF;overflow:hidden}
+.tosou-solar-hero-media{position:absolute;inset:0;width:100%;height:100%;background:#EAF7FF}
+.tosou-solar-hero-media img{display:block;width:100%;height:100%;object-fit:contain;object-position:right center}
+.tosou-solar-hero-overlay{position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(255,255,255,1) 0%,rgba(255,255,255,.99) 22%,rgba(255,255,255,.92) 34%,rgba(255,255,255,.7) 45%,rgba(255,255,255,.15) 61%,rgba(255,255,255,0) 76%)}
+.tosou-solar-hero-inner{position:relative;z-index:2;width:100%;height:100%;padding:0 34px;display:flex;align-items:flex-start}
+.tosou-solar-hero-copy{width:45%;padding-top:30px}
+.tosou-solar-eyebrow{display:flex;align-items:center;gap:10px;color:var(--tosou-solar-navy);font-size:16px;font-weight:900}
+.tosou-solar-eyebrow:before{content:"";width:24px;height:2px;background:var(--tosou-solar-orange)}
+.tosou-solar-hero h1{margin:10px 0 0;color:var(--tosou-solar-navy);font-size:clamp(46px,4.1vw,64px);line-height:1.12;letter-spacing:-.045em;font-weight:900}
+.tosou-solar-hero h1 span{color:var(--tosou-solar-orange)}
+.tosou-solar-hero-lead{margin:10px 0 0;color:var(--tosou-solar-blue);font-size:15px;line-height:1.7;font-weight:700}
+.tosou-solar-hero-note{margin:7px 0 0;color:#667B8D;font-size:12px;line-height:1.6}
+.tosou-solar-actions{width:min(560px,100%);margin-top:18px;display:grid;gap:10px;position:relative;z-index:5}
+.tosou-solar-action{min-height:62px;padding:8px 18px;display:grid;grid-template-columns:42px minmax(0,1fr) 22px;align-items:center;gap:12px;border:0;border-radius:999px;color:#fff;text-decoration:none;box-shadow:0 8px 18px rgba(13,57,104,.14)}
+.tosou-solar-action.orange{background:linear-gradient(90deg,#FF8A19,#FF6710)}
+.tosou-solar-action.green{background:linear-gradient(90deg,#08B957,#39975F)}
+.tosou-solar-action-icon{width:40px;height:40px;border:1.5px solid #fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:900}
+.tosou-solar-action-icon svg{width:20px;height:20px}
+.tosou-solar-action-main{display:block;font-size:18px;line-height:1.22;font-weight:900;text-wrap:balance}
+.tosou-solar-action-sub{display:block;margin-top:4px;font-size:12px;line-height:1.25;font-weight:700}
+.tosou-solar-action-arrow{font-size:25px}
+
+.tosou-solar-trust{height:auto;margin:0;padding:0;background:#fff}
+.tosou-solar-trust-grid{width:calc(100% - 44px);max-width:1600px;min-height:92px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);border:1px solid #E5E9ED;border-radius:14px;background:#fff;box-shadow:0 5px 17px rgba(20,50,80,.07)}
+.tosou-solar-trust-item{display:flex;align-items:center;gap:18px;padding:14px 24px;border-right:1px solid #E7EBEF}
+.tosou-solar-trust-item:last-child{border-right:0}
+.tosou-solar-trust-icon{width:58px;height:58px;flex:0 0 58px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:#FFF1E5;color:var(--tosou-solar-orange);font-size:26px;font-weight:900}
+.tosou-solar-trust-icon svg{width:27px;height:27px}
+.tosou-solar-trust-title{font-size:18px;line-height:1.3;font-weight:800;color:var(--tosou-solar-navy)}
+.tosou-solar-trust-text{margin-top:6px;color:#6B7D8E;font-size:14px;line-height:1.5}
+.tosou-solar-note-strip{width:min(920px,calc(100% - 72px));margin:20px auto 0;padding:14px 22px;display:flex;align-items:center;justify-content:center;gap:18px;border:1px solid #D5E6DF;border-radius:12px;background:#EAF7F1;color:var(--tosou-solar-blue);font-size:13px;line-height:1.5}
+.tosou-solar-note-strip strong{color:var(--tosou-solar-green);font-size:15px}
+
+.tosou-solar-section{padding:54px 0;background:#fff}
+.tosou-solar-section.pale{background:linear-gradient(180deg,#EAF7FF,#F7FCFF)}
+.tosou-solar-heading{text-align:center}
+.tosou-solar-kicker{color:#526B83;font-size:10px;line-height:1;letter-spacing:.36em;font-weight:900}
+.tosou-solar-title{margin:8px 0 0;color:var(--tosou-solar-navy);font-size:29px;line-height:1.25;font-weight:900}
+.tosou-solar-lead{max-width:720px;margin:8px auto 0;color:#667B8D;font-size:13px;line-height:1.65}
+
+.tosou-solar-concern-grid{margin-top:24px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.tosou-solar-concern{min-height:160px;border:1px solid #E1E7EC;border-radius:10px;background:#fff;box-shadow:0 5px 15px rgba(20,50,80,.05);overflow:hidden}
+.tosou-solar-concern-visual{height:62px;display:grid;place-items:center;background:#F7FAFC;color:var(--tosou-solar-orange)}
+.tosou-solar-concern-visual svg{width:34px;height:34px}
+.tosou-solar-concern-body{padding:16px 15px}
+.tosou-solar-concern-title{margin:0;color:var(--tosou-solar-navy);font-size:16px;line-height:1.4;font-weight:900}
+.tosou-solar-concern-text{margin:7px 0 0;color:#708090;font-size:12px;line-height:1.55}
+
+.tosou-solar-emphasis{padding:44px 0;background:#F8FAFB}
+.tosou-solar-emphasis-box{display:grid;grid-template-columns:.8fr 1.2fr;gap:42px;align-items:center;padding:34px 40px;border-radius:16px;background:var(--tosou-solar-navy);color:#fff}
+.tosou-solar-emphasis h2{margin:0;font-size:32px;line-height:1.35;font-weight:900}
+.tosou-solar-emphasis p{margin:0;color:#DCE8F2;font-size:14px;line-height:1.9}
+.tosou-solar-emphasis strong{color:#FFD19F}
+
+.tosou-solar-benefit-grid{margin-top:24px;display:grid;grid-template-columns:repeat(3,1fr);border:1px solid #E1E7EC;border-radius:14px;background:#fff;box-shadow:0 5px 17px rgba(20,50,80,.06)}
+.tosou-solar-benefit{min-height:124px;padding:22px 24px;border-right:1px solid #E1E7EC}
+.tosou-solar-benefit:last-child{border-right:0}
+.tosou-solar-benefit-icon{width:42px;height:42px;display:grid;place-items:center;border-radius:50%;background:#F0F4F7;color:var(--tosou-solar-navy)}
+.tosou-solar-benefit-icon svg{width:23px;height:23px}
+.tosou-solar-benefit-title{margin-top:11px;color:var(--tosou-solar-navy);font-size:16px;font-weight:900}
+.tosou-solar-benefit-text{margin-top:5px;color:#697C8E;font-size:12px;line-height:1.55}
+
+.tosou-solar-check-grid{margin-top:24px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.tosou-solar-check{min-height:106px;padding:16px;border:1px solid #DDE9F1;border-radius:10px;background:rgba(255,255,255,.72);box-shadow:0 4px 12px rgba(31,80,110,.04)}
+.tosou-solar-check-top{display:flex;align-items:center;gap:10px}
+.tosou-solar-check-icon{width:34px;height:34px;display:grid;place-items:center;border-radius:50%;background:#fff;color:var(--tosou-solar-orange)}
+.tosou-solar-check-icon svg{width:19px;height:19px}
+.tosou-solar-check-name{color:var(--tosou-solar-navy);font-size:15px;line-height:1.4;font-weight:900}
+.tosou-solar-check-text{margin:10px 0 0;color:#697C8E;font-size:12px;line-height:1.5}
+
+.tosou-solar-flow-grid{margin-top:24px;display:grid;grid-template-columns:1fr 32px 1fr 32px 1fr 32px 1fr;align-items:center}
+.tosou-solar-flow-card{min-height:160px;border:1px solid #E0E6EB;border-radius:10px;background:#fff;box-shadow:0 5px 15px rgba(20,50,80,.05);overflow:hidden}
+.tosou-solar-flow-art{height:52px;display:grid;place-items:center;background:#F7FAFC;color:#315D82;font-size:21px;font-weight:900}
+.tosou-solar-flow-body{padding:15px}
+.tosou-solar-step{color:var(--tosou-solar-orange);font-size:11px;font-weight:900;letter-spacing:.12em}
+.tosou-solar-flow-title{margin-top:6px;color:var(--tosou-solar-navy);font-size:16px;line-height:1.4;font-weight:900}
+.tosou-solar-flow-text{margin-top:6px;color:#697C8E;font-size:12px;line-height:1.55}
+.tosou-solar-flow-arrow{text-align:center;color:var(--tosou-solar-navy);font-size:28px}
+
+.tosou-solar-purpose{display:grid;grid-template-columns:1.1fr .9fr;gap:52px;align-items:center}
+.tosou-solar-purpose h2{margin:8px 0 0;color:var(--tosou-solar-navy);font-size:32px;line-height:1.4;font-weight:900}
+.tosou-solar-purpose p{margin:18px 0 0;color:#526B83;font-size:14px;line-height:1.9}
+.tosou-solar-purpose-note{padding:24px;border-left:4px solid var(--tosou-solar-orange);background:#FFF8F1;color:var(--tosou-solar-blue);font-size:14px;line-height:1.9;font-weight:800}
+.tosou-solar-area{margin-top:24px;display:flex;align-items:center;gap:16px;padding:22px 26px;border:1px solid #D5E6DF;border-radius:12px;background:#EAF7F1;color:var(--tosou-solar-blue);font-size:14px;line-height:1.7}
+.tosou-solar-area-icon{width:44px;height:44px;flex:0 0 44px;display:grid;place-items:center;border-radius:50%;background:#fff;color:var(--tosou-solar-green)}
+.tosou-solar-area-icon svg{width:23px;height:23px}
+
+.tosou-solar-faq{max-width:960px;margin:24px auto 0;display:grid;grid-template-columns:1fr 1fr;gap:10px 14px}
+.tosou-solar-faq details{border:1px solid #E0E6EB;border-radius:8px;background:#fff;overflow:hidden}
+.tosou-solar-faq summary{cursor:pointer;padding:16px 18px;color:var(--tosou-solar-navy);font-size:14px;line-height:1.4;font-weight:900;list-style:none}
+.tosou-solar-faq summary::-webkit-details-marker{display:none}
+.tosou-solar-faq summary:after{content:"＋";float:right;color:var(--tosou-solar-green);font-size:18px}
+.tosou-solar-faq details[open] summary:after{content:"−"}
+.tosou-solar-faq p{margin:0;padding:0 18px 16px;color:#697C8E;font-size:12px;line-height:1.65}
+
+.tosou-solar-final{min-height:260px;position:relative;overflow:hidden;background:#EAF7FF}
+.tosou-solar-final img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 52%;opacity:.22}
+.tosou-solar-final:after{content:"";position:absolute;inset:0;background:rgba(235,248,255,.7)}
+.tosou-solar-final-inner{position:relative;z-index:2;padding:48px 0;text-align:center}
+.tosou-solar-final-title{margin:8px 0 0;color:var(--tosou-solar-navy);font-size:32px;line-height:1.35;font-weight:900}
+.tosou-solar-final-copy{margin:8px 0 0;color:#667B8D;font-size:14px}
+.tosou-solar-final-actions{width:min(560px,100%);margin:22px auto 0;display:grid;gap:10px;grid-template-columns:1fr 1fr}
+
+.tosou-solar-footer{padding:24px 0 72px;background:#fff}
+.tosou-solar-footer-inner{display:flex;align-items:center;justify-content:space-between;gap:32px}
+.tosou-solar-footer-logo{width:175px;height:42px;object-fit:contain;object-position:left center}
+.tosou-solar-footer-service{margin-top:2px;color:#6B7D8E;font-size:11px}
+.tosou-solar-footer-links{display:flex;flex-wrap:wrap;gap:18px;color:#697C8E;font-size:12px;font-weight:800}
+.tosou-solar-sticky{position:fixed;left:0;right:0;bottom:0;z-index:999;padding:8px 12px calc(8px + env(safe-area-inset-bottom));background:rgba(255,255,255,.96);border-top:1px solid #DDE7E5;box-shadow:0 -5px 17px rgba(20,50,80,.12)}
+.tosou-solar-sticky-inner{width:min(620px,100%);margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.tosou-solar-sticky-btn{min-height:44px;display:flex;align-items:center;justify-content:center;border-radius:999px;color:#fff;font-size:13px;font-weight:900}
+.tosou-solar-sticky-btn.orange{background:var(--tosou-solar-orange)}
+.tosou-solar-sticky-btn.green{background:var(--tosou-solar-green)}
+
+@media(max-width:1100px){
+  .tosou-solar-hero{width:100%;height:500px}
+  .tosou-solar-hero-copy{width:50%}
+  .tosou-solar-check-grid,.tosou-solar-concern-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:820px){
+  .tosou-lp-header,.tosou-lp-header-inner{height:70px}
+  .tosou-lp-header-inner{width:calc(100% - 24px)}
+  .tosou-lp-brand{gap:10px}
+  .tosou-lp-brand img{width:160px}
+  .tosou-lp-service{font-size:11px;max-width:142px;white-space:normal}
+  .tosou-lp-nav{gap:0}
+  .tosou-lp-nav a:not(.tosou-lp-header-cta){display:none}
+  .tosou-lp-header-cta{min-height:40px;padding:0 13px;font-size:11px}
+  .tosou-solar-inner{width:calc(100% - 32px)}
+  .tosou-solar-hero{height:auto;min-height:0;display:flex;flex-direction:column;background:#F6FBFF}
+  .tosou-solar-hero-media{position:relative;order:2;height:auto;inset:auto}
+  .tosou-solar-hero-media img{width:100%;height:auto;object-fit:contain}
+  .tosou-solar-hero-overlay{background:linear-gradient(180deg,rgba(246,251,255,0) 0%,rgba(246,251,255,.1) 35%,rgba(246,251,255,.8) 85%,#F6FBFF 100%)}
+  .tosou-solar-hero-inner{order:1;width:calc(100% - 32px);height:auto;padding:34px 0 28px;display:block}
+  .tosou-solar-hero-copy{width:100%;padding:0}
+  .tosou-solar-eyebrow{font-size:13px}
+  .tosou-solar-hero h1{font-size:clamp(36px,10vw,48px);letter-spacing:-.04em}
+  .tosou-solar-hero-lead{font-size:15px;line-height:1.7}
+  .tosou-solar-hero-note{font-size:11px}
+  .tosou-solar-actions{width:100%;margin-top:18px}
+  .tosou-solar-action{min-height:58px;grid-template-columns:38px minmax(0,1fr) 20px;padding:7px 14px;gap:10px}
+  .tosou-solar-action-icon{width:36px;height:36px}
+  .tosou-solar-action-main{font-size:16px}
+  .tosou-solar-action-sub{font-size:11px}
+  .tosou-solar-trust-grid{width:calc(100% - 32px);grid-template-columns:1fr;min-height:0}
+  .tosou-solar-trust-item{border-right:0;border-bottom:1px solid #E7EBEF;padding:12px 18px}
+  .tosou-solar-trust-item:last-child{border-bottom:0}
+  .tosou-solar-trust-icon{width:48px;height:48px;flex-basis:48px;font-size:21px}
+  .tosou-solar-trust-title{font-size:16px}
+  .tosou-solar-trust-text{font-size:12px}
+  .tosou-solar-note-strip{width:calc(100% - 32px);margin-top:14px;padding:12px 16px;display:block;text-align:center;font-size:11px}
+  .tosou-solar-note-strip strong{display:block;font-size:14px;margin-bottom:4px}
+  .tosou-solar-section{padding:44px 0}
+  .tosou-solar-title{font-size:25px}
+  .tosou-solar-lead{font-size:12px}
+  .tosou-solar-concern-grid,.tosou-solar-check-grid{grid-template-columns:1fr 1fr;gap:9px}
+  .tosou-solar-concern{min-height:145px}
+  .tosou-solar-concern-body{padding:12px}
+  .tosou-solar-concern-title{font-size:14px}
+  .tosou-solar-concern-text{font-size:11px}
+  .tosou-solar-emphasis{padding:32px 0}
+  .tosou-solar-emphasis-box,.tosou-solar-purpose{grid-template-columns:1fr;gap:22px;padding:28px 22px}
+  .tosou-solar-emphasis h2,.tosou-solar-purpose h2{font-size:27px}
+  .tosou-solar-emphasis p,.tosou-solar-purpose p,.tosou-solar-purpose-note{font-size:13px}
+  .tosou-solar-benefit-grid{grid-template-columns:1fr}
+  .tosou-solar-benefit{border-right:0;border-bottom:1px solid #E1E7EC}
+  .tosou-solar-benefit:last-child{border-bottom:0}
+  .tosou-solar-check{min-height:112px;padding:13px}
+  .tosou-solar-check-name{font-size:13px}
+  .tosou-solar-check-text{font-size:11px}
+  .tosou-solar-flow-grid{grid-template-columns:1fr;gap:8px}
+  .tosou-solar-flow-arrow{transform:rotate(90deg);height:20px}
+  .tosou-solar-faq{grid-template-columns:1fr}
+  .tosou-solar-final{min-height:280px}
+  .tosou-solar-final-inner{padding:44px 16px}
+  .tosou-solar-final-title{font-size:27px}
+  .tosou-solar-final-actions{grid-template-columns:1fr}
+  .tosou-solar-footer-inner{display:block}
+  .tosou-solar-footer-links{margin-top:20px;gap:12px 18px}
+}
+@media(max-width:500px){
+  .tosou-lp-brand img{width:150px}
+  .tosou-lp-service{font-size:10px;max-width:116px}
+  .tosou-lp-header-cta{font-size:10px;padding:0 10px}
+  .tosou-solar-hero-inner{padding-top:28px}
+  .tosou-solar-hero h1{font-size:36px}
+  .tosou-solar-hero-note{display:none}
+  .tosou-solar-concern-title{font-size:13px}
+  .tosou-solar-check-name{font-size:12px}
+  .tosou-solar-check-text{font-size:10px}
 }
 </style>
 </head>
@@ -63489,141 +63709,22 @@ a{color:inherit}
 </div>
 </header>
 
-<main>
-<section class="tosou-lp-hero">
-<div class="tosou-lp-hero-inner">
-<div class="tosou-lp-hero-copy">
-<div class="tosou-lp-kicker">TOSOU SECOND OPINION</div>
-<h1>その見積もり、<br><span>契約する前に。</span></h1>
-<p class="tosou-lp-hero-lead">外壁・屋根塗装の見積内容を、<br>第三者の目で整理します。</p>
-<p class="tosou-lp-hero-note">金額だけでは分かりにくい、塗料・施工範囲・工事内容・保証条件まで確認。<br>納得して決めるための判断材料を整理します。</p>
-</div>
-<div class="tosou-lp-actions tosou-lp-hero-actions">
-{% if line_url %}<a class="tosou-lp-btn tosou-lp-btn-line" href="{{ line_url }}"><svg class="tosou-lp-svg-icon" aria-hidden="true"><use href="#tosou-icon-chat"></use></svg>LINEで相談する</a>{% else %}<span class="tosou-lp-btn tosou-lp-btn-line"><svg class="tosou-lp-svg-icon" aria-hidden="true"><use href="#tosou-icon-chat"></use></svg>LINE準備中</span>{% endif %}
-{% if phone_href %}<a class="tosou-lp-btn tosou-lp-btn-phone" href="{{ phone_href }}"><svg class="tosou-lp-svg-icon" aria-hidden="true"><use href="#tosou-icon-phone"></use></svg>電話で相談する</a>{% else %}<span class="tosou-lp-btn tosou-lp-btn-phone"><svg class="tosou-lp-svg-icon" aria-hidden="true"><use href="#tosou-icon-phone"></use></svg>電話番号準備中</span>{% endif %}
-</div>
-<div class="tosou-lp-hero-visual"><img src="/static/assets/tosou/tosou-hero.png" alt="外壁と屋根の塗装を検討する住宅" loading="eager"></div>
-<div class="tosou-lp-hero-info">
-<div class="tosou-lp-card-label">BEFORE CONTRACT</div>
-<p><strong>見積書がまだなくても相談できます。</strong> これから塗装を検討する方も、分からないところから整理できます。</p>
-</div>
-</div>
-</section>
-
-<section class="tosou-lp-trust"><div class="tosou-lp-container tosou-lp-trust-grid">
-<div class="tosou-lp-trust-item"><div class="tosou-lp-trust-icon" aria-hidden="true"><svg class="tosou-lp-svg-icon"><use href="#tosou-icon-eye"></use></svg></div><div class="tosou-lp-trust-title">第三者目線で整理</div><div class="tosou-lp-trust-text">施工会社とは異なる立場から確認します</div></div>
-<div class="tosou-lp-trust-item"><div class="tosou-lp-trust-icon" aria-hidden="true"><svg class="tosou-lp-svg-icon"><use href="#tosou-icon-balance"></use></svg></div><div class="tosou-lp-trust-title">強引な営業なし</div><div class="tosou-lp-trust-text">契約するかどうかはお客様が決めます</div></div>
-<div class="tosou-lp-trust-item"><div class="tosou-lp-trust-icon" aria-hidden="true"><svg class="tosou-lp-svg-icon"><use href="#tosou-icon-check"></use></svg></div><div class="tosou-lp-trust-title">最終判断はお客様</div><div class="tosou-lp-trust-text">納得できる選択のための材料を整理します</div></div>
-</div></section>
-
-<section class="tosou-lp-section"><div class="tosou-lp-container">
-<div class="tosou-lp-heading"><div class="tosou-lp-kicker">TROUBLE</div><h2>こんなお悩みありませんか？</h2><p>塗装の見積りは、金額だけでは判断しにくいことがあります。</p></div>
-<div class="tosou-lp-grid tosou-lp-grid-4">
-<div class="tosou-lp-item tosou-lp-worry">この金額は相場から大きく外れていない？</div>
-<div class="tosou-lp-item tosou-lp-worry">本当に必要な工事まで入っている？</div>
-<div class="tosou-lp-item tosou-lp-worry">塗料の違いがよく分からない</div>
-<div class="tosou-lp-item tosou-lp-worry">他社と比べた方がいいのか迷っている</div>
-<div class="tosou-lp-item tosou-lp-worry">訪問営業で契約を急かされている</div>
-<div class="tosou-lp-item tosou-lp-worry">まだ見積を取っていないけれど相談したい</div>
-</div>
-</div></section>
-
-<section class="tosou-lp-section tosou-lp-section-pale"><div class="tosou-lp-container">
-<div class="tosou-lp-reason-box"><h2>契約後に気づいても、<br><strong>変更が難しい場合も。</strong></h2><p>外壁・屋根塗装は、見積書だけでは工事内容の違いが分かりにくいことがあります。<br><br>金額だけでなく、施工範囲・塗料・工程・保証条件まで確認してから契約を判断することが大切です。</p></div>
-</div></section>
-
-<section class="tosou-lp-section"><div class="tosou-lp-container">
-<div class="tosou-lp-third-party"><div class="tosou-lp-heading"><div class="tosou-lp-kicker">THIRD-PARTY VIEW</div><h2>だから、契約する前に一度<br>「第三者の目」で確認する。</h2><p>MITENOAは、施工会社とは異なる立場から見積内容を整理します。<br>「高い・安い」だけではなく、その内容で納得して契約できるかを考えるための判断材料を分かりやすく整理します。</p></div></div>
-</div></section>
-
-<section class="tosou-lp-section tosou-lp-section-pale"><div class="tosou-lp-container">
-<div class="tosou-lp-heading"><div class="tosou-lp-kicker">BENEFIT</div><h2>見積書を確認すると、<br>判断がこう変わります</h2></div>
-<div class="tosou-lp-grid tosou-lp-grid-4">
-<div class="tosou-lp-item"><div class="tosou-lp-item-icon" aria-hidden="true"><svg class="tosou-lp-svg-icon"><use href="#tosou-icon-document"></use></svg></div><div class="tosou-lp-item-no">01</div><h3>金額の根拠を整理できる</h3><p>工事内容と金額の関係を確認できます。</p></div>
-<div class="tosou-lp-item"><div class="tosou-lp-item-icon" aria-hidden="true"><svg class="tosou-lp-svg-icon"><use href="#tosou-icon-home"></use></svg></div><div class="tosou-lp-item-no">02</div><h3>工事範囲を確認できる</h3><p>塗装する場所・しない場所を整理できます。</p></div>
-<div class="tosou-lp-item"><div class="tosou-lp-item-icon" aria-hidden="true"><svg class="tosou-lp-svg-icon"><use href="#tosou-icon-paint"></use></svg></div><div class="tosou-lp-item-no">03</div><h3>塗料や仕様の違いを比較できる</h3><p>使う塗料や工程の違いを確認できます。</p></div>
-<div class="tosou-lp-item"><div class="tosou-lp-item-icon" aria-hidden="true"><svg class="tosou-lp-svg-icon"><use href="#tosou-icon-check"></use></svg></div><div class="tosou-lp-item-no">04</div><h3>契約前に確認すべき点が分かる</h3><p>分からない点を整理して判断できます。</p></div>
-</div>
-</div></section>
-
-<section class="tosou-lp-section"><div class="tosou-lp-container">
-<div class="tosou-lp-heading"><div class="tosou-lp-kicker">CHECK POINT</div><h2>塗装見積で確認したいポイント</h2></div>
-<div class="tosou-lp-grid tosou-lp-grid-4">
-<div class="tosou-lp-item"><div class="tosou-lp-item-icon" aria-hidden="true"><svg class="tosou-lp-svg-icon"><use href="#tosou-icon-home"></use></svg></div><div class="tosou-lp-item-no">01</div><h3>塗装する場所</h3><p>外壁・屋根など対象範囲を確認。</p></div>
-<div class="tosou-lp-item"><div class="tosou-lp-item-icon" aria-hidden="true"><svg class="tosou-lp-svg-icon"><use href="#tosou-icon-document"></use></svg></div><div class="tosou-lp-item-no">02</div><h3>塗装しない場所</h3><p>対象外の箇所も整理。</p></div>
-<div class="tosou-lp-item"><div class="tosou-lp-item-icon" aria-hidden="true"><svg class="tosou-lp-svg-icon"><use href="#tosou-icon-paint"></use></svg></div><div class="tosou-lp-item-no">03</div><h3>使用する塗料</h3><p>塗料名や仕様を確認。</p></div>
-<div class="tosou-lp-item"><div class="tosou-lp-item-icon" aria-hidden="true"><svg class="tosou-lp-svg-icon"><use href="#tosou-icon-layers"></use></svg></div><div class="tosou-lp-item-no">04</div><h3>塗装回数・工程</h3><p>下塗りなどの工程を確認。</p></div>
-<div class="tosou-lp-item"><div class="tosou-lp-item-icon" aria-hidden="true"><svg class="tosou-lp-svg-icon"><use href="#tosou-icon-tool"></use></svg></div><div class="tosou-lp-item-no">05</div><h3>下地処理</h3><p>補修や処理の内容を確認。</p></div>
-<div class="tosou-lp-item"><div class="tosou-lp-item-icon" aria-hidden="true"><svg class="tosou-lp-svg-icon"><use href="#tosou-icon-layers"></use></svg></div><div class="tosou-lp-item-no">06</div><h3>足場・付帯工事</h3><p>足場や付帯部分の扱いを確認。</p></div>
-<div class="tosou-lp-item"><div class="tosou-lp-item-icon" aria-hidden="true"><svg class="tosou-lp-svg-icon"><use href="#tosou-icon-shield"></use></svg></div><div class="tosou-lp-item-no">07</div><h3>保証内容</h3><p>保証の範囲や条件を確認。</p></div>
-<div class="tosou-lp-item"><div class="tosou-lp-item-icon" aria-hidden="true"><svg class="tosou-lp-svg-icon"><use href="#tosou-icon-plus"></use></svg></div><div class="tosou-lp-item-no">08</div><h3>追加費用の条件</h3><p>追加工事が生じる条件を確認。</p></div>
-</div>
-</div></section>
-
-<section class="tosou-lp-section tosou-lp-section-pale"><div class="tosou-lp-container">
-<div class="tosou-lp-heading"><div class="tosou-lp-kicker">FLOW</div><h2>ご相談の流れ</h2></div>
-<div class="tosou-lp-flow">
-<div class="tosou-lp-flow-item"><div class="tosou-lp-flow-no">1</div><h3>LINEまたは電話で相談</h3><p>現在の状況をお聞きします。</p></div>
-<div class="tosou-lp-flow-item"><div class="tosou-lp-flow-no">2</div><h3>状況・見積内容を確認</h3><p>見積りの有無にかかわらず整理します。</p></div>
-<div class="tosou-lp-flow-item"><div class="tosou-lp-flow-no">3</div><h3>第三者目線で整理</h3><p>内容や条件を確認します。</p></div>
-<div class="tosou-lp-flow-item"><div class="tosou-lp-flow-no">4</div><h3>必要に応じて比較案内</h3><p>対応可能な施工会社をご案内します。</p></div>
-<div class="tosou-lp-flow-item"><div class="tosou-lp-flow-no">5</div><h3>お客様自身で判断</h3><p>納得できた場合のみ進めます。</p></div>
-</div>
-</div></section>
-
-<section class="tosou-lp-section"><div class="tosou-lp-container tosou-lp-purpose">
-<div><div class="tosou-lp-kicker">MITENOA</div><h2>MITENOAは、<br>契約を決めるための営業会社ではありません。</h2><p>私たちが提供するのは、「この会社と契約してください」という答えではなく、納得して判断するための材料です。<br><br>施工会社をご案内する場合でも、最終的に契約するかどうかを決めるのはお客様です。</p></div>
-<div class="tosou-lp-purpose-side">比較や施工会社のご案内を希望される場合も、必要な同意を確認してから情報を取り扱います。原本や個人情報を勝手に共有することはありません。</div>
-</div></section>
-
-<section class="tosou-lp-section tosou-lp-section-pale"><div class="tosou-lp-container">
-<div class="tosou-lp-heading"><div class="tosou-lp-kicker">AREA</div><h2>対応エリア</h2></div>
-<div class="tosou-lp-area"><div class="tosou-lp-area-icon" aria-hidden="true"><svg class="tosou-lp-svg-icon"><use href="#tosou-icon-home"></use></svg></div><div>北空知・中空知を中心に対応予定です。<br>対応状況により受付できない地域があります。</div></div>
-</div></section>
-
-<section class="tosou-lp-section"><div class="tosou-lp-container">
-<div class="tosou-lp-heading"><div class="tosou-lp-kicker">FAQ</div><h2>よくある質問</h2></div>
-<div class="tosou-lp-faq">
-<details><summary>本当に契約前でも相談できますか？</summary><div class="tosou-lp-faq-answer">はい。契約前の段階で、見積内容や分からない点を整理できます。</div></details>
-<details><summary>見積書がまだなくても相談できますか？</summary><div class="tosou-lp-faq-answer">はい。これから塗装を検討する方の新規見積り相談も受け付けています。</div></details>
-<details><summary>他社の見積と比較できますか？</summary><div class="tosou-lp-faq-answer">現在のお見積りと比較しながら、工事内容や条件を確認できます。対応状況に応じて提携施工会社をご案内します。</div></details>
-<details><summary>見積書の内容は勝手に施工会社へ共有されますか？</summary><div class="tosou-lp-faq-answer">いいえ。施工会社への相談や見積りを希望し、必要な同意をいただいた後に、必要な範囲で取り扱います。</div></details>
-<details><summary>LINEだけでも相談できますか？</summary><div class="tosou-lp-faq-answer">はい。LINEからご相談いただけます。電話でのご相談も可能です。</div></details>
-<div class="tosou-lp-more"><a href="/faq">詳しいFAQを見る →</a></div>
-</div>
-</div></section>
-
-<section class="tosou-lp-final"><div class="tosou-lp-container tosou-lp-final-inner">
-<div class="tosou-lp-kicker">BEFORE YOU DECIDE</div><h2>まずは今の見積内容を<br>整理しませんか？</h2><p>契約を決める前に、分からないところだけでも確認できます。</p>
-<div class="tosou-lp-actions">
-{% if line_url %}<a class="tosou-lp-btn tosou-lp-btn-line" href="{{ line_url }}"><svg class="tosou-lp-svg-icon" aria-hidden="true"><use href="#tosou-icon-chat"></use></svg>LINEで相談する</a>{% else %}<span class="tosou-lp-btn tosou-lp-btn-line"><svg class="tosou-lp-svg-icon" aria-hidden="true"><use href="#tosou-icon-chat"></use></svg>LINE準備中</span>{% endif %}
-{% if phone_href %}<a class="tosou-lp-btn tosou-lp-btn-phone" href="{{ phone_href }}"><svg class="tosou-lp-svg-icon" aria-hidden="true"><use href="#tosou-icon-phone"></use></svg>電話で相談する</a>{% else %}<span class="tosou-lp-btn tosou-lp-btn-phone"><svg class="tosou-lp-svg-icon" aria-hidden="true"><use href="#tosou-icon-phone"></use></svg>電話番号準備中</span>{% endif %}
-</div>
-</div></section>
+<main class="tosou-solar-main">
+<section class="tosou-solar-hero"><div class="tosou-solar-hero-media"><img src="/static/assets/tosou/tosou-hero.png" alt="外壁と屋根の塗装を検討する住宅" loading="eager"></div><div class="tosou-solar-hero-overlay"></div><div class="tosou-solar-hero-inner"><div class="tosou-solar-hero-copy"><div class="tosou-solar-eyebrow">TOSOU SECOND OPINION</div><h1>その見積もり、<br><span>契約する前に。</span></h1><p class="tosou-solar-hero-lead">外壁・屋根塗装の見積内容を、第三者の目で整理します。</p><p class="tosou-solar-hero-note">金額だけでなく、工事範囲・塗料・工程・保証条件まで確認。</p><div class="tosou-solar-actions">{% if line_url %}<a class="tosou-solar-action orange" href="{{ line_url }}" target="_blank" rel="noopener noreferrer"><span class="tosou-solar-action-icon"><svg class="tosou-lp-svg-icon"><use href="#tosou-icon-document"></use></svg></span><span><span class="tosou-solar-action-main">見積内容をチェックする</span><span class="tosou-solar-action-sub">契約前に確認できます</span></span><span class="tosou-solar-action-arrow">›</span></a><a class="tosou-solar-action green" href="{{ line_url }}" target="_blank" rel="noopener noreferrer"><span class="tosou-solar-action-icon">LINE</span><span><span class="tosou-solar-action-main">LINEで気軽に相談する</span><span class="tosou-solar-action-sub">写真を送るだけでもOK</span></span><span class="tosou-solar-action-arrow">›</span></a>{% else %}<a class="tosou-solar-action orange" href="#tosou-contact"><span class="tosou-solar-action-icon"><svg class="tosou-lp-svg-icon"><use href="#tosou-icon-document"></use></svg></span><span><span class="tosou-solar-action-main">見積内容をチェックする</span><span class="tosou-solar-action-sub">契約前に確認できます</span></span><span class="tosou-solar-action-arrow">›</span></a>{% endif %}</div></div></div></section>
+<section class="tosou-solar-trust"><div class="tosou-solar-trust-grid"><div class="tosou-solar-trust-item"><div class="tosou-solar-trust-icon"><svg class="tosou-lp-svg-icon"><use href="#tosou-icon-eye"></use></svg></div><div><div class="tosou-solar-trust-title">第三者目線で整理</div><div class="tosou-solar-trust-text">施工会社とは異なる立場で確認</div></div></div><div class="tosou-solar-trust-item"><div class="tosou-solar-trust-icon"><svg class="tosou-lp-svg-icon"><use href="#tosou-icon-balance"></use></svg></div><div><div class="tosou-solar-trust-title">強引な営業なし</div><div class="tosou-solar-trust-text">契約するかどうかはお客様が決定</div></div></div><div class="tosou-solar-trust-item"><div class="tosou-solar-trust-icon"><svg class="tosou-lp-svg-icon"><use href="#tosou-icon-check"></use></svg></div><div><div class="tosou-solar-trust-title">最終判断はお客様</div><div class="tosou-solar-trust-text">納得して選ぶための材料を整理</div></div></div></div></section>
+<div class="tosou-solar-note-strip"><strong>見積書がまだなくても相談できます</strong><span>これから塗装を検討する方も、分からないところから整理できます。</span></div>
+<section class="tosou-solar-section"><div class="tosou-solar-inner"><div class="tosou-solar-heading"><div class="tosou-solar-kicker">TROUBLE</div><h2 class="tosou-solar-title">こんなお悩みありませんか？</h2><p class="tosou-solar-lead">塗装の見積りは、金額だけでは判断しにくいことがあります。</p></div><div class="tosou-solar-concern-grid">{% for icon,title,text in [("document","見積金額が妥当か分からない","工事内容と金額の関係を整理します。"),("paint","塗料の違いが分からない","仕様や工程の違いを確認します。"),("home","工事範囲が分からない","塗装する場所・しない場所を整理します。"),("balance","契約を急かされている","分からない点から落ち着いて確認できます。")] %}<div class="tosou-solar-concern"><div class="tosou-solar-concern-visual"><svg class="tosou-lp-svg-icon"><use href="#tosou-icon-{{ icon }}"></use></svg></div><div class="tosou-solar-concern-body"><h3 class="tosou-solar-concern-title">{{ title }}</h3><p class="tosou-solar-concern-text">{{ text }}</p></div></div>{% endfor %}</div></div></section>
+<section class="tosou-solar-emphasis"><div class="tosou-solar-inner"><div class="tosou-solar-emphasis-box"><h2>契約後に気づいても、<br><strong>変更が難しい場合も。</strong></h2><p>外壁・屋根塗装は、見積書だけでは工事内容の違いが分かりにくいことがあります。<br><br>だからこそ、契約前に施工範囲・塗料・工程・保証条件まで確認することが大切です。</p></div></div></section>
+<section class="tosou-solar-section"><div class="tosou-solar-inner"><div class="tosou-solar-heading"><div class="tosou-solar-kicker">THIRD-PARTY VIEW</div><h2 class="tosou-solar-title">第三者の目で、判断材料を整理する</h2><p class="tosou-solar-lead">MITENOAは、納得して判断するための材料を分かりやすく整理します。</p></div><div class="tosou-solar-benefit-grid">{% for icon,title,text in [("document","金額の根拠を整理","工事内容と金額の関係を確認できます。"),("home","工事範囲を確認","必要な場所・対象外の場所を整理できます。"),("check","契約前に判断できる","分からない点を確認してから決められます。")] %}<div class="tosou-solar-benefit"><div class="tosou-solar-benefit-icon"><svg class="tosou-lp-svg-icon"><use href="#tosou-icon-{{ icon }}"></use></svg></div><div class="tosou-solar-benefit-title">{{ title }}</div><div class="tosou-solar-benefit-text">{{ text }}</div></div>{% endfor %}</div></div></section>
+<section class="tosou-solar-section pale"><div class="tosou-solar-inner"><div class="tosou-solar-heading"><div class="tosou-solar-kicker">CHECK POINT</div><h2 class="tosou-solar-title">塗装見積で確認したい8つのこと</h2></div><div class="tosou-solar-check-grid">{% for icon,title,text in [("home","塗装する場所","外壁・屋根など対象範囲"),("document","塗装しない場所","対象外の箇所も整理"),("paint","使用する塗料","塗料名や仕様を確認"),("layers","塗装回数・工程","下塗りなどの工程"),("tool","下地処理","補修や処理の内容"),("layers","足場・付帯工事","足場や付帯部分の扱い"),("shield","保証内容","保証の範囲や条件"),("plus","追加費用の条件","追加工事が生じる条件")] %}<div class="tosou-solar-check"><div class="tosou-solar-check-top"><div class="tosou-solar-check-icon"><svg class="tosou-lp-svg-icon"><use href="#tosou-icon-{{ icon }}"></use></svg></div><div class="tosou-solar-check-name">{{ title }}</div></div><p class="tosou-solar-check-text">{{ text }}</p></div>{% endfor %}</div></div></section>
+<section class="tosou-solar-section"><div class="tosou-solar-inner"><div class="tosou-solar-heading"><div class="tosou-solar-kicker">FLOW</div><h2 class="tosou-solar-title">ご相談の流れ</h2></div><div class="tosou-solar-flow-grid">{% for icon,title,text in [("chat","LINEで相談","現在の状況をお聞きします。"),("document","見積内容を確認","見積りがなくても整理できます。"),("eye","第三者目線で整理","内容や条件を確認します。"),("check","お客様自身で判断","納得できた場合のみ進めます。")] %}<div class="tosou-solar-flow-card"><div class="tosou-solar-flow-art"><svg class="tosou-lp-svg-icon"><use href="#tosou-icon-{{ icon }}"></use></svg></div><div class="tosou-solar-flow-body"><div class="tosou-solar-step">STEP 0{{ loop.index }}</div><h3 class="tosou-solar-flow-title">{{ title }}</h3><p class="tosou-solar-flow-text">{{ text }}</p></div></div>{% if not loop.last %}<div class="tosou-solar-flow-arrow">›</div>{% endif %}{% endfor %}</div></div></section>
+<section class="tosou-solar-section pale"><div class="tosou-solar-inner tosou-solar-purpose"><div><div class="tosou-solar-kicker">MITENOA</div><h2>契約を決めるための営業会社ではありません。</h2><p>比較や施工会社のご案内を希望される場合も、必要な同意を確認してから情報を取り扱います。最終的に契約するかどうかを決めるのはお客様です。</p></div><div class="tosou-solar-purpose-note">見積書原本や個人情報を、同意なく施工会社へ共有することはありません。</div></div></section>
+<section class="tosou-solar-section"><div class="tosou-solar-inner"><div class="tosou-solar-heading"><div class="tosou-solar-kicker">AREA</div><h2 class="tosou-solar-title">対応エリア</h2></div><div class="tosou-solar-area"><div class="tosou-solar-area-icon"><svg class="tosou-lp-svg-icon"><use href="#tosou-icon-home"></use></svg></div><div>北空知・中空知を中心に対応予定です。<br>対応状況により受付できない地域があります。</div></div></div></section>
+<section class="tosou-solar-section pale"><div class="tosou-solar-inner"><div class="tosou-solar-heading"><div class="tosou-solar-kicker">FAQ</div><h2 class="tosou-solar-title">よくある質問</h2></div><div class="tosou-solar-faq"><details><summary>契約前でも相談できますか？</summary><p>はい。契約前の段階で、見積内容や分からない点を整理できます。</p></details><details><summary>見積書がなくても相談できますか？</summary><p>はい。これから塗装を検討する方の相談も受け付けています。</p></details><details><summary>他社の見積と比較できますか？</summary><p>現在のお見積りと比較しながら、工事内容や条件を確認できます。</p></details><details><summary>見積書は勝手に共有されますか？</summary><p>いいえ。必要な同意をいただいた後に、必要な範囲で取り扱います。</p></details></div></div></section>
+<section id="tosou-contact" class="tosou-solar-final"><img src="/static/assets/tosou/tosou-hero.png" alt=""><div class="tosou-solar-inner tosou-solar-final-inner"><div class="tosou-solar-kicker">BEFORE YOU DECIDE</div><h2 class="tosou-solar-final-title">まずは今の見積内容を整理しませんか？</h2><p class="tosou-solar-final-copy">契約を決める前に、分からないところだけでも確認できます。</p><div class="tosou-solar-final-actions">{% if line_url %}<a class="tosou-solar-action orange" href="{{ line_url }}" target="_blank" rel="noopener noreferrer"><span class="tosou-solar-action-icon"><svg class="tosou-lp-svg-icon"><use href="#tosou-icon-document"></use></svg></span><span><span class="tosou-solar-action-main">見積内容をチェックする</span><span class="tosou-solar-action-sub">契約前に確認できます</span></span><span class="tosou-solar-action-arrow">›</span></a><a class="tosou-solar-action green" href="{{ line_url }}" target="_blank" rel="noopener noreferrer"><span class="tosou-solar-action-icon">LINE</span><span><span class="tosou-solar-action-main">LINEで気軽に相談する</span><span class="tosou-solar-action-sub">写真を送るだけでもOK</span></span><span class="tosou-solar-action-arrow">›</span></a>{% else %}<a class="tosou-solar-action orange" href="#tosou-contact"><span class="tosou-solar-action-icon"><svg class="tosou-lp-svg-icon"><use href="#tosou-icon-document"></use></svg></span><span><span class="tosou-solar-action-main">見積内容をチェックする</span><span class="tosou-solar-action-sub">契約前に確認できます</span></span><span class="tosou-solar-action-arrow">›</span></a>{% endif %}</div></div></section>
 </main>
-
-<footer class="tosou-lp-footer"><div class="tosou-lp-container tosou-lp-footer-inner">
-<div>
-{% if mitenoa_logo_url %}<img class="tosou-lp-footer-logo" src="{{ mitenoa_logo_url }}" alt="MITENOA">{% else %}<div class="tosou-lp-footer-fallback">MITENOA</div>{% endif %}
-<div class="tosou-lp-footer-service">そらち塗装のセカンドオピニオン</div>
-<div class="tosou-lp-notice">正式公開前の準備ページです。<br>運営法人名・所在地・代表者・電話番号等は、法人設立後に掲載します。</div>
-</div>
-<nav class="tosou-lp-footer-links"><a href="/guide">サービスの流れ</a><a href="/faq">よくある質問</a><a href="/terms">利用規約</a><a href="/privacy">プライバシーポリシー</a></nav>
-</div></footer>
-
-<div class="tosou-lp-sticky"><div class="tosou-lp-sticky-inner">
-{% if line_url %}<a class="tosou-lp-sticky-line" href="{{ line_url }}"><svg class="tosou-lp-svg-icon" aria-hidden="true"><use href="#tosou-icon-chat"></use></svg>LINE</a>{% else %}<span class="tosou-lp-sticky-line"><svg class="tosou-lp-svg-icon" aria-hidden="true"><use href="#tosou-icon-chat"></use></svg>LINE準備中</span>{% endif %}
-{% if phone_href %}<a class="tosou-lp-sticky-phone" href="{{ phone_href }}"><svg class="tosou-lp-svg-icon" aria-hidden="true"><use href="#tosou-icon-phone"></use></svg>電話</a>{% else %}<span class="tosou-lp-sticky-phone"><svg class="tosou-lp-svg-icon" aria-hidden="true"><use href="#tosou-icon-phone"></use></svg>電話準備中</span>{% endif %}
-</div></div>
-<script>
-(() => {
-  const sticky = document.querySelector('.tosou-lp-sticky');
-  if (!sticky) return;
-  const updateSticky = () => sticky.classList.toggle('is-visible', window.scrollY > 160);
-  updateSticky();
-  window.addEventListener('scroll', updateSticky, {passive:true});
-})();
-</script>
+<footer class="tosou-solar-footer"><div class="tosou-solar-inner tosou-solar-footer-inner"><div>{% if mitenoa_logo_url %}<img class="tosou-solar-footer-logo" src="{{ mitenoa_logo_url }}" alt="MITENOA">{% else %}<div class="tosou-lp-footer-fallback">MITENOA</div>{% endif %}<div class="tosou-solar-footer-service">そらち塗装のセカンドオピニオン</div></div><nav class="tosou-solar-footer-links"><a href="/guide">サービスの流れ</a><a href="/faq">よくある質問</a><a href="/terms">利用規約</a><a href="/privacy">プライバシーポリシー</a></nav></div></footer>
+<div class="tosou-solar-sticky"><div class="tosou-solar-sticky-inner">{% if line_url %}<a class="tosou-solar-sticky-btn orange" href="{{ line_url }}" target="_blank" rel="noopener noreferrer">見積内容をチェック</a><a class="tosou-solar-sticky-btn green" href="{{ line_url }}" target="_blank" rel="noopener noreferrer">LINE相談</a>{% else %}<a class="tosou-solar-sticky-btn orange" href="#tosou-contact">見積内容をチェック</a>{% endif %}</div></div>
 </div>
 </body>
 </html>
